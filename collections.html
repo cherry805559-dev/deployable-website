@@ -33,6 +33,9 @@
         .font-serif {
             font-family: "Noto Serif TC", "Songti TC", serif;
         }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
     </style>
 </head>
 <body class="font-sans text-stone-700 bg-[#F7F5F0] selection:bg-[#B84B42] selection:text-white overflow-x-hidden">
@@ -48,8 +51,34 @@
             <div class="hidden md:flex space-x-10 items-center">
                 <a href="about.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
                 <a href="about.html#awards" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</a>
-                <a href="collections.html" class="text-sm tracking-widest text-[#B84B42] font-bold">藝品系列</a>
-                <a href="index.html#services" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">服務項目</a>
+                <details class="relative">
+                    <summary class="list-none cursor-pointer text-sm tracking-widest text-[#B84B42] font-bold inline-flex items-center gap-1">
+                        <span>藝品系列</span>
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                    </summary>
+                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
+                        <a href="#blessing-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">神明祝壽</a>
+                        <a href="#memorial-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">弔念追思</a>
+                        <a href="#wealth-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">招財開運</a>
+                        <a href="#gratitude-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">還願答謝</a>
+                        <a href="#business-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">企業開市</a>
+                        <a href="#festival-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">節慶祭拜</a>
+                    </div>
+                </details>
+                <details class="relative">
+                    <summary class="list-none cursor-pointer text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium inline-flex items-center gap-1">
+                        <span>服務項目</span>
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                    </summary>
+                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
+                        <a href="index.html#order-flow" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">下單流程</a>
+                        <a href="index.html#pricing" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">報價交件</a>
+                        <a href="index.html#works" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">作品照片牆</a>
+                        <a href="index.html#faq" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">常見問題</a>
+                        <a href="index.html#reviews" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">顧客心聲</a>
+                        <a href="index.html#store-info" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">店家資訊</a>
+                    </div>
+                </details>
                 <a href="index.html#reviews" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</a>
                 <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>

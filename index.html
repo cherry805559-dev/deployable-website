@@ -33,6 +33,9 @@
         .font-serif {
             font-family: "Noto Serif TC", "Songti TC", serif;
         }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
     </style>
 </head>
 <body class="font-sans text-stone-700 bg-[#F7F5F0] selection:bg-[#B84B42] selection:text-white overflow-x-hidden">
@@ -51,8 +54,34 @@
             <div class="hidden md:flex space-x-10 items-center">
                 <a href="about.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
                 <a href="about.html#awards" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</a>
-                <a href="collections.html" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">藝品系列</a>
-                <button onclick="scrollToSection('services')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">服務項目</button>
+                <details class="relative">
+                    <summary class="list-none cursor-pointer text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium inline-flex items-center gap-1">
+                        <span>藝品系列</span>
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                    </summary>
+                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
+                        <a href="collections.html#blessing-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">神明祝壽</a>
+                        <a href="collections.html#memorial-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">弔念追思</a>
+                        <a href="collections.html#wealth-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">招財開運</a>
+                        <a href="collections.html#gratitude-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">還願答謝</a>
+                        <a href="collections.html#business-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">企業開市</a>
+                        <a href="collections.html#festival-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">節慶祭拜</a>
+                    </div>
+                </details>
+                <details class="relative">
+                    <summary class="list-none cursor-pointer text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium inline-flex items-center gap-1">
+                        <span>服務項目</span>
+                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+                    </summary>
+                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
+                        <button onclick="scrollToSection('order-flow')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">下單流程</button>
+                        <button onclick="scrollToSection('pricing')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">報價交件</button>
+                        <button onclick="scrollToSection('works')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">作品照片牆</button>
+                        <button onclick="scrollToSection('faq')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">常見問題</button>
+                        <button onclick="scrollToSection('reviews')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">顧客心聲</button>
+                        <button onclick="scrollToSection('store-info')" class="block w-full rounded-xl px-4 py-2 text-left text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">店家資訊</button>
+                    </div>
+                </details>
                 <button onclick="scrollToSection('reviews')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</button>
                 <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
@@ -188,7 +217,7 @@
     </section>
 
     <!-- Pricing & Lead Time Section -->
-    <section class="py-20 bg-[#F7F5F0]">
+    <section id="pricing" class="py-20 bg-[#F7F5F0]">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
                 <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">CUSTOM ORDER</span>
@@ -216,7 +245,7 @@
     </section>
 
     <!-- Gallery Placeholder Section -->
-    <section class="py-20 bg-white">
+    <section id="works" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-12">
                 <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">WORKS</span>
@@ -232,7 +261,7 @@
         </div>
     </section>
     <!-- Trust & FAQ Section -->
-    <section class="py-20 bg-white">
+    <section id="faq" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6">
             <div class="bg-[#FAF7F2] rounded-2xl p-8 md:p-12 border border-[#E6E2D8]">
                 <h3 class="text-2xl font-serif text-[#2C2C2C] mb-6 text-center">讓您安心的承諾</h3>
@@ -346,7 +375,7 @@
     </section>
 
     <!-- Store Info Section -->
-    <section class="py-20 bg-white">
+    <section id="store-info" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="grid md:grid-cols-[1fr_1.2fr] gap-10 items-start">
                 <div>
