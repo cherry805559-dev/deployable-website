@@ -49,8 +49,8 @@
             
             <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-10 items-center">
-                <button onclick="scrollToSection('story')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</button>
-                <button onclick="scrollToSection('awards')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</button>
+                <a href="about.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
+                <a href="about.html#awards" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</a>
                 <a href="collections.html" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">藝品系列</a>
                 <button onclick="scrollToSection('services')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">服務項目</button>
                 <button onclick="scrollToSection('reviews')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</button>
@@ -70,8 +70,8 @@
 
         <!-- Mobile Menu Dropdown -->
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#F7F5F0] shadow-xl border-t border-stone-200 py-6 px-6 flex flex-col space-y-4">
-            <button onclick="scrollToSection('story')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">品牌故事</button>
-            <button onclick="scrollToSection('awards')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">榮耀認證</button>
+            <a href="about.html#story" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">品牌故事</a>
+            <a href="about.html#awards" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">榮耀認證</a>
             <a href="collections.html" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">藝品系列</a>
             <button onclick="scrollToSection('services')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">服務項目</button>
             <button onclick="scrollToSection('reviews')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">顧客心聲</button>
@@ -133,96 +133,6 @@
             <div class="w-px h-12 bg-stone-300"></div>
         </div>
     </header>
-
-    <!-- Brand Story Section -->
-    <section id="story" class="py-24 bg-white relative">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="relative order-2 md:order-1">
-                    <div class="absolute -bottom-6 -right-6 w-full h-full border-2 border-[#C5A668]/30 rounded-[2rem] z-0"></div>
-                    <!-- 更新了此處的圖片連結 -->
-                    <img src="資產/origami-handcraft.jpg" alt="創辦人 Cherry" class="relative z-10 w-full h-[500px] object-cover rounded-[2rem] shadow-2xl" style="object-position: center 24%;">
-                    <div class="absolute left-4 md:-left-6 bottom-8 bg-white p-6 shadow-xl rounded-lg z-20 max-w-xs border-l-4 border-[#B84B42]">
-                        <p class="font-serif text-[#B84B42] text-lg mb-2">「傳統紙藝，現代創新」</p>
-                        <p class="text-sm text-stone-500">—— 創辦人 Cherry</p>
-                    </div>
-                </div>
-                
-                <div class="order-1 md:order-2">
-                    <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-4 block">BRAND STORY</span>
-                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-[#2C2C2C] mb-8 leading-snug">
-                        從數字到摺紙<br/>找回內心的平靜
-                    </h2>
-                    <div class="space-y-6 text-stone-600 font-light leading-relaxed text-justify">
-                        <p>
-                            Hello，我是佳穎 (Cherry)。在成為一名金紙藝師之前，我其實是工廠裡的一名會計，每天在數字與報表中。
-                        </p>
-                        <p>
-                            意外接觸到了金紙藝品，從完全不會摺紙開始，一張一張的學。我發現這不僅僅是在製作一份供品，更是一個療癒自我的過程。我將心裡的祈願摺進紙裡，也在這個過程中，慢慢找回了平靜。
-                        </p>
-                        <p>
-                            我相信，敬拜神明不一定要鋪張喧譁。好看不失禮，心意剛剛好，才是現代人最需要的儀式感。我們不趕時間，只專注於將您的祈願，化作手作的溫度，獻給最敬重的對象。
-                        </p>
-                    </div>
-                    <div class="mt-10 pt-8 border-t border-stone-100 flex items-center gap-8">
-                        <div>
-                            <span class="block text-3xl font-serif text-[#C5A668]">2024</span>
-                            <span class="text-xs text-stone-400 tracking-wider">ESTABLISHED</span>
-                        </div>
-                        <div>
-                            <span class="block text-3xl font-serif text-[#C5A668]">100%</span>
-                            <span class="text-xs text-stone-400 tracking-wider">HANDMADE</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Awards Section -->
-    <section id="awards" class="py-20 bg-[#2C2C2C] text-[#F7F5F0]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-2xl md:text-3xl font-serif text-[#C5A668] mb-4">榮耀與專業肯定</h2>
-                <p class="text-stone-400 font-light">專業認證 x 傳統工藝</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div class="p-6 border border-stone-700 rounded-lg hover:border-[#C5A668] transition-colors group">
-                    <div class="flex justify-center mb-4">
-                        <!-- 更新：ISO 9001 照片 -->
-                        <img src="https://duk.tw/EXAwbJ.jpg" alt="ISO 9001" class="h-32 w-auto object-contain rounded shadow-sm group-hover:shadow-md transition-all">
-                    </div>
-                    <h3 class="font-serif text-lg mb-2">ISO 9001</h3>
-                    <p class="text-xs text-stone-400 leading-relaxed">初級紙藝師<br/>職能認證考核通過</p>
-                </div>
-                <div class="p-6 border border-stone-700 rounded-lg hover:border-[#C5A668] transition-colors group">
-                    <div class="flex justify-center mb-4">
-                        <!-- 更新：國際紙藝 財寶箱 照片 -->
-                        <img src="https://duk.tw/oLGWnL.jpg" alt="國際紙藝 財寶箱" class="h-32 w-auto object-contain rounded shadow-sm group-hover:shadow-md transition-all">
-                    </div>
-                    <h3 class="font-serif text-lg mb-2">2025 冠軍</h3>
-                    <p class="text-xs text-stone-400 leading-relaxed">中華奧林匹克盃<br/>國際紙藝 財寶箱</p>
-                </div>
-                <div class="p-6 border border-stone-700 rounded-lg hover:border-[#C5A668] transition-colors group">
-                    <div class="flex justify-center mb-4">
-                        <!-- 更新：觀世音菩薩紙藝 照片 -->
-                        <img src="https://duk.tw/GxPzlp.jpg" alt="觀世音菩薩紙藝" class="h-32 w-auto object-contain rounded shadow-sm group-hover:shadow-md transition-all">
-                    </div>
-                    <h3 class="font-serif text-lg mb-2">2025 冠軍</h3>
-                    <p class="text-xs text-stone-400 leading-relaxed">中華奧林匹克盃<br/>觀世音菩薩紙藝</p>
-                </div>
-                <div class="p-6 border border-stone-700 rounded-lg hover:border-[#C5A668] transition-colors group">
-                    <div class="flex justify-center mb-4">
-                        <!-- 更新：文創名師 照片 -->
-                        <img src="https://duk.tw/ASsXex.jpg" alt="文創名師" class="h-32 w-auto object-contain rounded shadow-sm group-hover:shadow-md transition-all">
-                    </div>
-                    <h3 class="font-serif text-lg mb-2">文創名師</h3>
-                    <p class="text-xs text-stone-400 leading-relaxed">十大名師認證<br/>TICCPA 國際名店</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Collections Teaser -->
     <section id="services" class="py-20 bg-[#F7F5F0]">
