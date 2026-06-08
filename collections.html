@@ -61,6 +61,10 @@
         </div>
     </nav>
 
+    <button id="backToTop" class="fixed right-5 bottom-24 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-stone-200 bg-white text-[#B84B42] shadow-xl hover:border-[#B84B42] hover:bg-[#F7F5F0] transition-colors" aria-label="回到頂部">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
     <button id="cartToggle" class="fixed right-5 bottom-5 z-50 inline-flex items-center gap-3 rounded-full bg-[#B84B42] px-5 py-4 text-white shadow-2xl hover:bg-[#8E342D] transition-colors">
         <i data-lucide="shopping-cart" class="w-5 h-5"></i>
         <span class="font-bold">購物車</span>
@@ -302,6 +306,9 @@
         document.getElementById("cartToggle").addEventListener("click", openCart);
         document.getElementById("cartClose").addEventListener("click", closeCart);
         document.getElementById("cartBackdrop").addEventListener("click", closeCart);
+        document.getElementById("backToTop").addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
         document.getElementById("cartItems").addEventListener("click", (event) => {
             const plus = event.target.closest(".cart-plus");
