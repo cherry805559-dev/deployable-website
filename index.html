@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="一個可直接部署的網站範本，適合公司形象、服務介紹與聯絡表單。"
+    />
+    <title>品牌網站 | 首頁</title>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="回到首頁">
+        <span class="brand-mark">B</span>
+        <span>品牌名稱</span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="主要導覽">
+        <a href="#services">服務</a>
+        <a href="#cases">案例</a>
+        <a href="#about">關於我們</a>
+        <a href="#contact">聯絡</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-content">
+          <p class="eyebrow">Website Starter</p>
+          <h1>打造清楚、有質感、可快速部署的品牌網站</h1>
+          <p>
+            這是一個整理好的網站資料夾範本，可以直接替換文字、圖片與品牌色，部署到任何靜態網站平台。
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">開始洽詢</a>
+            <a class="button secondary" href="#services">查看服務</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="services">
+        <div class="section-heading">
+          <p class="eyebrow">Services</p>
+          <h2>網站主要區塊</h2>
+          <p>你可以依照需求保留或刪除這些內容，讓網站更貼近實際品牌。</p>
+        </div>
+
+        <div class="card-grid">
+          <article class="card">
+            <h3>品牌形象</h3>
+            <p>適合公司介紹、品牌故事、核心理念與團隊展示。</p>
+          </article>
+          <article class="card">
+            <h3>服務介紹</h3>
+            <p>清楚呈現服務項目、流程、價格方案與合作方式。</p>
+          </article>
+          <article class="card">
+            <h3>聯絡轉換</h3>
+            <p>提供表單、社群連結與行動呼籲，協助訪客快速聯繫。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section muted" id="cases">
+        <div class="section-heading">
+          <p class="eyebrow">Works</p>
+          <h2>精選案例</h2>
+          <p>放上過去作品、客戶成果或專案亮點，增加訪客信任感。</p>
+        </div>
+
+        <div class="case-list">
+          <article class="case-item">
+            <span>01</span>
+            <div>
+              <h3>企業形象網站</h3>
+              <p>建立品牌首頁、服務頁與聯絡流程。</p>
+            </div>
+          </article>
+          <article class="case-item">
+            <span>02</span>
+            <div>
+              <h3>產品介紹頁</h3>
+              <p>整理產品特色、規格與購買導向。</p>
+            </div>
+          </article>
+          <article class="case-item">
+            <span>03</span>
+            <div>
+              <h3>活動宣傳頁</h3>
+              <p>提供活動資訊、報名入口與常見問題。</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="about">
+        <div>
+          <p class="eyebrow">About</p>
+          <h2>關於這個網站架構</h2>
+        </div>
+        <div class="copy-block">
+          <p>
+            這份範本使用純 HTML、CSS、JavaScript，不需要安裝套件，也不需要編譯。你可以直接修改內容後部署。
+          </p>
+          <p>
+            若之後要擴充成 React、Vue、Next.js 或後台管理系統，也可以以這個結構作為內容規劃基礎。
+          </p>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <div class="section-heading">
+          <p class="eyebrow">Contact</p>
+          <h2>聯絡我們</h2>
+          <p>表單目前是前端展示版，部署前可串接 Google Forms、Formspree、後端 API 或 CRM。</p>
+        </div>
+
+        <form class="contact-form">
+          <label>
+            姓名
+            <input type="text" name="name" placeholder="請輸入姓名" required />
+          </label>
+          <label>
+            Email
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            需求
+            <textarea name="message" rows="5" placeholder="請簡短描述你的需求"></textarea>
+          </label>
+          <button class="button primary" type="submit">送出訊息</button>
+          <p class="form-note" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> 品牌名稱. All rights reserved.</p>
+      <a href="#home">回到上方</a>
+    </footer>
+
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
