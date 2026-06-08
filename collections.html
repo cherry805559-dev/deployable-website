@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金鼎盛金紙藝品 | 手作的溫度與心意</title>
+    <!-- 引入 Tailwind CSS (負責排版樣式) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Lucide Icons (負責圖示) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Google Sites 特殊修正：隱藏捲軸但保留功能 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: "Noto Serif TC", serif; /* 嘗試使用系統襯線體 */
+        }
+        .font-sans {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+        }
+        .font-serif {
+            font-family: "Noto Serif TC", "Songti TC", serif;
+        }
+    </style>
+</head>
+<body class="font-sans text-stone-700 bg-[#F7F5F0] selection:bg-[#B84B42] selection:text-white overflow-x-hidden">
+
+    <nav id="navbar" class="fixed w-full z-50 bg-[#F7F5F0]/95 backdrop-blur-md shadow-sm py-4">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3">
+                <div>
+                    <div class="text-xl font-serif font-bold tracking-widest text-[#2C2C2C]">金鼎盛金紙藝品</div>
+                    <div class="text-[10px] tracking-[0.3em] text-[#8C8C8C] uppercase">JINDING SHENG JINZHIYIPIN</div>
+                </div>
+            </a>
+            <div class="hidden md:flex space-x-10 items-center">
+                <a href="index.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
+                <a href="index.html#awards" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</a>
+                <a href="collections.html" class="text-sm tracking-widest text-[#B84B42] font-bold">藝品系列</a>
+                <a href="index.html#reviews" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</a>
+                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                    <span>預約諮詢</span>
+                </a>
+            </div>
+            <div class="md:hidden">
+                <a href="index.html" class="text-sm tracking-widest text-[#B84B42] font-bold">回首頁</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Section -->
+    <section id="services" class="pt-36 pb-24 bg-[#F7F5F0] min-h-screen">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">COLLECTIONS</span>
+                <h1 class="text-4xl md:text-5xl font-serif text-[#2C2C2C]">藝品系列</h1><p class="text-stone-500 leading-relaxed max-w-2xl mx-auto mt-5">把祝壽、還願、招財與開運的心意，做成精緻、有儀式感的金紙藝品。</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
+                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="gift" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">金紙蛋糕花</h3>
+                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・還願・儀式感</p>
+                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
+                        獻給神明的生日驚喜。以圓滿造型象徵生生不息的福氣，用心又有儀式感，適合祝壽或重要日子展現誠意。
+                    </p>
+                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
+                        <!-- 更新：金紙蛋糕花 照片 -->
+                        <img src="資產/cake-flower.jpg" alt="金紙蛋糕花" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
+                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="flower" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">好神花花束</h3>
+                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">招財・納福・補運</p>
+                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
+                        結合經文與花藝美學的創意供品。將招財納福、補運、姻緣的心願，透過精緻的摺紙藝術，優雅地傳遞給神明。
+                    </p>
+                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
+                        <!-- 更新：好神花花束 照片 -->
+                        <img src="https://duk.tw/LbMswI.jpg" alt="God Flower" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
+                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="flame" class="w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">焰旺來鳳梨</h3>
+                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">開運・事業・興旺</p>
+                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
+                        鳳梨寓意「旺來」。層層堆疊的金色果身，代表財氣滿滿。適合公司開市、居家祈福，替事業祈來一份順遂與興旺。
+                    </p>
+                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
+                        <!-- 更新：焰旺來鳳梨 照片 -->
+                        <img src="https://duk.tw/82Avh0.jpg" alt="Pineapple Art" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[#B84B42] border-b border-[#B84B42] pb-1 hover:opacity-80 transition-opacity">
+                    <span>加入 LINE 詢問客製與預訂</span>
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="contact" class="py-24 bg-[#B84B42] relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
+            <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">想訂製專屬紙藝作品？</h2>
+            <p class="text-lg md:text-xl text-white/80 mb-10 font-light leading-relaxed">把想祝福的日子、對象與預算告訴我們，一起討論最合適的款式。</p>
+            <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-[#B84B42] px-10 py-4 rounded-full font-bold tracking-widest hover:bg-[#F7F5F0] transition-colors shadow-xl">
+                <i data-lucide="message-circle" class="w-6 h-6"></i>
+                <span>LINE 預約諮詢</span>
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-[#2C2C2C] text-white py-10 text-center text-sm text-white/50">
+        <p class="font-serif text-xl text-white mb-2">金鼎盛金紙藝品</p>
+        <p>© 2026 Jinding Sheng Jinzhi Yipin. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

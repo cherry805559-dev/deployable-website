@@ -50,7 +50,7 @@
             <div class="hidden md:flex space-x-10 items-center">
                 <button onclick="scrollToSection('story')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</button>
                 <button onclick="scrollToSection('awards')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</button>
-                <button onclick="scrollToSection('services')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">藝品系列</button>
+                <a href="collections.html" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">藝品系列</a>
                 <button onclick="scrollToSection('reviews')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</button>
                 <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
                     <i data-lucide="message-circle" class="w-4 h-4"></i>
@@ -70,7 +70,7 @@
         <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#F7F5F0] shadow-xl border-t border-stone-200 py-6 px-6 flex flex-col space-y-4">
             <button onclick="scrollToSection('story')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">品牌故事</button>
             <button onclick="scrollToSection('awards')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">榮耀認證</button>
-            <button onclick="scrollToSection('services')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">藝品系列</button>
+            <a href="collections.html" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">藝品系列</a>
             <button onclick="scrollToSection('reviews')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">顧客心聲</button>
             <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white py-4 rounded-lg text-center mt-4 flex justify-center items-center gap-2">
                 <i data-lucide="message-circle" class="w-5 h-5"></i>
@@ -114,9 +114,9 @@
                     <span>訂製專屬心意</span>
                     <i data-lucide="chevron-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
                 </a>
-                <button onclick="scrollToSection('services')" class="px-10 py-4 rounded-full text-lg tracking-widest text-stone-500 hover:text-[#B84B42] transition-colors flex items-center gap-2">
+                <a href="collections.html" class="px-10 py-4 rounded-full text-lg tracking-widest text-stone-500 hover:text-[#B84B42] transition-colors flex items-center gap-2">
                     探索藝品
-                </button>
+                </a>
             </div>
         </div>
         
@@ -217,73 +217,20 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-[#F7F5F0]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">COLLECTIONS</span>
-                <h2 class="text-3xl md:text-4xl font-serif text-[#2C2C2C]">熱銷商品</h2>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="gift" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">金紙蛋糕花</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・還願・儀式感</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        獻給神明的生日驚喜。以圓滿造型象徵生生不息的福氣，用心又有儀式感，適合祝壽或重要日子展現誠意。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：金紙蛋糕花 照片 -->
-                        <img src="資產/cake-flower.jpg" alt="金紙蛋糕花" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flower" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">好神花花束</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">招財・納福・補運</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        結合經文與花藝美學的創意供品。將招財納福、補運、姻緣的心願，透過精緻的摺紙藝術，優雅地傳遞給神明。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：好神花花束 照片 -->
-                        <img src="https://duk.tw/LbMswI.jpg" alt="God Flower" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flame" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">焰旺來鳳梨</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">開運・事業・興旺</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        鳳梨寓意「旺來」。層層堆疊的金色果身，代表財氣滿滿。適合公司開市、居家祈福，替事業祈來一份順遂與興旺。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：焰旺來鳳梨 照片 -->
-                        <img src="https://duk.tw/82Avh0.jpg" alt="Pineapple Art" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[#B84B42] border-b border-[#B84B42] pb-1 hover:opacity-80 transition-opacity">
-                    <span>查看完整作品目錄 (含桌上型龍船、元寶塔等)</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
+    <!-- Collections Teaser -->
+    <section id="services" class="py-20 bg-[#F7F5F0]">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">COLLECTIONS</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-[#2C2C2C] mb-6">藝品系列</h2>
+            <p class="text-stone-500 leading-relaxed max-w-2xl mx-auto mb-8">
+                將祝壽、還願、招財與開運的心意，做成更有儀式感的紙藝作品。完整品項已整理成獨立頁面，方便您慢慢挑選。
+            </p>
+            <a href="collections.html" class="inline-flex items-center gap-2 bg-[#B84B42] text-white px-8 py-3 rounded-full tracking-widest hover:bg-[#8E342D] transition-colors shadow-md">
+                <span>前往藝品系列</span>
+                <i data-lucide="chevron-right" class="w-5 h-5"></i>
+            </a>
         </div>
     </section>
-
     <!-- Trust & FAQ Section -->
     <section class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6">
@@ -468,6 +415,7 @@
     </script>
 </body>
 </html>
+
 
 
 
