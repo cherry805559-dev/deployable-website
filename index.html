@@ -81,6 +81,10 @@
         </div>
     </nav>
 
+    <button id="backToTop" class="fixed right-5 bottom-5 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-stone-200 bg-white text-[#B84B42] shadow-xl hover:border-[#B84B42] hover:bg-[#F7F5F0] transition-colors" aria-label="回到頂部">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
     <!-- Hero Section -->
     <header class="relative h-screen min-h-[600px] flex items-center justify-center overflow-hidden">
         <!-- Background -->
@@ -371,6 +375,10 @@
     <script>
         // 初始化 Lucide 圖示
         lucide.createIcons();
+
+        document.getElementById("backToTop").addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
 
         // 滾動效果 (Navbar 背景變化)
         window.addEventListener('scroll', function() {
