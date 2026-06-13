@@ -518,6 +518,35 @@
         };
         let cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
 
+        const normalizeCartNames = () => {
+            const nameMap = {
+                "金紙蛋糕花": "祝壽蛋糕花"
+            };
+            const merged = [];
+
+            cart.forEach((item) => {
+                const name = nameMap[item.name] || item.name;
+                const category = item.category || "神明祝壽";
+                const existing = merged.find((nextItem) => nextItem.name === name && nextItem.category === category);
+
+                if (existing) {
+                    existing.qty += Number(item.qty) || 1;
+                } else {
+                    merged.push({
+                        ...item,
+                        name,
+                        category,
+                        qty: Number(item.qty) || 1
+                    });
+                }
+            });
+
+            cart = merged;
+            localStorage.setItem(cartKey, JSON.stringify(cart));
+        };
+
+        normalizeCartNames();
+
         const saveCart = () => {
             localStorage.setItem(cartKey, JSON.stringify(cart));
             renderCart();
