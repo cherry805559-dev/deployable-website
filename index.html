@@ -550,6 +550,34 @@
             }
         }
     </script>
+<style id="codex-god-flower-gallery-photo-style">
+.codex-work-filled{padding:0!important;overflow:hidden!important;position:relative!important}
+.codex-work-photo-wrap{position:relative;width:100%;height:100%;min-height:250px;border-radius:18px;overflow:hidden;background:#f7f4ee}
+.codex-work-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+.codex-work-photo-overlay{position:absolute;inset:auto 0 0 0;padding:18px 20px;background:linear-gradient(180deg,rgba(0,0,0,0),rgba(0,0,0,.68));color:#fff;opacity:0;transform:translateY(8px);transition:.22s ease;font-size:18px;line-height:1.6}
+.codex-work-photo-wrap:hover .codex-work-photo-overlay{opacity:1;transform:translateY(0)}
+.codex-work-photo-overlay strong{display:block;font-weight:700}
+.codex-work-photo-overlay span{display:block;font-size:15px;opacity:.92}
+@media (hover:none){.codex-work-photo-overlay{opacity:1;transform:none}}
+</style>
+<script id="codex-god-flower-gallery-photo">
+document.addEventListener('DOMContentLoaded',function(){
+  function normalize(text){return (text||'').replace(/\s+/g,'').trim();}
+  var nodes=Array.from(document.querySelectorAll('div,article,a,li,section'));
+  var cards=nodes.filter(function(el){
+    var text=normalize(el.textContent);
+    var r=el.getBoundingClientRect();
+    return text.includes('好神花束') && text.includes('作品照片待補') && r.width>180 && r.height>120 && r.width<900;
+  }).sort(function(a,b){
+    var ar=a.getBoundingClientRect(), br=b.getBoundingClientRect();
+    return (ar.width*ar.height)-(br.width*br.height);
+  });
+  var card=cards[0];
+  if(!card || card.querySelector('[data-codex-work-photo="god-flower"]')) return;
+  card.classList.add('codex-work-filled');
+  card.innerHTML='<div class="codex-work-photo-wrap" data-codex-work-photo="god-flower"><img src="資產/works-god-flower-wenheng-xl.jpg" alt="文衡帝君好神花"><div class="codex-work-photo-overlay"><strong>文衡帝君好神花</strong><span>尺寸XL 說明</span></div></div>';
+});
+</script>
 </body>
 </html>
 
