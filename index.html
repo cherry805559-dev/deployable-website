@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -577,6 +577,44 @@ document.addEventListener('DOMContentLoaded',function(){
   card.classList.add('codex-work-filled');
   card.innerHTML='<div class="codex-work-photo-wrap" data-codex-work-photo="god-flower"><img src="資產/fuyuan-memorial-tabletop-pair-final-20260630-v5.jpg" alt="文衡帝君好神花"><div class="codex-work-photo-overlay"><strong>文衡帝君好神花</strong><span>尺寸XL 說明</span></div></div>';
 });
+</script>
+<script id="jds-category-cleanup">
+(function () {
+  var blockedTitles = ["還願答謝", "企業開市", "節慶祭拜"];
+  var blocked = new Set(blockedTitles.map(normalizeText));
+
+  function normalizeText(value) {
+    return (value || "").replace(/\s+/g, "").trim();
+  }
+
+  function removeBlockedCategoryCards() {
+    document.querySelectorAll("h2, h3, h4, .category-title, .category-card-title, .service-card-title, .category-name").forEach(function (title) {
+      if (!blocked.has(normalizeText(title.textContent))) return;
+      var card = title.closest(".category-card, .service-card, .art-category-card, .category-tile, .feature-card, article, li, a, .card");
+      if (card) card.remove();
+    });
+
+    document.querySelectorAll("[data-category], [data-filter], [data-target], button, a, li").forEach(function (item) {
+      var values = [
+        item.getAttribute("data-category"),
+        item.getAttribute("data-filter"),
+        item.getAttribute("data-target"),
+        item.textContent
+      ];
+      var shouldRemove = values.some(function (value) {
+        return blocked.has(normalizeText(value));
+      });
+      if (!shouldRemove) return;
+      var menuItem = item.closest("li, .dropdown-item, .menu-item, .category-chip, .filter-chip, button, a") || item;
+      menuItem.remove();
+    });
+  }
+
+  removeBlockedCategoryCards();
+  document.addEventListener("DOMContentLoaded", removeBlockedCategoryCards);
+  window.addEventListener("load", removeBlockedCategoryCards);
+  new MutationObserver(removeBlockedCategoryCards).observe(document.documentElement, { childList: true, subtree: true });
+})();
 </script>
 </body>
 </html>
