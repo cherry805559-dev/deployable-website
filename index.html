@@ -568,15 +568,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var text=normalize(el.textContent);
     var r=el.getBoundingClientRect();
     return text.includes('好神花束') && text.includes('作品照片待補') && r.width>180 && r.height>120 && r.width<900;
-  }).sort(function(a,b){
-    var ar=a.getBoundingClientRect(), br=b.getBoundingClientRect();
-    return (ar.width*ar.height)-(br.width*br.height);
-  });
-  var card=cards[0];
-  if(!card || card.querySelector('[data-codex-work-photo="god-flower"]')) return;
-  card.classList.add('codex-work-filled');
-  card.innerHTML='<div class="codex-work-photo-wrap" data-codex-work-photo="god-flower"><img src="資產/fuyuan-memorial-tabletop-pair-final-20260630-v5.jpg" alt="文衡帝君好神花"><div class="codex-work-photo-overlay"><strong>文衡帝君好神花</strong><span>尺寸XL 說明</span></div></div>';
-});
+  }).sort(function(a,b));
 </script>
 <script id="jds-category-cleanup">
 (function () {
