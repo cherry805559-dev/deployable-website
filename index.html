@@ -608,6 +608,99 @@ document.addEventListener('DOMContentLoaded',function(){
   new MutationObserver(removeBlockedCategoryCards).observe(document.documentElement, { childList: true, subtree: true });
 })();
 </script>
+
+<style id="collections-old-section-hide-v10">
+  .old-collection-removed { display: none !important; }
+</style>
+<script id="collections-old-section-cleanup-v10">
+(() => {
+  const blockedCategories = ["還願答謝", "企業開市", "節慶祭拜"];
+  const blockedProducts = ["還願謝神組", "祈願圓滿供品"];
+  const blockedTerms = [...blockedCategories, ...blockedProducts];
+  const normalize = value => String(value || "").replace(/\s+/g, "");
+  const containsBlocked = value => blockedTerms.some(term => normalize(value).includes(normalize(term)));
+  const containsBlockedCategory = value => blockedCategories.some(term => normalize(value).includes(normalize(term)));
+  const cardSelector = ".product-card,.collection-card,.category-card,.service-card,.card,.panel,.product-item,.collection-item,[data-product],[data-category],article,li";
+  const sectionSelector = "section,.category-section,.collection-section,.products-section,.product-group,.service-group";
+
+  function removeNode(node) {
+    if (!node || node === document.body || node === document.documentElement) return;
+    node.classList?.add("old-collection-removed");
+    node.remove();
+  }
+
+  function pruneValue(value) {
+    if (typeof value !== "string" || !containsBlocked(value)) return value;
+    try {
+      const data = JSON.parse(value);
+      const prune = item => {
+        if (Array.isArray(item)) return item.map(prune).filter(entry => !containsBlocked(JSON.stringify(entry)));
+        if (item && typeof item === "object") {
+          const next = {};
+          Object.entries(item).forEach(([key, child]) => {
+            if (!containsBlocked(key) && !containsBlocked(JSON.stringify(child))) next[key] = prune(child);
+          });
+          return next;
+        }
+        return item;
+      };
+      return JSON.stringify(prune(data));
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function cleanupStorage(storage) {
+    if (!storage) return;
+    Object.keys(storage).forEach(key => {
+      const value = storage.getItem(key);
+      if (!containsBlocked(key) && !containsBlocked(value)) return;
+      const nextValue = pruneValue(value);
+      if (nextValue && nextValue !== "[]" && nextValue !== "{}") storage.setItem(key, nextValue);
+      else storage.removeItem(key);
+    });
+  }
+
+  function cleanupCartBadges() {
+    document.querySelectorAll("[data-cart-count], .cart-count, .cart-badge").forEach(node => {
+      const n = Number((node.textContent || "").trim());
+      if (!Number.isNaN(n) && n < 1) node.textContent = "0";
+    });
+  }
+
+  function cleanupDom() {
+    cleanupStorage(localStorage);
+    cleanupStorage(sessionStorage);
+
+    document.querySelectorAll(sectionSelector).forEach(section => {
+      const heading = section.querySelector("h1,h2,h3,h4,h5,h6");
+      if (heading && containsBlockedCategory(heading.textContent)) removeNode(section);
+    });
+
+    document.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach(heading => {
+      if (!containsBlocked(heading.textContent)) return;
+      removeNode(heading.closest(sectionSelector) || heading.closest(cardSelector) || heading.parentElement);
+    });
+
+    document.querySelectorAll(cardSelector).forEach(card => {
+      if (containsBlocked(card.textContent)) removeNode(card);
+    });
+
+    document.querySelectorAll("a,button,option").forEach(control => {
+      if (containsBlocked(control.textContent) || containsBlocked(control.getAttribute("href"))) removeNode(control.closest("li") || control);
+    });
+
+    cleanupCartBadges();
+  }
+
+  cleanupDom();
+  window.addEventListener("DOMContentLoaded", cleanupDom);
+  window.addEventListener("load", cleanupDom);
+  setTimeout(cleanupDom, 250);
+  setTimeout(cleanupDom, 1000);
+  new MutationObserver(cleanupDom).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>
 
