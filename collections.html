@@ -1,1012 +1,959 @@
-<!DOCTYPE html>
-<html lang="zh-TW">
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>金鼎盛金紙藝品 | 手作的溫度與心意</title>
-    <meta name="description" content="金鼎盛金紙藝品商行藝品系列，提供神明祝壽、祝壽蛋糕花、紙藝花束、招財開運、弔念追思與客製金紙供品。">
-    <!-- 引入 Tailwind CSS (負責排版樣式) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Lucide Icons (負責圖示) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        /* Google Sites 特殊修正：隱藏捲軸但保留功能 */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: "Noto Serif TC", serif; /* 嘗試使用系統襯線體 */
-        }
-        .font-sans {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-        }
-        .font-serif {
-            font-family: "Noto Serif TC", "Songti TC", serif;
-        }
-        details > summary::-webkit-details-marker {
-            display: none;
-        }
-    </style>
-</head>
-<body class="font-sans text-stone-700 bg-[#F7F5F0] selection:bg-[#B84B42] selection:text-white overflow-x-hidden">
-
-    <nav id="navbar" class="fixed w-full z-50 bg-[#F7F5F0]/95 backdrop-blur-md shadow-sm py-4">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="index.html" class="flex items-center gap-3">
-                <div>
-                    <div class="text-xl font-serif font-bold tracking-widest text-[#2C2C2C]">金鼎盛金紙藝品</div>
-                    <div class="text-[10px] tracking-[0.3em] text-[#8C8C8C] uppercase">JINDING SHENG JINZHIYIPIN</div>
-                </div>
-            </a>
-            <div class="hidden md:flex space-x-10 items-center">
-                <a href="about.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
-                <details class="relative">
-                    <summary class="list-none cursor-pointer text-sm tracking-widest text-[#B84B42] font-bold inline-flex items-center gap-1">
-                        <span>藝品系列</span>
-                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-                    </summary>
-                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
-                        <a href="#blessing-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">神明祝壽</a>
-                        <a href="#memorial-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">弔念追思</a>
-                        <a href="#wealth-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">招財開運</a>
-                        <a href="#gratitude-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">還願答謝</a>
-                        <a href="#business-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">企業開市</a>
-                        <a href="#festival-products" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">節慶祭拜</a>
-                    </div>
-                </details>
-                <a href="about.html#awards" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">榮耀認證</a>
-                <details class="relative">
-                    <summary class="list-none cursor-pointer text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium inline-flex items-center gap-1">
-                        <span>服務項目</span>
-                        <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
-                    </summary>
-                    <div class="absolute left-1/2 top-full mt-4 w-44 -translate-x-1/2 rounded-2xl bg-white p-3 shadow-xl border border-stone-100">
-                        <a href="index.html#order-flow" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">下單流程</a>
-                        <a href="index.html#pricing" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">報價交件</a>
-                        <a href="index.html#works" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">作品照片牆</a>
-                        <a href="index.html#faq" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">常見問題</a>
-                        <a href="index.html#reviews" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">顧客心聲</a>
-                        <a href="index.html#store-info" class="block rounded-xl px-4 py-2 text-sm text-stone-600 hover:bg-[#FAF7F2] hover:text-[#B84B42]">店家資訊</a>
-                    </div>
-                </details>
-                <a href="index.html#reviews" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</a>
-                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>預約諮詢</span>
-                </a>
-            </div>
-            <div class="md:hidden">
-                <a href="index.html" class="text-sm tracking-widest text-[#B84B42] font-bold">回首頁</a>
-            </div>
-        </div>
-    </nav>
-
-    <button id="backToTop" class="fixed right-5 bottom-24 z-50 inline-flex h-12 w-12 items-center justify-center rounded-full border border-stone-200 bg-white text-[#B84B42] shadow-xl hover:border-[#B84B42] hover:bg-[#F7F5F0] transition-colors" aria-label="回到頂部">
-        <i data-lucide="arrow-up" class="w-5 h-5"></i>
-    </button>
-
-    <button id="cartToggle" class="fixed right-5 bottom-5 z-50 inline-flex items-center gap-3 rounded-full bg-[#B84B42] px-5 py-4 text-white shadow-2xl hover:bg-[#8E342D] transition-colors">
-        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
-        <span class="font-bold">購物車</span>
-        <span id="cartCount" class="min-w-6 rounded-full bg-white px-2 py-0.5 text-center text-xs font-bold text-[#B84B42]">0</span>
-    </button>
-
-    <div id="cartPanel" class="fixed inset-0 z-[60] hidden">
-        <div id="cartBackdrop" class="absolute inset-0 bg-black/40"></div>
-        <aside class="absolute right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl flex flex-col">
-            <div class="flex items-center justify-between border-b border-stone-200 p-6">
-                <div>
-                    <p class="text-xs font-bold tracking-[0.25em] text-[#B84B42]">CART</p>
-                    <h2 class="text-2xl font-serif font-bold text-[#2C2C2C]">購物車</h2>
-                </div>
-                <button id="cartClose" class="rounded-full p-2 text-stone-500 hover:bg-stone-100" aria-label="關閉購物車">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-            <div class="flex-1 overflow-y-auto p-6">
-                <div id="cartItems"></div>
-                <form id="orderForm" class="mt-6 space-y-4 rounded-3xl border border-stone-200 bg-[#F7F5F0] p-5">
-                    <div>
-                        <p class="text-xs font-bold tracking-[0.25em] text-[#B84B42]">ORDER</p>
-                        <h3 class="mt-1 font-serif text-xl font-bold text-[#2C2C2C]">填寫訂單資料</h3>
-                    </div>
-                    <div class="grid grid-cols-1 gap-3">
-                        <label class="block text-sm font-bold text-stone-600">
-                            姓名 *
-                            <input id="customerName" type="text" required class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="請填寫姓名">
-                        </label>
-                        <label class="block text-sm font-bold text-stone-600">
-                            電話 *
-                            <input id="customerPhone" type="tel" required class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="例如 0912345678">
-                        </label>
-                        <label class="block text-sm font-bold text-stone-600">
-                            LINE 名稱 / ID
-                            <input id="customerLine" type="text" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="方便我們核對聯絡">
-                        </label>
-                    </div>
-                    <label class="flex items-center gap-3 rounded-2xl border border-stone-200 bg-white px-4 py-3 text-sm font-bold text-stone-600">
-                        <input id="pickupSelf" type="checkbox" class="h-5 w-5 rounded border-stone-300 text-[#B84B42] focus:ring-[#B84B42]">
-                        我要自取，不需要填收件地址
-                    </label>
-                    <div id="shippingFields" class="space-y-3">
-                        <div class="grid grid-cols-2 gap-3">
-                            <label class="block text-sm font-bold text-stone-600">
-                                縣市 *
-                                <select id="citySelect" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]"></select>
-                            </label>
-                            <label class="block text-sm font-bold text-stone-600">
-                                區域 *
-                                <select id="districtSelect" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]"></select>
-                            </label>
-                        </div>
-                        <label class="block text-sm font-bold text-stone-600">
-                            郵遞區號
-                            <input id="zipCode" type="text" readonly class="mt-2 w-full rounded-2xl border border-stone-200 bg-stone-100 px-4 py-3 font-normal text-stone-500 outline-none" placeholder="選擇區域後自動帶入">
-                        </label>
-                        <label class="block text-sm font-bold text-stone-600">
-                            收件地址 *
-                            <input id="customerAddress" type="text" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="請填寫路名、巷弄、門牌">
-                        </label>
-                    </div>
-                    <div class="grid grid-cols-1 gap-3">
-                        <label class="block text-sm font-bold text-stone-600">
-                            使用場合
-                            <input id="orderOccasion" type="text" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="例如 神明祝壽、還願、追思、開市">
-                        </label>
-                        <label class="block text-sm font-bold text-stone-600">
-                            希望交件日期
-                            <input id="orderDate" type="date" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]">
-                        </label>
-                        <label class="block text-sm font-bold text-stone-600">
-                            備註
-                            <textarea id="orderNote" rows="3" class="mt-2 w-full rounded-2xl border border-stone-200 bg-white px-4 py-3 font-normal outline-none focus:border-[#B84B42]" placeholder="可填預算、尺寸、顏色、祭拜日期或其他需求"></textarea>
-                        </label>
-                    </div>
-                </form>
-            </div>
-            <div class="border-t border-stone-200 p-6">
-                <p class="mb-4 text-sm leading-relaxed text-stone-500">送出訂單後，我們會收到 LINE 通知，並依資料確認價格、尺寸與交件日期。</p>
-                <button id="checkoutBtn" class="mb-3 w-full rounded-full bg-[#B84B42] px-5 py-3 font-bold text-white hover:bg-[#8E342D] disabled:cursor-not-allowed disabled:bg-stone-300">送出訂單</button>
-                <button id="clearCartBtn" class="w-full rounded-full border border-stone-300 px-5 py-3 font-bold text-stone-500 hover:border-red-300 hover:text-red-600">清空購物車</button>
-            </div>
-        </aside>
-    </div>
-
-    <!-- Services Section -->
-    <section id="services" class="pt-36 pb-24 bg-[#F7F5F0] min-h-screen">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">COLLECTIONS</span>
-                <h1 class="text-4xl md:text-5xl font-serif text-[#2C2C2C]">藝品系列</h1><p class="text-stone-500 leading-relaxed max-w-2xl mx-auto mt-5">把祝壽、還願、招財與開運的心意，做成精緻、有儀式感的金紙藝品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-6 mb-12">
-                <a href="#blessing-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">神明祝壽</h2>
-                    <p class="text-stone-500 leading-relaxed">適合神明聖誕、祝壽、還願、祈福與安座敬奉，將誠心做成莊重又有儀式感的金紙藝品。</p>
-                </a>
-                <a href="#memorial-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">弔念追思</h2>
-                    <p class="text-stone-500 leading-relaxed">適合祖先追思、清明、中元、告別式與慎終追遠供奉，用溫柔細緻的紙藝表達懷念與敬意。</p>
-                </a>
-                <a href="#wealth-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">招財開運</h2>
-                    <p class="text-stone-500 leading-relaxed">適合開運、補財庫、事業興旺、居家祈福與新年度祈求順遂。</p>
-                </a>
-                <a href="#gratitude-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">還願答謝</h2>
-                    <p class="text-stone-500 leading-relaxed">適合願望達成後敬奉神明、答謝庇佑與表達感恩心意。</p>
-                </a>
-                <a href="#business-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">企業開市</h2>
-                    <p class="text-stone-500 leading-relaxed">適合公司開幕、開工、開市、活動祈福與商家招財敬奉。</p>
-                </a>
-                <a href="#festival-products" class="block bg-white/95 border border-[#E6D6AE] rounded-2xl p-7 md:p-8 shadow-sm hover:shadow-lg hover:border-[#C5A668] transition-all duration-300 group">
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">節慶祭拜</h2>
-                    <p class="text-stone-500 leading-relaxed">適合過年、中元、清明、普渡、重要節慶與年度祭拜準備。</p>
-                </a>
-            </div>
-
-            <div id="blessing-products" class="mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">神明祝壽</h2>
-                <p class="text-stone-500 mt-2">祝壽、還願、招財、補運與開運供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="gift" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">祝壽蛋糕花</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・還願・儀式感</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        獻給神明的祝壽驚喜。以圓滿造型象徵生生不息的福氣，用心又有儀式感，適合祝壽或重要日子展現誠意。
-                        祝壽蛋糕花可客製單層、兩層、三層、五層及六層以上。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：祝壽蛋糕花 照片 -->
-                        <img src="資產/birthday-cake-flower.jpg?v=20260613" alt="祝壽蛋糕花" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="祝壽蛋糕花" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="coins" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">一桶金</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">招財・聚寶・納福</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        以金桶聚財、財庫豐盛為設計意象，象徵招財納福、財源穩聚與好運入庫<br>
-                        適合神明祝壽初一十五、初二十六、還願敬奉或重要日子表達誠心<br>
-                        一桶金尺寸分為小款、大款、福氣款
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4 flex items-center justify-center">
-                        <img src="資產/one-bucket-gold.jpg" alt="一桶金" class="w-full h-full object-contain">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="一桶金" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flower" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">好神花花束</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">招財・納福・補運</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        結合經文與花藝美學的創意供品。將招財納福、補運、姻緣的心願，透過精緻的摺紙藝術，優雅地傳遞給神明。花束尺寸分別為 S / M / L / XL，顏色可選擇，花盤可選擇，也可依需求客製化。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：好神花花束 照片 -->
-                        <img src="資產/god-flower-bouquet.jpg?v=20260613" alt="好神花花束" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="好神花花束" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flower" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">轎前花</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・敬奉・添喜</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        以花藝造型搭配金紙摺藝，為神明聖駕前增添莊嚴與喜氣。適合祝壽、進香、遶境或重要敬奉場合，展現虔誠與隆重心意。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <img src="資產/sedan-front-flower.jpg?v=20260613" alt="轎前花" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="轎前花" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="landmark" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">元寶龍柱</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・招財・鎮座</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        以元寶聚財、龍柱護佑為設計意象，象徵財庫豐盈、福氣穩固與貴人扶持。適合神明祝壽、開運祈福或重要敬奉場合。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <img src="資產/dragon-ingot-pillars.jpg?v=20260613" alt="元寶龍柱" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="元寶龍柱" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="package-open" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">滿福百寶箱</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・納福・聚寶</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        以百寶聚福、滿載祥瑞與納財迎福為設計意象，象徵福祿圓滿、財庫豐盛、吉祥守護與福氣滿盈。適合神明祝壽、還願敬奉，或於重要日子表達虔誠心意。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <img src="資產/auspicious-treasure-box.jpg?v=20260613" alt="滿福百寶箱" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="滿福百寶箱" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="layers" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">元寶塔</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祝壽・聚財・納福</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        以層層元寶堆疊成塔，象徵財庫穩固、福氣累積與心願向上圓滿。適合神明祝壽、開運祈福、還願敬奉或重要日子表達誠心。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <img src="資產/ingot-tower.jpg?v=20260613" alt="元寶塔" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="元寶塔" data-category="神明祝壽">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-
-            </div>
-
-            <div id="wealth-products" class="mt-16 mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">招財開運</h2>
-                <p class="text-stone-500 mt-2">開運、事業、興旺、補財庫與居家祈福供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Wealth Service 1 -->
-                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border-t-4 border-transparent hover:border-[#B84B42]">
-                    <div class="w-14 h-14 bg-[#FEF2F2] rounded-full flex items-center justify-center text-[#B84B42] mb-6 group-hover:scale-110 transition-transform">
-                        <i data-lucide="flame" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3 group-hover:text-[#B84B42] transition-colors">焰旺來鳳梨</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">開運・事業・興旺</p>
-                    <p class="text-stone-500 leading-relaxed mb-6 text-sm">
-                        鳳梨寓意「旺來」。層層堆疊的金色果身，代表財氣滿滿。適合公司開市、居家祈福，替事業祈來一份順遂與興旺。
-                    </p>
-                    <div class="w-full h-48 bg-stone-100 rounded-lg overflow-hidden mb-4">
-                        <!-- 更新：焰旺來鳳梨 照片 -->
-                        <img src="資產/pineapple-art.jpg?v=20260613" alt="焰旺來鳳梨" class="w-full h-full object-contain transition-transform duration-500">
-                    </div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="焰旺來鳳梨" data-category="招財開運">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-            </div>
-
-            <div id="memorial-products" class="mt-16 mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">弔念追思</h2>
-                <p class="text-stone-500 mt-2">追思、祭祖、清明、中元與告別敬奉供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">追思供花</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祭祖・追思・告別</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        以沉穩配色與細緻紙藝呈現懷念心意，適合祖先追思、告別式或重要祭拜場合，莊重不失溫度。
-                    </p>
-                    <div class="product-image-wrap mb-6"><img src="資產/memorial-flower.jpg?v=20260614" alt="追思供花" class="product-image object-contain"></div>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="追思供花" data-category="弔念追思">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">福圓追思寶桶 桌上型</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">清明・中元・祖先</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        依照祭拜需求搭配金紙藝品與供奉設計，適合清明、中元與祖先敬奉，讓思念與敬意更完整。
-                    </p>
-                    <div class="product-image-wrap mb-6"><img src="資產/memorial-treasure-bucket.jpg?v=20260628" alt="福圓追思寶桶 桌上型" class="product-image object-contain"></div>
-                    <p class="text-[#C5A668] font-bold text-sm mb-4">桌上型・一對 NT$2,500</p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="福圓追思寶桶 桌上型" data-category="弔念追思">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-            </div>
-
-            <div id="gratitude-products" class="mt-16 mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">還願答謝</h2>
-                <p class="text-stone-500 mt-2">還願、答謝神恩、祈願圓滿與重要日子敬奉供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">還願謝神組</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">還願・答謝・圓滿</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        適合願望達成後向神明答謝，以莊重的金紙藝品表達感恩與圓滿心意。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="還願謝神組" data-category="還願答謝">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">祈願圓滿供品</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">祈願・平安・感謝</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        可依祈願主題、顏色與預算討論設計，適合祝福、平安與答謝場合。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="祈願圓滿供品" data-category="還願答謝">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-            </div>
-
-            <div id="business-products" class="mt-16 mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">企業開市</h2>
-                <p class="text-stone-500 mt-2">開幕、開工、開市、商家祈福與公司活動供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">開市招財組</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">開市・開工・招財</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        適合公司開工、店面開市或新年度祈福，為事業祈求順利興旺。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="開市招財組" data-category="企業開市">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">商家祈福供品</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">生意・活動・祈福</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        可依商家產業、活動主題與供奉需求客製，適合開幕與重要營業節點。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="商家祈福供品" data-category="企業開市">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-            </div>
-
-            <div id="festival-products" class="mt-16 mb-8">
-                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">節慶祭拜</h2>
-                <p class="text-stone-500 mt-2">過年、清明、中元、普渡與年度重要祭拜供品。</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">節慶祭拜組</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">過年・中元・普渡</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        依節慶與祭拜對象規劃供品搭配，讓年度祭拜更完整、有儀式感。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="節慶祭拜組" data-category="節慶祭拜">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm border border-[#E6D6AE]">
-                    <h3 class="text-xl font-serif font-bold text-[#2C2C2C] mb-3">年度祈福供品</h3>
-                    <p class="text-xs font-bold text-[#C5A668] mb-4 tracking-wider uppercase">年度・平安・祈福</p>
-                    <p class="text-stone-500 leading-relaxed text-sm mb-6">
-                        適合年節、重要祭日與家庭祈福，後續可依實際作品照片補上款式。
-                    </p>
-                    <button class="add-to-cart w-full inline-flex items-center justify-center gap-2 rounded-full bg-[#B84B42] px-5 py-3 text-sm font-bold text-white hover:bg-[#8E342D] transition-colors" data-name="年度祈福供品" data-category="節慶祭拜">
-                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
-                        加入購物車
-                    </button>
-                </div>
-            </div>
-
-            <div class="mt-16 rounded-3xl bg-white p-8 md:p-10 shadow-sm border border-[#E6D6AE]">
-                <div class="text-center mb-8">
-                    <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">ORDER FLOW</span>
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">下單流程</h2>
-                    <p class="text-stone-500 mt-3">加入購物車後，透過 LINE 確認細節與報價。</p>
-                </div>
-                <div class="grid md:grid-cols-5 gap-4">
-                    <div class="rounded-2xl bg-[#FAF7F2] p-5">
-                        <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#B84B42] text-sm font-bold text-white">1</div>
-                        <h3 class="font-serif font-bold text-[#2C2C2C]">挑選作品</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-stone-500">選擇喜歡的款式與用途。</p>
-                    </div>
-                    <div class="rounded-2xl bg-[#FAF7F2] p-5">
-                        <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#B84B42] text-sm font-bold text-white">2</div>
-                        <h3 class="font-serif font-bold text-[#2C2C2C]">加入購物車</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-stone-500">確認數量與收件資料後送出訂單。</p>
-                    </div>
-                    <div class="rounded-2xl bg-[#FAF7F2] p-5">
-                        <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#B84B42] text-sm font-bold text-white">3</div>
-                        <h3 class="font-serif font-bold text-[#2C2C2C]">LINE 通知</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-stone-500">送出後我們會收到訂單通知。</p>
-                    </div>
-                    <div class="rounded-2xl bg-[#FAF7F2] p-5">
-                        <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#B84B42] text-sm font-bold text-white">4</div>
-                        <h3 class="font-serif font-bold text-[#2C2C2C]">報價付款</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-stone-500">確認尺寸、日期與價格。</p>
-                    </div>
-                    <div class="rounded-2xl bg-[#FAF7F2] p-5">
-                        <div class="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#B84B42] text-sm font-bold text-white">5</div>
-                        <h3 class="font-serif font-bold text-[#2C2C2C]">製作交付</h3>
-                        <p class="mt-2 text-sm leading-relaxed text-stone-500">完成後依約定方式交付。</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-16">
-                <div class="text-center mb-8">
-                    <span class="text-[#B84B42] font-bold tracking-widest text-sm mb-3 block">WORKS</span>
-                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#2C2C2C]">作品照片牆</h2>
-                    <p class="text-stone-500 mt-3">依作品類型整理實拍照片，後續可慢慢補上不同尺寸、款式與客製作品。</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">祝壽蛋糕花</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">一桶金</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">百寶箱</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">焰旺來</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">好神花束</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">福願花束</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">元寶龍柱</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">龍船</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">元寶塔</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">永生花束</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                    <div class="rounded-2xl border border-dashed border-[#D8C7A0] bg-white/70 p-6 min-h-[150px] flex flex-col items-center justify-center text-center transition hover:-translate-y-1 hover:border-[#B84B42] hover:bg-white hover:shadow-lg">
-                        <span class="text-lg font-serif font-bold text-[#2C2C2C] mb-2">福圓追思寶桶 桌上型</span>
-                        <span class="text-sm text-stone-400">作品照片待補</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-[#B84B42] border-b border-[#B84B42] pb-1 hover:opacity-80 transition-opacity">
-                    <span>加入 LINE 詢問客製與預訂</span>
-                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section id="contact" class="py-24 bg-[#B84B42] relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 40px 40px;"></div>
-        <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
-            <h2 class="text-3xl md:text-5xl font-serif mb-6 leading-tight">想訂製專屬紙藝作品？</h2>
-            <p class="text-lg md:text-xl text-white/80 mb-10 font-light leading-relaxed">把想祝福的日子、對象與預算告訴我們，一起討論最合適的款式。</p>
-            <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white text-[#B84B42] px-10 py-4 rounded-full font-bold tracking-widest hover:bg-[#F7F5F0] transition-colors shadow-xl">
-                <i data-lucide="message-circle" class="w-6 h-6"></i>
-                <span>LINE 預約諮詢</span>
-            </a>
-        </div>
-    </section>
-
-    <footer class="bg-[#2C2C2C] text-white py-10 text-center text-sm text-white/50">
-        <p class="font-serif text-xl text-white mb-2">金鼎盛金紙藝品</p>
-        <p>© 2026 金鼎盛金紙藝品商行 版權所有｜網站內容、圖片與文案未經授權請勿轉載、使用或仿製</p>
-    </footer>
-
-    <script>
-        const cartKey = "jindingCart";
-        const orderApiUrl = "https://jinding-order-api.xaga19057260.workers.dev/";
-        const taiwanDistricts = {
-            "基隆市": [["仁愛區", "200"], ["信義區", "201"], ["中正區", "202"], ["中山區", "203"], ["安樂區", "204"], ["暖暖區", "205"], ["七堵區", "206"]],
-            "臺北市": [["中正區", "100"], ["大同區", "103"], ["中山區", "104"], ["松山區", "105"], ["大安區", "106"], ["萬華區", "108"], ["信義區", "110"], ["士林區", "111"], ["北投區", "112"], ["內湖區", "114"], ["南港區", "115"], ["文山區", "116"]],
-            "新北市": [["萬里區", "207"], ["金山區", "208"], ["板橋區", "220"], ["汐止區", "221"], ["深坑區", "222"], ["石碇區", "223"], ["瑞芳區", "224"], ["平溪區", "226"], ["雙溪區", "227"], ["貢寮區", "228"], ["新店區", "231"], ["坪林區", "232"], ["烏來區", "233"], ["永和區", "234"], ["中和區", "235"], ["土城區", "236"], ["三峽區", "237"], ["樹林區", "238"], ["鶯歌區", "239"], ["三重區", "241"], ["新莊區", "242"], ["泰山區", "243"], ["林口區", "244"], ["蘆洲區", "247"], ["五股區", "248"], ["八里區", "249"], ["淡水區", "251"], ["三芝區", "252"], ["石門區", "253"]],
-            "桃園市": [["中壢區", "320"], ["平鎮區", "324"], ["龍潭區", "325"], ["楊梅區", "326"], ["新屋區", "327"], ["觀音區", "328"], ["桃園區", "330"], ["龜山區", "333"], ["八德區", "334"], ["大溪區", "335"], ["復興區", "336"], ["大園區", "337"], ["蘆竹區", "338"]],
-            "新竹市": [["東區", "300"], ["北區", "300"], ["香山區", "300"]],
-            "新竹縣": [["竹北市", "302"], ["湖口鄉", "303"], ["新豐鄉", "304"], ["新埔鎮", "305"], ["關西鎮", "306"], ["芎林鄉", "307"], ["寶山鄉", "308"], ["竹東鎮", "310"], ["五峰鄉", "311"], ["橫山鄉", "312"], ["尖石鄉", "313"], ["北埔鄉", "314"], ["峨眉鄉", "315"]],
-            "苗栗縣": [["竹南鎮", "350"], ["頭份市", "351"], ["三灣鄉", "352"], ["南庄鄉", "353"], ["獅潭鄉", "354"], ["後龍鎮", "356"], ["通霄鎮", "357"], ["苑裡鎮", "358"], ["苗栗市", "360"], ["造橋鄉", "361"], ["頭屋鄉", "362"], ["公館鄉", "363"], ["大湖鄉", "364"], ["泰安鄉", "365"], ["銅鑼鄉", "366"], ["三義鄉", "367"], ["西湖鄉", "368"], ["卓蘭鎮", "369"]],
-            "臺中市": [["中區", "400"], ["東區", "401"], ["南區", "402"], ["西區", "403"], ["北區", "404"], ["北屯區", "406"], ["西屯區", "407"], ["南屯區", "408"], ["太平區", "411"], ["大里區", "412"], ["霧峰區", "413"], ["烏日區", "414"], ["豐原區", "420"], ["后里區", "421"], ["石岡區", "422"], ["東勢區", "423"], ["和平區", "424"], ["新社區", "426"], ["潭子區", "427"], ["大雅區", "428"], ["神岡區", "429"], ["大肚區", "432"], ["沙鹿區", "433"], ["龍井區", "434"], ["梧棲區", "435"], ["清水區", "436"], ["大甲區", "437"], ["外埔區", "438"], ["大安區", "439"]],
-            "彰化縣": [["彰化市", "500"], ["芬園鄉", "502"], ["花壇鄉", "503"], ["秀水鄉", "504"], ["鹿港鎮", "505"], ["福興鄉", "506"], ["線西鄉", "507"], ["和美鎮", "508"], ["伸港鄉", "509"], ["員林市", "510"], ["社頭鄉", "511"], ["永靖鄉", "512"], ["埔心鄉", "513"], ["溪湖鎮", "514"], ["大村鄉", "515"], ["埔鹽鄉", "516"], ["田中鎮", "520"], ["北斗鎮", "521"], ["田尾鄉", "522"], ["埤頭鄉", "523"], ["溪州鄉", "524"], ["竹塘鄉", "525"], ["二林鎮", "526"], ["大城鄉", "527"], ["芳苑鄉", "528"], ["二水鄉", "530"]],
-            "南投縣": [["南投市", "540"], ["中寮鄉", "541"], ["草屯鎮", "542"], ["國姓鄉", "544"], ["埔里鎮", "545"], ["仁愛鄉", "546"], ["名間鄉", "551"], ["集集鎮", "552"], ["水里鄉", "553"], ["魚池鄉", "555"], ["信義鄉", "556"], ["竹山鎮", "557"], ["鹿谷鄉", "558"]],
-            "雲林縣": [["斗南鎮", "630"], ["大埤鄉", "631"], ["虎尾鎮", "632"], ["土庫鎮", "633"], ["褒忠鄉", "634"], ["東勢鄉", "635"], ["臺西鄉", "636"], ["崙背鄉", "637"], ["麥寮鄉", "638"], ["斗六市", "640"], ["林內鄉", "643"], ["古坑鄉", "646"], ["莿桐鄉", "647"], ["西螺鎮", "648"], ["二崙鄉", "649"], ["北港鎮", "651"], ["水林鄉", "652"], ["口湖鄉", "653"], ["四湖鄉", "654"], ["元長鄉", "655"]],
-            "嘉義市": [["東區", "600"], ["西區", "600"]],
-            "嘉義縣": [["番路鄉", "602"], ["梅山鄉", "603"], ["竹崎鄉", "604"], ["阿里山鄉", "605"], ["中埔鄉", "606"], ["大埔鄉", "607"], ["水上鄉", "608"], ["鹿草鄉", "611"], ["太保市", "612"], ["朴子市", "613"], ["東石鄉", "614"], ["六腳鄉", "615"], ["新港鄉", "616"], ["民雄鄉", "621"], ["大林鎮", "622"], ["溪口鄉", "623"], ["義竹鄉", "624"], ["布袋鎮", "625"]],
-            "臺南市": [["中西區", "700"], ["東區", "701"], ["南區", "702"], ["北區", "704"], ["安平區", "708"], ["安南區", "709"], ["永康區", "710"], ["歸仁區", "711"], ["新化區", "712"], ["左鎮區", "713"], ["玉井區", "714"], ["楠西區", "715"], ["南化區", "716"], ["仁德區", "717"], ["關廟區", "718"], ["龍崎區", "719"], ["官田區", "720"], ["麻豆區", "721"], ["佳里區", "722"], ["西港區", "723"], ["七股區", "724"], ["將軍區", "725"], ["學甲區", "726"], ["北門區", "727"], ["新營區", "730"], ["後壁區", "731"], ["白河區", "732"], ["東山區", "733"], ["六甲區", "734"], ["下營區", "735"], ["柳營區", "736"], ["鹽水區", "737"], ["善化區", "741"], ["大內區", "742"], ["山上區", "743"], ["新市區", "744"], ["安定區", "745"]],
-            "高雄市": [["新興區", "800"], ["前金區", "801"], ["苓雅區", "802"], ["鹽埕區", "803"], ["鼓山區", "804"], ["旗津區", "805"], ["前鎮區", "806"], ["三民區", "807"], ["楠梓區", "811"], ["小港區", "812"], ["左營區", "813"], ["仁武區", "814"], ["大社區", "815"], ["東沙群島", "817"], ["南沙群島", "819"], ["岡山區", "820"], ["路竹區", "821"], ["阿蓮區", "822"], ["田寮區", "823"], ["燕巢區", "824"], ["橋頭區", "825"], ["梓官區", "826"], ["彌陀區", "827"], ["永安區", "828"], ["湖內區", "829"], ["鳳山區", "830"], ["大寮區", "831"], ["林園區", "832"], ["鳥松區", "833"], ["大樹區", "840"], ["旗山區", "842"], ["美濃區", "843"], ["六龜區", "844"], ["內門區", "845"], ["杉林區", "846"], ["甲仙區", "847"], ["桃源區", "848"], ["那瑪夏區", "849"], ["茂林區", "851"], ["茄萣區", "852"]],
-            "屏東縣": [["屏東市", "900"], ["三地門鄉", "901"], ["霧臺鄉", "902"], ["瑪家鄉", "903"], ["九如鄉", "904"], ["里港鄉", "905"], ["高樹鄉", "906"], ["鹽埔鄉", "907"], ["長治鄉", "908"], ["麟洛鄉", "909"], ["竹田鄉", "911"], ["內埔鄉", "912"], ["萬丹鄉", "913"], ["潮州鎮", "920"], ["泰武鄉", "921"], ["來義鄉", "922"], ["萬巒鄉", "923"], ["崁頂鄉", "924"], ["新埤鄉", "925"], ["南州鄉", "926"], ["林邊鄉", "927"], ["東港鎮", "928"], ["琉球鄉", "929"], ["佳冬鄉", "931"], ["新園鄉", "932"], ["枋寮鄉", "940"], ["枋山鄉", "941"], ["春日鄉", "942"], ["獅子鄉", "943"], ["車城鄉", "944"], ["牡丹鄉", "945"], ["恆春鎮", "946"], ["滿州鄉", "947"]],
-            "宜蘭縣": [["宜蘭市", "260"], ["頭城鎮", "261"], ["礁溪鄉", "262"], ["壯圍鄉", "263"], ["員山鄉", "264"], ["羅東鎮", "265"], ["三星鄉", "266"], ["大同鄉", "267"], ["五結鄉", "268"], ["冬山鄉", "269"], ["蘇澳鎮", "270"], ["南澳鄉", "272"], ["釣魚臺列嶼", "290"]],
-            "花蓮縣": [["花蓮市", "970"], ["新城鄉", "971"], ["秀林鄉", "972"], ["吉安鄉", "973"], ["壽豐鄉", "974"], ["鳳林鎮", "975"], ["光復鄉", "976"], ["豐濱鄉", "977"], ["瑞穗鄉", "978"], ["萬榮鄉", "979"], ["玉里鎮", "981"], ["卓溪鄉", "982"], ["富里鄉", "983"]],
-            "臺東縣": [["臺東市", "950"], ["綠島鄉", "951"], ["蘭嶼鄉", "952"], ["延平鄉", "953"], ["卑南鄉", "954"], ["鹿野鄉", "955"], ["關山鎮", "956"], ["海端鄉", "957"], ["池上鄉", "958"], ["東河鄉", "959"], ["成功鎮", "961"], ["長濱鄉", "962"], ["太麻里鄉", "963"], ["金峰鄉", "964"], ["大武鄉", "965"], ["達仁鄉", "966"]],
-            "澎湖縣": [["馬公市", "880"], ["西嶼鄉", "881"], ["望安鄉", "882"], ["七美鄉", "883"], ["白沙鄉", "884"], ["湖西鄉", "885"]],
-            "金門縣": [["金沙鎮", "890"], ["金湖鎮", "891"], ["金寧鄉", "892"], ["金城鎮", "893"], ["烈嶼鄉", "894"], ["烏坵鄉", "896"]],
-            "連江縣": [["南竿鄉", "209"], ["北竿鄉", "210"], ["莒光鄉", "211"], ["東引鄉", "212"]]
-        };
-        let cart = JSON.parse(localStorage.getItem(cartKey) || "[]");
-
-        const normalizeCartNames = () => {
-            const nameMap = {
-                "金紙蛋糕花": "祝壽蛋糕花"
-            };
-            const merged = [];
-
-            cart.forEach((item) => {
-                const name = nameMap[item.name] || item.name;
-                const category = item.category || "神明祝壽";
-                const existing = merged.find((nextItem) => nextItem.name === name && nextItem.category === category);
-
-                if (existing) {
-                    existing.qty += Number(item.qty) || 1;
-                } else {
-                    merged.push({
-                        ...item,
-                        name,
-                        category,
-                        qty: Number(item.qty) || 1
-                    });
-                }
-            });
-
-            cart = merged;
-            localStorage.setItem(cartKey, JSON.stringify(cart));
-        };
-
-        normalizeCartNames();
-
-        const saveCart = () => {
-            localStorage.setItem(cartKey, JSON.stringify(cart));
-            renderCart();
-        };
-
-        const totalQty = () => cart.reduce((sum, item) => sum + item.qty, 0);
-
-        const citySelect = document.getElementById("citySelect");
-        const districtSelect = document.getElementById("districtSelect");
-        const zipCodeInput = document.getElementById("zipCode");
-        const pickupSelf = document.getElementById("pickupSelf");
-        const shippingFields = document.getElementById("shippingFields");
-        const addressInput = document.getElementById("customerAddress");
-        const checkoutBtn = document.getElementById("checkoutBtn");
-
-        const populateCities = () => {
-            citySelect.innerHTML = '<option value="">請選擇縣市</option>' + Object.keys(taiwanDistricts).map((city) => `<option value="${city}">${city}</option>`).join("");
-            districtSelect.innerHTML = '<option value="">請先選縣市</option>';
-        };
-
-        const populateDistricts = () => {
-            const districts = taiwanDistricts[citySelect.value] || [];
-            districtSelect.innerHTML = '<option value="">請選擇區域</option>' + districts.map(([district, zip]) => `<option value="${district}" data-zip="${zip}">${district}</option>`).join("");
-            zipCodeInput.value = "";
-        };
-
-        const updateZipCode = () => {
-            const selected = districtSelect.options[districtSelect.selectedIndex];
-            zipCodeInput.value = selected?.dataset?.zip || "";
-        };
-
-        const updateShippingMode = () => {
-            const isPickup = pickupSelf.checked;
-            shippingFields.classList.toggle("opacity-50", isPickup);
-            shippingFields.querySelectorAll("input, select").forEach((field) => {
-                field.disabled = isPickup;
-            });
-            if (isPickup) {
-                addressInput.value = "";
-            }
-        };
-
-        const renderCart = () => {
-            const cartCount = document.getElementById("cartCount");
-            const cartItems = document.getElementById("cartItems");
-            cartCount.textContent = totalQty();
-
-            if (!cart.length) {
-                cartItems.innerHTML = '<div class="rounded-2xl border border-dashed border-stone-300 p-8 text-center text-stone-400">購物車目前是空的</div>';
-                lucide.createIcons();
-                return;
-            }
-
-            cartItems.innerHTML = cart.map((item, index) => `
-                <div class="mb-4 rounded-2xl border border-stone-200 p-4">
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <p class="text-xs font-bold text-[#C5A668]">${item.category}</p>
-                            <h3 class="mt-1 font-serif text-lg font-bold text-[#2C2C2C]">${item.name}</h3>
-                        </div>
-                        <button class="remove-cart-item rounded-full p-2 text-stone-400 hover:bg-red-50 hover:text-red-600" data-index="${index}" aria-label="移除商品">
-                            <i data-lucide="trash-2" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                    <div class="mt-4 flex items-center justify-between">
-                        <span class="text-sm text-stone-500">數量</span>
-                        <div class="flex items-center gap-3">
-                            <button class="cart-minus h-9 w-9 rounded-full border border-stone-300 text-lg font-bold hover:border-[#B84B42] hover:text-[#B84B42]" data-index="${index}">-</button>
-                            <span class="min-w-6 text-center font-bold">${item.qty}</span>
-                            <button class="cart-plus h-9 w-9 rounded-full border border-stone-300 text-lg font-bold hover:border-[#B84B42] hover:text-[#B84B42]" data-index="${index}">+</button>
-                        </div>
-                    </div>
-                </div>
-            `).join("");
-            lucide.createIcons();
-        };
-
-        const openCart = () => document.getElementById("cartPanel").classList.remove("hidden");
-        const closeCart = () => document.getElementById("cartPanel").classList.add("hidden");
-
-        document.querySelectorAll(".add-to-cart").forEach((button) => {
-            button.addEventListener("click", (event) => {
-                event.preventDefault();
-                event.stopPropagation();
-                const name = button.dataset.name;
-                const category = button.dataset.category;
-                const existing = cart.find((item) => item.name === name);
-                if (existing) {
-                    existing.qty += 1;
-                } else {
-                    cart.push({ name, category, qty: 1 });
-                }
-                saveCart();
-                openCart();
-            });
-        });
-
-        document.getElementById("cartToggle").addEventListener("click", openCart);
-        document.getElementById("cartClose").addEventListener("click", closeCart);
-        document.getElementById("cartBackdrop").addEventListener("click", closeCart);
-        document.getElementById("backToTop").addEventListener("click", () => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        });
-
-        document.getElementById("cartItems").addEventListener("click", (event) => {
-            const plus = event.target.closest(".cart-plus");
-            const minus = event.target.closest(".cart-minus");
-            const remove = event.target.closest(".remove-cart-item");
-
-            if (plus) {
-                cart[Number(plus.dataset.index)].qty += 1;
-                saveCart();
-            }
-            if (minus) {
-                const index = Number(minus.dataset.index);
-                cart[index].qty -= 1;
-                if (cart[index].qty <= 0) cart.splice(index, 1);
-                saveCart();
-            }
-            if (remove) {
-                cart.splice(Number(remove.dataset.index), 1);
-                saveCart();
-            }
-        });
-
-        document.getElementById("clearCartBtn").addEventListener("click", () => {
-            cart = [];
-            saveCart();
-        });
-
-        document.getElementById("checkoutBtn").addEventListener("click", async () => {
-            if (!cart.length) {
-                alert("購物車目前是空的");
-                return;
-            }
-
-            const name = document.getElementById("customerName").value.trim();
-            const phone = document.getElementById("customerPhone").value.trim();
-            const lineId = document.getElementById("customerLine").value.trim();
-            const occasion = document.getElementById("orderOccasion").value.trim();
-            const requestedDate = document.getElementById("orderDate").value;
-            const customerNote = document.getElementById("orderNote").value.trim();
-            const isPickup = pickupSelf.checked;
-            const city = citySelect.value;
-            const district = districtSelect.value;
-            const zipCode = zipCodeInput.value;
-            const address = addressInput.value.trim();
-
-            if (!name || !phone) {
-                alert("請填寫姓名和電話");
-                return;
-            }
-
-            if (!isPickup && (!city || !district || !address)) {
-                alert("請填寫完整收件縣市、區域和地址，或勾選自取");
-                return;
-            }
-
-            const delivery = isPickup ? "自取" : `宅配 / 寄送：${zipCode} ${city}${district}${address}`;
-            const noteLines = [
-                `收件資料：${isPickup ? "自取，無需收件地址" : `${zipCode} ${city}${district}${address}`}`,
-                `使用場合：${occasion || "未填"}`,
-                `希望交件日期：${requestedDate || "未填"}`,
-                `其他備註：${customerNote || "無"}`
-            ];
-
-            checkoutBtn.disabled = true;
-            checkoutBtn.textContent = "送出中...";
-
-            try {
-                const response = await fetch(orderApiUrl, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        name,
-                        phone,
-                        lineId,
-                        delivery,
-                        note: noteLines.join("\n"),
-                        city,
-                        district,
-                        zipCode,
-                        address: isPickup ? "" : address,
-                        pickup: isPickup,
-                        occasion,
-                        requestedDate,
-                        items: cart,
-                    }),
-                });
-
-                const result = await response.json();
-                if (!response.ok || !result.ok) {
-                    throw new Error(result.message || "訂單送出失敗");
-                }
-
-                cart = [];
-                saveCart();
-                document.getElementById("orderForm").reset();
-                populateCities();
-                updateShippingMode();
-                alert(`訂單已送出，我們會盡快與您聯繫。\n訂單編號：${result.orderId}`);
-                closeCart();
-            } catch (error) {
-                alert(`訂單送出失敗，請稍後再試或改用 LINE 聯繫。\n${error.message}`);
-            } finally {
-                checkoutBtn.disabled = false;
-                checkoutBtn.textContent = "送出訂單";
-            }
-        });
-
-        citySelect.addEventListener("change", populateDistricts);
-        districtSelect.addEventListener("change", updateZipCode);
-        pickupSelf.addEventListener("change", updateShippingMode);
-        populateCities();
-        updateShippingMode();
-        renderCart();
-        lucide.createIcons();
-    </script>
-
-<style id="collections-old-section-hide-v10">
-  .old-collection-removed { display: none !important; }
-</style>
-<script id="collections-old-section-cleanup-v10">
-(() => {
-  const blockedCategories = ["還願答謝", "企業開市", "節慶祭拜"];
-  const blockedProducts = ["還願謝神組", "祈願圓滿供品"];
-  const blockedTerms = [...blockedCategories, ...blockedProducts];
-  const normalize = value => String(value || "").replace(/\s+/g, "");
-  const containsBlocked = value => blockedTerms.some(term => normalize(value).includes(normalize(term)));
-  const containsBlockedCategory = value => blockedCategories.some(term => normalize(value).includes(normalize(term)));
-  const cardSelector = ".product-card,.collection-card,.category-card,.service-card,.card,.panel,.product-item,.collection-item,[data-product],[data-category],article,li";
-  const sectionSelector = "section,.category-section,.collection-section,.products-section,.product-group,.service-group";
-
-  function removeNode(node) {
-    if (!node || node === document.body || node === document.documentElement) return;
-    node.classList?.add("old-collection-removed");
-    node.remove();
-  }
-
-  function pruneValue(value) {
-    if (typeof value !== "string" || !containsBlocked(value)) return value;
-    try {
-      const data = JSON.parse(value);
-      const prune = item => {
-        if (Array.isArray(item)) return item.map(prune).filter(entry => !containsBlocked(JSON.stringify(entry)));
-        if (item && typeof item === "object") {
-          const next = {};
-          Object.entries(item).forEach(([key, child]) => {
-            if (!containsBlocked(key) && !containsBlocked(JSON.stringify(child))) next[key] = prune(child);
-          });
-          return next;
-        }
-        return item;
-      };
-      return JSON.stringify(prune(data));
-    } catch (_) {
-      return "";
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>藝品系列｜金鼎盛金紙藝品</title>
+  <meta name="description" content="金鼎盛金紙藝品，神明祝壽、弔念追思、招財開運紙藝作品。">
+  <style>
+    :root {
+      --ink: #2c2a28;
+      --muted: #827b73;
+      --brand: #aa554b;
+      --brand-dark: #84342b;
+      --gold: #bca36a;
+      --paper: #f5f2ed;
+      --card: #fffdf9;
+      --line: #e4d7b6;
+      --shadow: 0 18px 42px rgba(52, 42, 31, .12);
     }
-  }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.75;
+    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(248, 246, 241, .94);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(91, 72, 45, .08);
+    }
+    .nav {
+      max-width: 1440px;
+      margin: 0 auto;
+      min-height: 92px;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .brand-title {
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: 0;
+      line-height: 1.1;
+    }
+    .brand-subtitle {
+      margin-top: 6px;
+      color: #aaa39b;
+      font-size: 15px;
+      letter-spacing: 8px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 34px;
+      color: #5f5a55;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+    .nav-link { padding: 10px 2px; }
+    .nav-link.active { color: var(--brand); font-weight: 800; }
+    .nav-group { position: relative; }
+    .nav-trigger {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      padding: 10px 2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-trigger.active { color: var(--brand); font-weight: 800; }
+    .nav-trigger::after {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg) translateY(-2px);
+    }
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 180px;
+      padding: 10px;
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(188, 163, 106, .28);
+      display: none;
+    }
+    .nav-group:hover .dropdown,
+    .nav-group:focus-within .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 6px;
+      color: #5f5a55;
+    }
+    .dropdown a:hover { background: #f6eee9; color: var(--brand); }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 26px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--brand);
+      font-weight: 800;
+      box-shadow: 0 9px 18px rgba(97, 46, 40, .18);
+    }
+    .hero {
+      background:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1.5px, transparent 1.5px),
+        var(--brand);
+      background-size: 48px 48px;
+      color: #fff;
+      text-align: center;
+      padding: 70px 24px 92px;
+    }
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.15;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+    .hero p {
+      margin: 24px auto 44px;
+      max-width: 760px;
+      color: rgba(255,255,255,.78);
+      font-size: clamp(18px, 2.2vw, 25px);
+    }
+    .hero .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 260px;
+      padding: 16px 30px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand);
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+    main {
+      max-width: 1420px;
+      margin: 0 auto;
+      padding: 80px 36px 120px;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .eyebrow {
+      margin: 0 0 8px;
+      color: var(--brand);
+      font-weight: 900;
+      letter-spacing: 6px;
+    }
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(38px, 5vw, 64px);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+    .section-head p {
+      margin: 18px auto 0;
+      max-width: 820px;
+      color: var(--muted);
+      font-size: 22px;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+      margin-bottom: 76px;
+    }
+    .category-card {
+      min-height: 210px;
+      padding: 44px 42px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(84, 65, 39, .06);
+    }
+    .category-card h3 {
+      margin: 0 0 16px;
+      color: var(--brand);
+      font-size: 34px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .category-card p {
+      margin: 0;
+      color: #756f68;
+      font-size: 21px;
+    }
+    .product-section {
+      scroll-margin-top: 120px;
+      margin-top: 78px;
+    }
+    .product-section h2 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.15;
+      font-weight: 900;
+    }
+    .product-section > p {
+      margin: 10px 0 34px;
+      color: var(--muted);
+      font-size: 22px;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 34px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 54px 54px 46px;
+      box-shadow: var(--shadow);
+      border-top: 8px solid var(--brand);
+    }
+    .product-card.memorial {
+      border: 2px solid var(--line);
+      box-shadow: 0 12px 28px rgba(84, 65, 39, .08);
+    }
+    .icon-badge {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #f8eeee;
+      color: var(--brand);
+      margin-bottom: 34px;
+    }
+    .icon-badge svg {
+      width: 44px;
+      height: 44px;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 2.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .product-card h3 {
+      margin: 0 0 12px;
+      color: var(--brand);
+      font-size: 32px;
+      line-height: 1.25;
+      font-weight: 900;
+    }
+    .product-tags {
+      margin: 0 0 24px;
+      color: var(--gold);
+      font-size: 19px;
+      font-weight: 800;
+    }
+    .product-desc {
+      min-height: 92px;
+      margin: 0 0 28px;
+      color: #77716c;
+      font-size: 20px;
+    }
+    .product-image {
+      width: 100%;
+      height: 330px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f4f4f4;
+      display: grid;
+      place-items: center;
+      margin: 0 0 26px;
+      color: #aaa;
+      font-size: 22px;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: contain;
+    }
+    .price-note {
+      margin: -4px 0 24px;
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 900;
+    }
+    .add-cart {
+      width: 100%;
+      min-height: 64px;
+      border: 0;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 22px;
+    }
+    .add-cart:hover { background: var(--brand-dark); }
+    .footer {
+      background: #2f2f2f;
+      color: rgba(255,255,255,.78);
+      text-align: center;
+      padding: 54px 24px;
+    }
+    .footer h2 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 26px;
+    }
+    .floating-cart,
+    .to-top {
+      position: fixed;
+      right: 28px;
+      z-index: 60;
+      border: 0;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+    }
+    .to-top {
+      bottom: 138px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--brand);
+      font-size: 34px;
+      line-height: 1;
+    }
+    .floating-cart {
+      bottom: 42px;
+      min-width: 186px;
+      min-height: 72px;
+      padding: 0 24px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      font-size: 23px;
+      font-weight: 900;
+    }
+    .cart-count {
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      background: #fff;
+      color: var(--brand);
+    }
+    .cart-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: none;
+    }
+    .cart-panel.open { display: block; }
+    .cart-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.45);
+    }
+    .cart-drawer {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(720px, 100%);
+      height: 100%;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -20px 0 40px rgba(0,0,0,.12);
+    }
+    .cart-head {
+      padding: 34px 36px 28px;
+      border-bottom: 1px solid #e8e2da;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .cart-head small {
+      display: block;
+      color: var(--brand);
+      letter-spacing: 6px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .cart-head h2 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+    .cart-close {
+      border: 0;
+      background: transparent;
+      color: #776f68;
+      font-size: 52px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .cart-items {
+      flex: 1;
+      overflow: auto;
+      padding: 28px 28px;
+    }
+    .empty-cart {
+      padding: 40px 10px;
+      color: var(--muted);
+      font-size: 20px;
+      text-align: center;
+    }
+    .cart-item {
+      border: 1px solid #e3ded8;
+      border-radius: 8px;
+      padding: 24px 26px;
+      margin-bottom: 18px;
+    }
+    .cart-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .cart-item small {
+      color: var(--gold);
+      font-weight: 900;
+    }
+    .cart-item h3 {
+      margin: 2px 0 0;
+      font-size: 24px;
+    }
+    .remove-item {
+      border: 0;
+      background: transparent;
+      color: #999;
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .qty-controls {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--ink);
+      font-size: 24px;
+    }
+    .qty-controls button {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 1px solid #d8d2cc;
+      background: #fff;
+      cursor: pointer;
+      font-size: 26px;
+    }
+    .order-form {
+      padding: 24px 28px 30px;
+      border-top: 1px solid #e8e2da;
+      background: #fff;
+    }
+    .order-form p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .field-full { grid-column: 1 / -1; }
+    .order-form label {
+      display: block;
+      color: #5e5751;
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .order-form input,
+    .order-form select,
+    .order-form textarea {
+      width: 100%;
+      border: 1px solid #d8d2cc;
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+    .pickup-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px 0;
+      color: #5e5751;
+      font-weight: 800;
+    }
+    .pickup-row input { width: 18px; height: 18px; }
+    .checkout-btn,
+    .clear-cart {
+      width: 100%;
+      min-height: 60px;
+      border-radius: 999px;
+      font-size: 20px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .checkout-btn {
+      border: 0;
+      background: var(--brand);
+      color: #fff;
+      margin-top: 16px;
+    }
+    .clear-cart {
+      border: 1px solid #d8d2cc;
+      background: #fff;
+      color: #777;
+      margin-top: 12px;
+    }
+    @media (max-width: 980px) {
+      .nav {
+        padding: 16px 22px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        gap: 20px;
+        font-size: 16px;
+      }
+      main { padding: 54px 18px 100px; }
+      .category-grid,
+      .product-grid { grid-template-columns: 1fr; }
+      .product-card { padding: 36px 28px; }
+      .product-image { height: 280px; }
+      .form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主要導覽">
+      <a href="index.html" class="brand">
+        <div class="brand-title">金鼎盛金紙藝品</div>
+        <div class="brand-subtitle">JINDING SHENG JINZHIYIPIN</div>
+      </a>
+      <div class="nav-links">
+        <a class="nav-link" href="story.html">品牌故事</a>
+        <div class="nav-group">
+          <button class="nav-trigger active" type="button">藝品系列</button>
+          <div class="dropdown">
+            <a href="#blessing">神明祝壽</a>
+            <a href="#memorial">弔念追思</a>
+            <a href="#fortune">招財開運</a>
+          </div>
+        </div>
+        <a class="nav-link" href="awards.html">榮耀認證</a>
+        <div class="nav-group">
+          <button class="nav-trigger" type="button">服務項目</button>
+          <div class="dropdown">
+            <a href="services.html#order-flow">下單流程</a>
+            <a href="services.html#custom-flow">客製流程</a>
+            <a href="services.html#faq">常見問題</a>
+          </div>
+        </div>
+        <a class="nav-link" href="reviews.html">顧客心聲</a>
+        <a class="nav-cta" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">預約諮詢</a>
+      </div>
+    </nav>
+  </header>
 
-  function cleanupStorage(storage) {
-    if (!storage) return;
-    Object.keys(storage).forEach(key => {
-      const value = storage.getItem(key);
-      if (!containsBlocked(key) && !containsBlocked(value)) return;
-      const nextValue = pruneValue(value);
-      if (nextValue && nextValue !== "[]" && nextValue !== "{}") storage.setItem(key, nextValue);
-      else storage.removeItem(key);
+  <section class="hero">
+    <h1>想訂製專屬紙藝作品？</h1>
+    <p>把想祝福的日子、對象與預算告訴我們，一起討論最合適的款式。</p>
+    <a class="hero-cta" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">LINE 預約諮詢</a>
+  </section>
+
+  <main>
+    <section aria-labelledby="series-title">
+      <div class="section-head">
+        <p class="eyebrow">COLLECTIONS</p>
+        <h2 id="series-title">藝品系列</h2>
+        <p>把祝壽、還願、招財與開運的心意，做成精緻、有儀式感的金紙藝品。</p>
+      </div>
+      <div class="category-grid">
+        <a class="category-card" href="#blessing">
+          <h3>神明祝壽</h3>
+          <p>祝壽、還願、招財、補運與開運供品。</p>
+        </a>
+        <a class="category-card" href="#memorial">
+          <h3>弔念追思</h3>
+          <p>適合祖先追思、清明、中元、告別式與慎終追遠供奉。</p>
+        </a>
+        <a class="category-card" href="#fortune">
+          <h3>招財開運</h3>
+          <p>適合開運、補財庫、事業興旺、居家祈福與新年度祈求順遂。</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="blessing" class="product-section">
+      <h2>神明祝壽</h2>
+      <p>祝壽、還願、招財、補運與開運供品。</p>
+      <div class="product-grid">
+        <article class="product-card" data-name="祝壽蛋糕花" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 12v9H4v-9"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 1 1 2.2-3.7C10.5 4.6 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 1 0-2.2-3.7C13.5 4.6 12 7 12 7z"/></svg></div>
+          <h3>祝壽蛋糕花</h3>
+          <p class="product-tags">祝壽・還願・儀式感</p>
+          <p class="product-desc">獻給神明的祝壽驚喜。以圓滿造型象徵生生不息的福氣，用心又有儀式感，適合祝壽或重要日子展現誠意。祝壽蛋糕花可客製單層、兩層、三層、五層及六層以上。</p>
+          <figure class="product-image"><img src="assets/S__143687683.jpg" alt="祝壽蛋糕花"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="一桶金" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="4"/><circle cx="16" cy="10" r="4"/><path d="M8 12v4M6.5 14h3M16 8v4M14.5 10h3"/></svg></div>
+          <h3>一桶金</h3>
+          <p class="product-tags">招財・聚寶・納福</p>
+          <p class="product-desc">以金桶聚財、財庫豐盛為設計意象，象徵招財納福、財源穩聚與好運入庫。適合神明祝壽初一十五、初二十六、還願敬奉或重要日子表達誠心。一桶金尺寸分為小款、大款、福氣款。</p>
+          <figure class="product-image"><img src="assets/S__144982022.jpg" alt="一桶金"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="好神花花束" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8c2-4 7-2 7 2 0 4-5 6-7 8-2-2-7-4-7-8 0-4 5-6 7-2z"/><path d="M12 8c-2-4-7-2-7 2M12 8c2-4 7-2 7 2"/><path d="M12 18v3"/></svg></div>
+          <h3>好神花花束</h3>
+          <p class="product-tags">招財・納福・補運</p>
+          <p class="product-desc">結合經文與花藝美學的創意供品。將招財納福、補運、姻緣的心願，透過精緻的摺紙藝術，優雅地傳遞給神明。花束尺寸分別為S/M/L/XL，顏色可選擇．花盤可選擇．客制化。</p>
+          <figure class="product-image"><img src="assets/S__143687685.jpg" alt="好神花花束"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="轎前花" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8c2-4 7-2 7 2 0 4-5 6-7 8-2-2-7-4-7-8 0-4 5-6 7-2z"/><path d="M12 18v3"/></svg></div>
+          <h3>轎前花</h3>
+          <p class="product-tags">祝壽・敬奉・添喜</p>
+          <p class="product-desc">以花藝造型搭配金紙摺藝，為神明聖駕前增添莊嚴與喜氣。適合祝壽、進香、遶境或重要敬奉場合，展現虔誠與隆重心意。</p>
+          <figure class="product-image"><img src="assets/S__143769602.jpg" alt="轎前花"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="元寶龍柱" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V9"/><path d="M18 20V9"/><path d="M3 9h18"/><path d="M5 6h14"/><path d="M8 6V4h8v2"/></svg></div>
+          <h3>元寶龍柱</h3>
+          <p class="product-tags">祝壽・招財・鎮座</p>
+          <p class="product-desc">以元寶聚財、龍柱護佑為設計意象，象徵財庫豐盈、福氣穩固與貴人扶持。適合神明祝壽、開運祈福或重要敬奉場合。</p>
+          <figure class="product-image"><img src="assets/S__143687702.jpg" alt="元寶龍柱"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="滿福百寶箱" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></div>
+          <h3>滿福百寶箱</h3>
+          <p class="product-tags">祝壽・納福・聚寶</p>
+          <p class="product-desc">以百寶聚福、滿載祥瑞與納財迎福為設計意象，象徵福祿圓滿、財庫豐盛、吉祥守護與福氣滿盈。適合神明祝壽、還願敬奉，或於重要日子表達虔誠心意。</p>
+          <figure class="product-image"><img src="assets/S__143687697.jpg" alt="滿福百寶箱"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card" data-name="元寶塔" data-category="神明祝壽">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 4-8 4-8-4 8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg></div>
+          <h3>元寶塔</h3>
+          <p class="product-tags">祝壽・聚財・納福</p>
+          <p class="product-desc">以層層元寶堆疊成塔，象徵財庫穩固、福氣累積與心願向上圓滿。適合神明祝壽、開運祈福、還願敬奉或重要日子表達誠心。</p>
+          <figure class="product-image"><img src="assets/S__143753218.jpg" alt="元寶塔"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="memorial" class="product-section">
+      <h2>弔念追思</h2>
+      <p>祭祖、追思、清明、中元、祖先與告別式等敬奉。</p>
+      <div class="product-grid">
+        <article class="product-card memorial" data-name="追思供花" data-category="弔念追思">
+          <h3>追思供花</h3>
+          <p class="product-tags">祭祖・追思・告別</p>
+          <p class="product-desc">以沉穩配色與細緻紙藝呈現懷念心意，適合祖先追思、告別式或重要祭拜場合，莊重不失溫度。</p>
+          <figure class="product-image"><img src="assets/S__143802380.jpg" alt="追思供花"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+
+        <article class="product-card memorial" data-name="福圓追思寶桶 桌上型" data-category="弔念追思">
+          <h3>福圓追思寶桶 桌上型</h3>
+          <p class="product-tags">清明・中元・祖先</p>
+          <p class="product-desc">依照祭拜需求搭配金紙藝品與供奉設計，適合清明、中元與祖先敬奉，讓思念與敬意更完整。</p>
+          <figure class="product-image"><img src="assets/S__145039368.jpg" alt="福圓追思寶桶 桌上型"></figure>
+          <p class="price-note">桌上型・一對 NT$2,800</p>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="fortune" class="product-section">
+      <h2>招財開運</h2>
+      <p>開運、補財庫、事業興旺、居家祈福供品。</p>
+      <div class="product-grid">
+        <article class="product-card" data-name="焰旺來鳳梨" data-category="招財開運">
+          <div class="icon-badge" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2s1 4-2 7c-2 2-4 4-4 7a5 5 0 0 0 10 0c0-3-2-5-4-7 3 1 5 3 5 7"/></svg></div>
+          <h3>焰旺來鳳梨</h3>
+          <p class="product-tags">開運・事業・興旺</p>
+          <p class="product-desc">鳳梨寓意「旺來」。層層堆疊的金色果身，代表財氣滿滿。適合公司開市、居家祈福，替事業祈來一份順遂與興旺。</p>
+          <figure class="product-image"><img src="assets/S__143704066.jpg" alt="焰旺來鳳梨"></figure>
+          <button class="add-cart" type="button">加入購物車</button>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <h2>金鼎盛金紙藝品</h2>
+    <div>© 2026 金鼎盛金紙藝品商行 版權所有｜網站內容、圖片與文案未經授權請勿轉載、使用或仿製</div>
+  </footer>
+
+  <button class="to-top" type="button" aria-label="回到頂部">↑</button>
+  <button class="floating-cart" type="button" aria-label="開啟購物車">
+    <span>🛒</span><span>購物車</span><span class="cart-count">0</span>
+  </button>
+
+  <aside class="cart-panel" aria-hidden="true">
+    <div class="cart-backdrop"></div>
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-head">
+        <div><small>CART</small><h2 id="cart-title">購物車</h2></div>
+        <button class="cart-close" type="button" aria-label="關閉購物車">×</button>
+      </div>
+      <div class="cart-items"></div>
+      <form class="order-form">
+        <p>送出訂單後，我們會收到 LINE 通知，並依資料確認價格、尺寸與交件日期。</p>
+        <div class="form-grid">
+          <div><label for="name">姓名</label><input id="name" name="name" required autocomplete="name"></div>
+          <div><label for="phone">電話</label><input id="phone" name="phone" required autocomplete="tel"></div>
+          <div class="field-full"><label for="lineId">LINE ID</label><input id="lineId" name="lineId" autocomplete="off"></div>
+          <label class="pickup-row field-full"><input id="pickup" name="pickup" type="checkbox"> 自取，不需要填寫收件地址</label>
+          <div><label for="county">縣市</label><select id="county" name="county"><option value="">請選擇</option><option>高雄市</option><option>屏東縣</option><option>台南市</option><option>台中市</option><option>台北市</option><option>新北市</option></select></div>
+          <div><label for="district">區域</label><select id="district" name="district"><option value="">請先選縣市</option></select></div>
+          <div><label for="zip">郵遞區號</label><input id="zip" name="zip" readonly></div>
+          <div><label for="address">地址</label><input id="address" name="address" autocomplete="street-address"></div>
+          <div class="field-full"><label for="note">備註</label><textarea id="note" name="note" rows="2" placeholder="可填寫希望交件日期、用途、尺寸或預算"></textarea></div>
+        </div>
+        <button class="checkout-btn" type="submit">送出訂單</button>
+        <button class="clear-cart" type="button">清空購物車</button>
+      </form>
+    </div>
+  </aside>
+
+  <script>
+    const orderEndpoint = "https://jinding-order-api.xaga19057260.workers.dev/";
+    const lineUrl = "https://line.me/R/ti/p/@771qiuwt";
+    const removedNames = new Set(["還願答謝", "還願謝神組", "祈願圓滿供品", "企業開市", "節慶祭拜"]);
+    const renameMap = {
+      "金紙蛋糕花": "祝壽蛋糕花",
+      "祭祖敬奉組": "福圓追思寶桶 桌上型",
+      "福圓追思寶桶": "福圓追思寶桶 桌上型",
+      "瑞祥百寶箱": "滿福百寶箱"
+    };
+    const productMeta = {};
+    document.querySelectorAll("[data-name][data-category]").forEach(card => {
+      productMeta[card.dataset.name] = { name: card.dataset.name, category: card.dataset.category };
     });
-  }
 
-  function cleanupCartBadges() {
-    document.querySelectorAll("[data-cart-count], .cart-count, .cart-badge").forEach(node => {
-      const n = Number((node.textContent || "").trim());
-      if (!Number.isNaN(n) && n < 1) node.textContent = "0";
+    const zipData = {
+      "高雄市": { "三民區": "807", "左營區": "813", "鼓山區": "804", "苓雅區": "802", "鳳山區": "830", "前鎮區": "806" },
+      "屏東縣": { "屏東市": "900", "潮州鎮": "920", "東港鎮": "928", "內埔鄉": "912", "萬丹鄉": "913" },
+      "台南市": { "中西區": "700", "東區": "701", "南區": "702", "永康區": "710", "安平區": "708" },
+      "台中市": { "中區": "400", "西區": "403", "北區": "404", "南屯區": "408", "西屯區": "407" },
+      "台北市": { "中正區": "100", "大安區": "106", "信義區": "110", "士林區": "111" },
+      "新北市": { "板橋區": "220", "新莊區": "242", "三重區": "241", "中和區": "235", "永和區": "234" }
+    };
+
+    let cart = loadCart();
+    const cartPanel = document.querySelector(".cart-panel");
+    const cartItems = document.querySelector(".cart-items");
+    const cartCount = document.querySelector(".cart-count");
+    const orderForm = document.querySelector(".order-form");
+
+    function loadCart() {
+      try {
+        const raw = JSON.parse(localStorage.getItem("jindingCart") || "[]");
+        const migrated = raw
+          .map(item => ({ ...item, name: renameMap[item.name] || item.name }))
+          .filter(item => item.name && !removedNames.has(item.name))
+          .filter(item => productMeta[item.name]);
+        localStorage.setItem("jindingCart", JSON.stringify(migrated));
+        return migrated;
+      } catch {
+        return [];
+      }
+    }
+    function saveCart() {
+      localStorage.setItem("jindingCart", JSON.stringify(cart));
+      renderCart();
+    }
+    function renderCart() {
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
+      cartCount.textContent = total;
+      if (!cart.length) {
+        cartItems.innerHTML = '<div class="empty-cart">購物車目前是空的</div>';
+        return;
+      }
+      cartItems.innerHTML = cart.map((item, index) => `
+        <div class="cart-item">
+          <div class="cart-item-top">
+            <div><small>${item.category}</small><h3>${item.name}</h3></div>
+            <button class="remove-item" type="button" data-remove="${index}" aria-label="移除 ${item.name}">🗑</button>
+          </div>
+          <div class="qty-row">
+            <span>數量</span>
+            <div class="qty-controls">
+              <button type="button" data-minus="${index}">-</button>
+              <span>${item.qty}</span>
+              <button type="button" data-plus="${index}">+</button>
+            </div>
+          </div>
+        </div>
+      `).join("");
+    }
+    function openCart() {
+      cartPanel.classList.add("open");
+      cartPanel.setAttribute("aria-hidden", "false");
+    }
+    function closeCart() {
+      cartPanel.classList.remove("open");
+      cartPanel.setAttribute("aria-hidden", "true");
+    }
+
+    document.querySelectorAll(".add-cart").forEach(button => {
+      button.addEventListener("click", () => {
+        const card = button.closest("[data-name]");
+        const name = card.dataset.name;
+        const category = card.dataset.category;
+        const found = cart.find(item => item.name === name);
+        if (found) found.qty += 1;
+        else cart.push({ name, category, qty: 1 });
+        saveCart();
+        openCart();
+      });
     });
-  }
-
-  function cleanupDom() {
-    cleanupStorage(localStorage);
-    cleanupStorage(sessionStorage);
-
-    document.querySelectorAll(sectionSelector).forEach(section => {
-      const heading = section.querySelector("h1,h2,h3,h4,h5,h6");
-      if (heading && containsBlockedCategory(heading.textContent)) removeNode(section);
+    document.querySelector(".floating-cart").addEventListener("click", openCart);
+    document.querySelector(".cart-close").addEventListener("click", closeCart);
+    document.querySelector(".cart-backdrop").addEventListener("click", closeCart);
+    document.querySelector(".to-top").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+    document.querySelector(".clear-cart").addEventListener("click", () => {
+      cart = [];
+      saveCart();
+    });
+    cartItems.addEventListener("click", event => {
+      const remove = event.target.closest("[data-remove]");
+      const minus = event.target.closest("[data-minus]");
+      const plus = event.target.closest("[data-plus]");
+      if (remove) cart.splice(Number(remove.dataset.remove), 1);
+      if (minus) {
+        const item = cart[Number(minus.dataset.minus)];
+        item.qty -= 1;
+        if (item.qty <= 0) cart.splice(Number(minus.dataset.minus), 1);
+      }
+      if (plus) cart[Number(plus.dataset.plus)].qty += 1;
+      saveCart();
     });
 
-    document.querySelectorAll("h1,h2,h3,h4,h5,h6").forEach(heading => {
-      if (!containsBlocked(heading.textContent)) return;
-      removeNode(heading.closest(sectionSelector) || heading.closest(cardSelector) || heading.parentElement);
+    const county = document.querySelector("#county");
+    const district = document.querySelector("#district");
+    const zip = document.querySelector("#zip");
+    const pickup = document.querySelector("#pickup");
+    const addressFields = [county, district, zip, document.querySelector("#address")];
+    county.addEventListener("change", () => {
+      const rows = zipData[county.value] || {};
+      district.innerHTML = '<option value="">請選擇</option>' + Object.keys(rows).map(name => `<option>${name}</option>`).join("");
+      zip.value = "";
+    });
+    district.addEventListener("change", () => {
+      zip.value = (zipData[county.value] || {})[district.value] || "";
+    });
+    pickup.addEventListener("change", () => {
+      addressFields.forEach(field => {
+        field.disabled = pickup.checked;
+        if (pickup.checked) field.value = "";
+      });
+      if (pickup.checked) district.innerHTML = '<option value="">自取</option>';
+      else district.innerHTML = '<option value="">請先選縣市</option>';
     });
 
-    document.querySelectorAll(cardSelector).forEach(card => {
-      if (containsBlocked(card.textContent)) removeNode(card);
+    orderForm.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!cart.length) {
+        alert("購物車目前是空的，請先加入想詢問的作品。");
+        return;
+      }
+      const form = new FormData(orderForm);
+      const delivery = pickup.checked ? { method: "自取" } : {
+        method: "寄送",
+        county: form.get("county"),
+        district: form.get("district"),
+        zip: form.get("zip"),
+        address: form.get("address")
+      };
+      if (!pickup.checked && (!delivery.county || !delivery.district || !delivery.address)) {
+        alert("請填寫完整收件縣市、區域與地址，或勾選自取。");
+        return;
+      }
+      const payload = {
+        customer: {
+          name: form.get("name"),
+          phone: form.get("phone"),
+          lineId: form.get("lineId"),
+          note: form.get("note")
+        },
+        delivery,
+        items: cart
+      };
+      try {
+        const response = await fetch(orderEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (!response.ok) throw new Error("送出失敗");
+        alert("訂單已送出，我們已收到 LINE 通知，會盡快與您確認價格、尺寸與交件日期。");
+        cart = [];
+        saveCart();
+        orderForm.reset();
+        district.innerHTML = '<option value="">請先選縣市</option>';
+        closeCart();
+      } catch (error) {
+        alert("訂單送出失敗，請稍後再試或直接用 LINE 聯繫我們。");
+        window.open(lineUrl, "_blank", "noopener");
+      }
     });
 
-    document.querySelectorAll("a,button,option").forEach(control => {
-      if (containsBlocked(control.textContent) || containsBlocked(control.getAttribute("href"))) removeNode(control.closest("li") || control);
-    });
-
-    cleanupCartBadges();
-  }
-
-  cleanupDom();
-  window.addEventListener("DOMContentLoaded", cleanupDom);
-  window.addEventListener("load", cleanupDom);
-  setTimeout(cleanupDom, 250);
-  setTimeout(cleanupDom, 1000);
-  new MutationObserver(cleanupDom).observe(document.documentElement, { childList: true, subtree: true });
-})();
-</script>
+    renderCart();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
