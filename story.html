@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>品牌故事｜金鼎盛金紙藝品</title>
+  <meta name="description" content="金鼎盛金紙藝品品牌故事，傳統紙藝與現代客製心意。">
+  <style>
+    :root {
+      --bg: #f7f5ef;
+      --paper: #fffdf8;
+      --ink: #2e2c2a;
+      --muted: #77716b;
+      --brand: #ad5449;
+      --gold: #c0a15b;
+      --line: #e4d7b7;
+      --shadow: 0 18px 45px rgba(47, 39, 30, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(247, 245, 239, 0.96);
+      border-bottom: 1px solid rgba(190, 175, 140, 0.28);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      width: min(1320px, calc(100% - 48px));
+      margin: 0 auto;
+      min-height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+    }
+
+    .brand-title {
+      display: block;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .brand-subtitle {
+      display: block;
+      margin-top: 2px;
+      color: #aaa39c;
+      font-size: 15px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(20px, 3vw, 48px);
+      color: #5f5b56;
+      font-size: 20px;
+      white-space: nowrap;
+    }
+
+    .nav-link,
+    .dropdown-button {
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+      padding: 12px 0;
+    }
+
+    .nav-link.active,
+    .nav-link:hover,
+    .dropdown-button:hover {
+      color: var(--brand);
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-button::after {
+      content: "⌄";
+      margin-left: 8px;
+      color: var(--brand);
+      font-size: 20px;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      min-width: 190px;
+      transform: translateX(-50%);
+      padding: 12px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
+      display: grid;
+      gap: 6px;
+    }
+
+    .dropdown-menu a {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+
+    .dropdown-menu a:hover {
+      background: #f6eee5;
+      color: var(--brand);
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 30px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 12px 28px rgba(143, 63, 52, 0.25);
+    }
+
+    main { overflow: hidden; }
+
+    .hero {
+      padding: clamp(78px, 10vw, 140px) 24px clamp(64px, 8vw, 100px);
+      background:
+        radial-gradient(circle at 18px 18px, rgba(255,255,255,0.18) 2px, transparent 3px) 0 0 / 56px 56px,
+        var(--brand);
+      color: #fff;
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: #f2d8ce;
+      font-weight: 800;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    .hero p {
+      max-width: 780px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: clamp(20px, 2.4vw, 28px);
+    }
+
+    .section {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: clamp(64px, 8vw, 110px) 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: clamp(34px, 5vw, 56px);
+    }
+
+    .section-heading h2 {
+      margin-bottom: 12px;
+      font-size: clamp(34px, 4.8vw, 56px);
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .section-heading p {
+      margin: 0 auto;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 22px;
+    }
+
+    .story-grid,
+    .step-grid,
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .story-card,
+    .step-card,
+    .faq-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: clamp(28px, 4vw, 44px);
+      box-shadow: 0 10px 30px rgba(58, 50, 40, 0.06);
+    }
+
+    .story-card h3,
+    .step-card h3,
+    .faq-card h3 {
+      margin-bottom: 14px;
+      color: var(--brand);
+      font-size: 28px;
+      line-height: 1.35;
+      font-weight: 900;
+    }
+
+    .story-card p,
+    .step-card p,
+    .faq-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 20px;
+    }
+
+    .step-number {
+      width: 54px;
+      height: 54px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      background: #f6ede9;
+      color: var(--brand);
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .cta-section {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto clamp(72px, 8vw, 120px);
+      padding: clamp(54px, 7vw, 86px) 24px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 18px 18px, rgba(255,255,255,0.18) 2px, transparent 3px) 0 0 / 56px 56px,
+        var(--brand);
+      color: #fff;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 14px;
+      font-size: clamp(34px, 4.8vw, 56px);
+      line-height: 1.25;
+    }
+
+    .cta-section p {
+      max-width: 780px;
+      margin: 0 auto 34px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 22px;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 64px;
+      padding: 0 38px;
+      border: 1px solid rgba(255,255,255,0.55);
+      border-radius: 999px;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .cta-primary {
+      background: #fff;
+      color: var(--brand);
+    }
+
+    .site-footer {
+      background: #2d2c2a;
+      color: #f6f0e8;
+      text-align: center;
+      padding: 54px 24px;
+    }
+
+    .site-footer strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 30px;
+    }
+
+    .site-footer p {
+      margin: 0;
+      color: rgba(255,255,255,0.62);
+      font-size: 16px;
+    }
+
+    .floating-actions {
+      position: fixed;
+      right: 22px;
+      bottom: 24px;
+      z-index: 30;
+      display: grid;
+      gap: 14px;
+      justify-items: end;
+    }
+
+    .top-button,
+    .cart-button {
+      border: 0;
+      cursor: pointer;
+      box-shadow: 0 16px 34px rgba(47, 39, 30, 0.16);
+    }
+
+    .top-button {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fff;
+      color: var(--brand);
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .cart-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      min-height: 72px;
+      padding: 0 26px;
+      border-radius: 999px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .cart-count {
+      display: inline-grid;
+      place-items: center;
+      min-width: 36px;
+      height: 36px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand);
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        gap: 24px;
+        padding-bottom: 4px;
+      }
+
+      .dropdown-menu {
+        left: 0;
+        transform: none;
+      }
+
+      .story-grid,
+      .step-grid,
+      .faq-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        width: min(100% - 28px, 1320px);
+      }
+
+      .brand-subtitle {
+        font-size: 12px;
+      }
+
+      .nav-links {
+        font-size: 17px;
+      }
+
+      .section {
+        width: min(100% - 28px, 1180px);
+      }
+
+      .story-card,
+      .step-card,
+      .faq-card {
+        border-radius: 18px;
+      }
+
+      .floating-actions {
+        right: 14px;
+        bottom: 14px;
+      }
+
+      .cart-button {
+        min-height: 62px;
+        padding: 0 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="主選單">
+      <a class="brand" href="index.html">
+        <span class="brand-title">金鼎盛金紙藝品</span>
+        <span class="brand-subtitle">Jinding Sheng JinzhiYipin</span>
+      </a>
+
+      <div class="nav-links">
+        <a class="nav-link active" href="story.html">品牌故事</a>
+        <div class="dropdown">
+          <button class="dropdown-button" type="button">藝品系列</button>
+          <div class="dropdown-menu">
+            <a href="collections.html#blessing">神明祝壽</a>
+            <a href="collections.html#memorial">弔念追思</a>
+            <a href="collections.html#fortune">招財開運</a>
+          </div>
+        </div>
+        <a class="nav-link" href="awards.html">榮耀認證</a>
+        <div class="dropdown">
+          <button class="dropdown-button" type="button">服務項目</button>
+          <div class="dropdown-menu">
+            <a href="#process">訂製流程</a>
+            <a href="#faq">常見問題</a>
+            <a href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">LINE 詢問</a>
+          </div>
+        </div>
+        <a class="nav-link" href="index.html#reviews">顧客心聲</a>
+        <a class="cta-button" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">預約諮詢</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Brand Story</p>
+      <h1>品牌故事</h1>
+      <p>把祝福折進紙裡，把心意交給神明與祖先。</p>
+    </section>
+
+    <section class="section" aria-labelledby="story-title">
+      <div class="section-heading">
+        <h2 id="story-title">一份供品，也是一份慎重的心意</h2>
+        <p>金鼎盛以傳統金紙文化為根，結合紙藝、花藝與客製設計，讓每一份祝福更完整地被看見。</p>
+      </div>
+
+      <div class="story-grid">
+        <article class="story-card">
+          <h3>從敬意開始的紙藝</h3>
+          <p>金鼎盛相信，每一份金紙藝品都不是單純的供品，而是家人、信眾與企業想傳達的祝福與敬意。</p>
+        </article>
+        <article class="story-card">
+          <h3>傳統工藝，現代心意</h3>
+          <p>我們保留傳統金紙文化的核心，結合花藝、立體造型與客製設計，讓作品更符合現代祭祀與祝壽需求。</p>
+        </article>
+        <article class="story-card">
+          <h3>為每一份祝福量身訂製</h3>
+          <p>從神明祝壽、還願敬奉，到祖先追思與重要節慶，我們會依照用途、尺寸、顏色與預算協助規劃。</p>
+        </article>
+        <article class="story-card">
+          <h3>把細節做到安心</h3>
+          <p>作品製作前會先確認需求，完成後再安排交件，讓客人能安心把心意交給我們。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="process" aria-labelledby="process-title">
+      <div class="section-heading">
+        <h2 id="process-title">訂製流程</h2>
+        <p>先確認需求，再安排製作。每一步都讓客人清楚知道目前進度。</p>
+      </div>
+
+      <div class="step-grid">
+        <article class="step-card">
+          <span class="step-number">1</span>
+          <h3>LINE 初步詢問</h3>
+          <p>告訴我們用途、供奉對象、希望尺寸與交件日期。</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">2</span>
+          <h3>確認用途與預算</h3>
+          <p>依照祝壽、還願、追思或開運需求，協助挑選合適方向。</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">3</span>
+          <h3>討論款式尺寸</h3>
+          <p>確認顏色、層數、文字、搭配元素與是否需要客製。</p>
+        </article>
+        <article class="step-card">
+          <span class="step-number">4</span>
+          <h3>製作與交件</h3>
+          <p>完成確認後安排製作，並依約定方式交件或自取。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="section-heading">
+        <h2 id="faq-title">常見問題</h2>
+        <p>有不確定的地方，都可以先加入 LINE 詢問，我們會協助確認。</p>
+      </div>
+
+      <div class="faq-grid">
+        <article class="faq-card">
+          <h3>可以客製尺寸嗎？</h3>
+          <p>可以，依照用途、供奉對象、預算與交件時間討論。</p>
+        </article>
+        <article class="faq-card">
+          <h3>下單後會直接製作嗎？</h3>
+          <p>會先確認款式、尺寸、文字與交件資訊，再安排製作。</p>
+        </article>
+        <article class="faq-card">
+          <h3>可以自取嗎？</h3>
+          <p>可以，送出訂單時可選擇自取，我們會再與您確認時間。</p>
+        </article>
+        <article class="faq-card">
+          <h3>作品可以看實拍嗎？</h3>
+          <p>可以先參考官網作品牆，也能到 Facebook 作品集查看更多實拍案例。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>想訂製專屬紙藝作品？</h2>
+      <p>把想祝福的日子、對象與預算告訴我們，一起討論最合適的款式。</p>
+      <div class="cta-actions">
+        <a class="cta-button cta-primary" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">加入 LINE 預約</a>
+        <a class="cta-secondary" href="https://www.facebook.com/share/1Cid4SuPpy/?mibextid=wwXIfr" target="_blank" rel="noopener">參觀 Facebook 作品集</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>金鼎盛金紙藝品</strong>
+    <p>© 2026 金鼎盛金紙藝品商行 版權所有｜網站內容、圖片與文案未經授權請勿轉載、使用或仿製</p>
+  </footer>
+
+  <div class="floating-actions" aria-label="快速操作">
+    <button class="top-button" type="button" aria-label="回到頂部" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">↑</button>
+    <a class="cart-button" href="collections.html" aria-label="前往購物車">
+      <span>購物車</span>
+      <span class="cart-count" id="cart-count">0</span>
+    </a>
+  </div>
+
+  <script>
+    function updateCartCount() {
+      try {
+        var cart = JSON.parse(localStorage.getItem("jindingCart") || "[]");
+        var total = cart.reduce(function (sum, item) {
+          return sum + (Number(item.qty) || 0);
+        }, 0);
+        document.getElementById("cart-count").textContent = total;
+      } catch (error) {
+        document.getElementById("cart-count").textContent = "0";
+      }
+    }
+
+    updateCartCount();
+  </script>
+</body>
+</html>
