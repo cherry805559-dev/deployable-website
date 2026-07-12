@@ -344,6 +344,7 @@
       font-size: 26px;
     }
     .floating-cart,
+    .floating-social,
     .to-top {
       position: fixed;
       right: 28px;
@@ -353,7 +354,7 @@
       box-shadow: var(--shadow);
     }
     .to-top {
-      bottom: 94px;
+      bottom: 154px;
       width: 50px;
       height: 50px;
       border-radius: 50%;
@@ -364,9 +365,9 @@
     }
     .floating-cart {
       bottom: 24px;
-      min-width: 64px;
-      min-height: 54px;
-      padding: 0 12px;
+      min-width: 112px;
+      min-height: 48px;
+      padding: 0 10px 0 16px;
       border-radius: 999px;
       background: var(--brand);
       color: #fff;
@@ -374,21 +375,62 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 900;
     }
-    .floating-cart span:nth-child(2) {
-      display: none;
+    .floating-social {
+      bottom: 84px;
+      min-width: 112px;
+      min-height: 48px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--brand);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .social-menu {
+      position: fixed;
+      right: 28px;
+      bottom: 140px;
+      z-index: 59;
+      display: grid;
+      gap: 8px;
+      transform: translateY(12px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+    }
+    .social-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .social-menu a {
+      min-width: 112px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      text-align: center;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 900;
+      box-shadow: var(--shadow);
     }
     .cart-count {
-      min-width: 28px;
-      height: 28px;
-      padding: 0 7px;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 6px;
       border-radius: 999px;
       display: inline-grid;
       place-items: center;
       background: #fff;
       color: var(--brand);
+      font-size: 14px;
     }
     .cart-panel {
       position: fixed;
@@ -850,8 +892,14 @@
   </footer>
 
   <button class="to-top" type="button" aria-label="回到頂部">↑</button>
+  <div class="social-menu" aria-hidden="true">
+    <a href="https://www.facebook.com/share/1K9sFoqSV4/?mibextid=LQQJ4d" target="_blank" rel="noopener">Facebook</a>
+    <a href="https://www.instagram.com/cherry_80555?igsh=MWF4Z2pnZXZwMGRuaw%3D%3D&utm_source=qr" target="_blank" rel="noopener">IG</a>
+    <a href="https://www.tiktok.com/@user10230516931850?_t=8rsY7WGKZt9&_r=1" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <button class="floating-social" type="button" aria-label="開啟社群連結" aria-expanded="false">社群</button>
   <button class="floating-cart" type="button" aria-label="開啟購物車">
-    <span>🛒</span><span>購物車</span><span class="cart-count">0</span>
+    <span>購物車</span><span class="cart-count">0</span>
   </button>
 
   <aside class="cart-panel" aria-hidden="true">
@@ -945,6 +993,8 @@
     const cartItems = document.querySelector(".cart-items");
     const cartCount = document.querySelector(".cart-count");
     const orderForm = document.querySelector(".order-form");
+    const socialMenu = document.querySelector(".social-menu");
+    const socialButton = document.querySelector(".floating-social");
 
     function loadCart() {
       try {
@@ -988,12 +1038,18 @@
       `).join("");
     }
     function openCart() {
+      closeSocialMenu();
       cartPanel.classList.add("open");
       cartPanel.setAttribute("aria-hidden", "false");
     }
     function closeCart() {
       cartPanel.classList.remove("open");
       cartPanel.setAttribute("aria-hidden", "true");
+    }
+    function closeSocialMenu() {
+      socialMenu.classList.remove("open");
+      socialMenu.setAttribute("aria-hidden", "true");
+      socialButton.setAttribute("aria-expanded", "false");
     }
 
     document.querySelectorAll(".add-cart").forEach(button => {
@@ -1024,6 +1080,12 @@
       }
     });
     document.querySelector(".floating-cart").addEventListener("click", openCart);
+    socialButton.addEventListener("click", () => {
+      const shouldOpen = !socialMenu.classList.contains("open");
+      socialMenu.classList.toggle("open", shouldOpen);
+      socialMenu.setAttribute("aria-hidden", String(!shouldOpen));
+      socialButton.setAttribute("aria-expanded", String(shouldOpen));
+    });
     document.querySelector(".cart-close").addEventListener("click", closeCart);
     document.querySelector(".cart-backdrop").addEventListener("click", closeCart);
     document.querySelector(".to-top").addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
