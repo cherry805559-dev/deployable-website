@@ -792,9 +792,10 @@
       <form class="order-form">
         <p>送出訂單後，我們會收到 LINE 通知，並依資料確認價格、尺寸與交件日期。</p>
         <div class="form-grid">
-          <div><label for="name">姓名</label><input id="name" name="name" required autocomplete="name"></div>
-          <div><label for="phone">電話</label><input id="phone" name="phone" required autocomplete="tel"></div>
-          <div class="field-full"><label for="lineId">LINE ID</label><input id="lineId" name="lineId" autocomplete="off"></div>
+          <div><label for="name">姓名（必填）</label><input id="name" name="name" required autocomplete="name"></div>
+          <div><label for="phone">電話（必填）</label><input id="phone" name="phone" required autocomplete="tel"></div>
+          <div class="field-full"><label for="lineId">LINE ID（必填）</label><input id="lineId" name="lineId" required autocomplete="off"></div>
+          <div class="field-full"><label for="email">Mail（必填）</label><input id="email" name="email" type="email" required autocomplete="email"></div>
           <label class="pickup-row field-full"><input id="pickup" name="pickup" type="checkbox"> 自取，不需要填寫收件地址</label>
           <div><label for="county">縣市</label><select id="county" name="county"><option value="">請選擇</option><option>高雄市</option><option>屏東縣</option><option>台南市</option><option>台中市</option><option>台北市</option><option>新北市</option></select></div>
           <div><label for="district">區域</label><select id="district" name="district"><option value="">請先選縣市</option></select></div>
@@ -982,6 +983,7 @@
           name: form.get("name"),
           phone: form.get("phone"),
           lineId: form.get("lineId"),
+          email: form.get("email"),
           note: form.get("note")
         },
         delivery,
