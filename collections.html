@@ -327,6 +327,19 @@
       font-size: 20px;
     }
     .add-cart:hover { background: var(--brand-dark); }
+    .line-inquiry {
+      width: 100%;
+      min-height: 54px;
+      margin-top: 12px;
+      border: 1px solid #06c755;
+      border-radius: 999px;
+      background: #06c755;
+      color: #fff;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 20px;
+    }
+    .line-inquiry:hover { background: #05ad4a; border-color: #05ad4a; }
     .footer {
       background: #2f2f2f;
       color: rgba(255,255,255,.78);
@@ -894,6 +907,21 @@
         saveCart();
         openCart();
       });
+
+      if (!button.nextElementSibling || !button.nextElementSibling.classList.contains("line-inquiry")) {
+        const inquiryButton = document.createElement("button");
+        inquiryButton.className = "line-inquiry";
+        inquiryButton.type = "button";
+        inquiryButton.textContent = "LINE 詢問";
+        inquiryButton.addEventListener("click", () => {
+        const card = button.closest("[data-name]");
+        const name = card.dataset.name;
+        const category = card.dataset.category;
+          const message = `您好，我想詢問「${category} - ${name}」這項商品。`;
+        window.open(`${lineUrl}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+        });
+        button.insertAdjacentElement("afterend", inquiryButton);
+      }
     });
     document.querySelector(".floating-cart").addEventListener("click", openCart);
     document.querySelector(".cart-close").addEventListener("click", closeCart);
