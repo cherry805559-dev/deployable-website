@@ -560,6 +560,59 @@
       line-height: 1.6;
     }
     .field-warning.show { display: block; }
+    .payment-options {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .payment-option {
+      border: 1px solid #d8d2cc;
+      border-radius: 8px;
+      padding: 16px 14px;
+      background: #fff;
+      cursor: pointer;
+      transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .payment-option input {
+      width: auto;
+      margin-right: 8px;
+      accent-color: var(--brand);
+    }
+    .payment-option:has(input:checked) {
+      border-color: var(--brand);
+      background: #fffaf5;
+      box-shadow: 0 0 0 2px rgba(161, 88, 76, .12);
+    }
+    .payment-detail {
+      display: none;
+      margin-top: 12px;
+      border: 1px solid #e5d9bd;
+      border-radius: 8px;
+      padding: 16px;
+      background: #fffaf0;
+      color: #5e5751;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .payment-detail.show { display: block; }
+    .payment-detail h4 {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 17px;
+    }
+    .payment-detail dl {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      gap: 6px 12px;
+      margin: 0;
+    }
+    .payment-detail dt { color: var(--muted); }
+    .payment-detail dd {
+      margin: 0;
+      font-weight: 800;
+      color: var(--ink);
+      word-break: break-word;
+    }
     .conditional-field { display: none; }
     .conditional-field.show { display: block; }
     .pickup-row {
@@ -616,6 +669,7 @@
       .product-card { padding: 36px 28px; }
       .product-image { height: auto; }
       .form-grid { grid-template-columns: 1fr; }
+      .payment-options { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -823,7 +877,22 @@
           <div class="delivery-address-field"><label for="zip">郵遞區號</label><input id="zip" name="zip" readonly></div>
           <div class="delivery-address-field"><label for="address">地址</label><input id="address" name="address" autocomplete="street-address"></div>
           <div class="field-full"><label for="note">備註 / 特殊需求</label><textarea id="note" name="note" rows="2" placeholder="可填寫商品客製內容、預約送達時間、賀卡資料或匯款後五碼"></textarea><p class="field-hint show">可填寫商品客製內容、預約送達時間、賀卡資料；若已匯款可填上匯款後五碼</p></div>
-          <div class="field-full"><label for="paymentMethod">付款方式（必填）</label><select id="paymentMethod" name="paymentMethod" required><option value="">請選擇</option><option>匯款轉帳</option><option>現場付現</option></select><p class="field-warning" id="cashDepositWarning">需先付款一半訂金</p></div>
+          <div class="field-full">
+            <label>付款方式（必填）</label>
+            <div class="payment-options" role="radiogroup" aria-label="付款方式">
+              <label class="payment-option"><input type="radio" name="paymentMethod" value="匯款轉帳" required>匯款轉帳</label>
+              <label class="payment-option"><input type="radio" name="paymentMethod" value="現場付現" required>現場付現</label>
+            </div>
+            <div class="payment-detail" id="bankInfo">
+              <h4>匯款帳號</h4>
+              <dl>
+                <dt>銀行</dt><dd>中國信託（822）</dd>
+                <dt>帳號</dt><dd>104540167516</dd>
+                <dt>戶名</dt><dd>林韻媛</dd>
+              </dl>
+            </div>
+            <p class="field-warning" id="cashDepositWarning">需先付款一半訂金</p>
+          </div>
         </div>
         <button class="checkout-btn" type="submit">送出訂單</button>
         <button class="clear-cart" type="button">清空購物車</button>
@@ -984,7 +1053,8 @@
     const pickupLocationGroup = document.querySelector("#pickupLocationGroup");
     const personalDeliveryGroup = document.querySelector("#personalDeliveryGroup");
     const personalDeliveryAddress = document.querySelector("#personalDeliveryAddress");
-    const paymentMethod = document.querySelector("#paymentMethod");
+    const paymentOptions = Array.from(document.querySelectorAll('input[name="paymentMethod"]'));
+    const bankInfo = document.querySelector("#bankInfo");
     const cashDepositWarning = document.querySelector("#cashDepositWarning");
     const addressFields = [county, district, zip, document.querySelector("#address")];
     const addressGroups = Array.from(document.querySelectorAll(".delivery-address-field"));
@@ -1015,9 +1085,12 @@
       zip.value = (zipData[county.value] || {})[district.value] || "";
     });
     deliveryMethod.addEventListener("change", updateDeliveryFields);
-    paymentMethod.addEventListener("change", () => {
-      cashDepositWarning.classList.toggle("show", paymentMethod.value === "現場付現");
-    });
+    function updatePaymentDetails() {
+      const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked')?.value || "";
+      bankInfo.classList.toggle("show", selectedPayment === "匯款轉帳");
+      cashDepositWarning.classList.toggle("show", selectedPayment === "現場付現");
+    }
+    paymentOptions.forEach(option => option.addEventListener("change", updatePaymentDetails));
 
     orderForm.addEventListener("submit", async event => {
       event.preventDefault();
@@ -1076,7 +1149,7 @@
         saveCart();
         orderForm.reset();
         updateDeliveryFields();
-        cashDepositWarning.classList.remove("show");
+        updatePaymentDetails();
         closeCart();
       } catch (error) {
         alert("訂單送出失敗，請稍後再試或直接用 LINE 聯繫我們。");
