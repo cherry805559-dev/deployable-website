@@ -280,21 +280,21 @@
     }
     .product-image {
       width: 100%;
-      height: clamp(240px, 26vw, 300px);
+      height: auto;
       border-radius: 8px;
-      overflow: hidden;
-      background: #f4f4f4;
-      display: grid;
-      place-items: center;
+      overflow: visible;
+      background: #fff;
+      display: block;
       margin: 0 0 26px;
       color: #aaa;
       font-size: 22px;
     }
     .product-image img {
       width: 100%;
-      height: 100%;
+      height: auto;
       display: block;
-      object-fit: contain;
+      object-fit: contain !important;
+      border-radius: 8px;
     }
     .price-note {
       margin: -4px 0 24px;
@@ -335,34 +335,37 @@
       box-shadow: var(--shadow);
     }
     .to-top {
-      bottom: 118px;
-      width: 56px;
-      height: 56px;
+      bottom: 94px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       background: #fff;
       color: var(--brand);
-      font-size: 30px;
+      font-size: 26px;
       line-height: 1;
     }
     .floating-cart {
-      bottom: 32px;
-      min-width: 160px;
-      min-height: 60px;
-      padding: 0 18px;
+      bottom: 24px;
+      min-width: 64px;
+      min-height: 54px;
+      padding: 0 12px;
       border-radius: 999px;
       background: var(--brand);
       color: #fff;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      font-size: 20px;
+      gap: 8px;
+      font-size: 18px;
       font-weight: 900;
     }
+    .floating-cart span:nth-child(2) {
+      display: none;
+    }
     .cart-count {
-      min-width: 32px;
-      height: 32px;
-      padding: 0 8px;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 7px;
       border-radius: 999px;
       display: inline-grid;
       place-items: center;
@@ -559,7 +562,7 @@
       .category-grid,
       .product-grid { grid-template-columns: 1fr; }
       .product-card { padding: 36px 28px; }
-      .product-image { height: 280px; }
+      .product-image { height: auto; }
       .form-grid { grid-template-columns: 1fr; }
     }
   </style>
