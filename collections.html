@@ -551,6 +551,8 @@
       line-height: 1.6;
     }
     .field-hint.show { display: block; }
+    .conditional-field { display: none; }
+    .conditional-field.show { display: block; }
     .pickup-row {
       display: flex;
       align-items: center;
@@ -805,10 +807,12 @@
           <div class="field-full"><label for="lineId">LINE ID（必填）</label><input id="lineId" name="lineId" required autocomplete="off"></div>
           <div class="field-full"><label for="email">E-mail (必填)</label><input id="email" name="email" type="email" required autocomplete="email"></div>
           <div class="field-full"><label for="deliveryMethod">配送方式（必填）</label><select id="deliveryMethod" name="deliveryMethod" required><option value="">請選擇</option><option>自取</option><option>宅配</option><option>親送</option></select><p class="field-hint" id="pickupHint">選擇自取，作品完成後會再用 LINE 確認取件時間。</p></div>
-          <div><label for="county">縣市</label><select id="county" name="county"><option value="">請選擇</option><option>高雄市</option><option>屏東縣</option><option>台南市</option><option>台中市</option><option>台北市</option><option>新北市</option></select></div>
-          <div><label for="district">區域</label><select id="district" name="district"><option value="">請先選縣市</option></select></div>
-          <div><label for="zip">郵遞區號</label><input id="zip" name="zip" readonly></div>
-          <div><label for="address">地址</label><input id="address" name="address" autocomplete="street-address"></div>
+          <div class="field-full conditional-field" id="pickupLocationGroup"><label for="pickupLocation">自取地點</label><input id="pickupLocation" name="pickupLocation" value="台中市大甲區" readonly></div>
+          <div class="field-full conditional-field" id="personalDeliveryGroup"><label for="personalDeliveryAddress">親送地址與時間（必填）</label><input id="personalDeliveryAddress" name="personalDeliveryAddress" autocomplete="street-address"><p class="field-hint show">親送會依地點與時間安排確認，請先填寫地址與可收件時段。</p></div>
+          <div class="delivery-address-field"><label for="county">縣市</label><select id="county" name="county"><option value="">請選擇</option><option>高雄市</option><option>屏東縣</option><option>台南市</option><option>台中市</option><option>台北市</option><option>新北市</option></select></div>
+          <div class="delivery-address-field"><label for="district">區域</label><select id="district" name="district"><option value="">請先選縣市</option></select></div>
+          <div class="delivery-address-field"><label for="zip">郵遞區號</label><input id="zip" name="zip" readonly></div>
+          <div class="delivery-address-field"><label for="address">地址</label><input id="address" name="address" autocomplete="street-address"></div>
           <div class="field-full"><label for="note">備註</label><textarea id="note" name="note" rows="2" placeholder="可填寫希望交件日期、用途、尺寸或預算"></textarea></div>
         </div>
         <button class="checkout-btn" type="submit">送出訂單</button>
@@ -951,7 +955,29 @@
     const zip = document.querySelector("#zip");
     const deliveryMethod = document.querySelector("#deliveryMethod");
     const pickupHint = document.querySelector("#pickupHint");
+    const pickupLocationGroup = document.querySelector("#pickupLocationGroup");
+    const personalDeliveryGroup = document.querySelector("#personalDeliveryGroup");
+    const personalDeliveryAddress = document.querySelector("#personalDeliveryAddress");
     const addressFields = [county, district, zip, document.querySelector("#address")];
+    const addressGroups = Array.from(document.querySelectorAll(".delivery-address-field"));
+    function updateDeliveryFields() {
+      const isPickup = deliveryMethod.value === "自取";
+      const isPersonalDelivery = deliveryMethod.value === "親送";
+      const hideAddressFields = isPickup || isPersonalDelivery;
+      pickupHint.classList.toggle("show", isPickup);
+      pickupLocationGroup.classList.toggle("show", isPickup);
+      personalDeliveryGroup.classList.toggle("show", isPersonalDelivery);
+      personalDeliveryAddress.required = isPersonalDelivery;
+      if (!isPersonalDelivery) personalDeliveryAddress.value = "";
+      addressGroups.forEach(group => group.classList.toggle("conditional-field", hideAddressFields));
+      addressFields.forEach(field => {
+        field.disabled = hideAddressFields;
+        if (hideAddressFields) field.value = "";
+      });
+      if (isPickup) district.innerHTML = '<option value="">自取</option>';
+      else if (isPersonalDelivery) district.innerHTML = '<option value="">親送</option>';
+      else district.innerHTML = '<option value="">請先選縣市</option>';
+    }
     county.addEventListener("change", () => {
       const rows = zipData[county.value] || {};
       district.innerHTML = '<option value="">請選擇</option>' + Object.keys(rows).map(name => `<option>${name}</option>`).join("");
@@ -960,16 +986,7 @@
     district.addEventListener("change", () => {
       zip.value = (zipData[county.value] || {})[district.value] || "";
     });
-    deliveryMethod.addEventListener("change", () => {
-      const isPickup = deliveryMethod.value === "自取";
-      pickupHint.classList.toggle("show", isPickup);
-      addressFields.forEach(field => {
-        field.disabled = isPickup;
-        if (isPickup) field.value = "";
-      });
-      if (isPickup) district.innerHTML = '<option value="">自取</option>';
-      else district.innerHTML = '<option value="">請先選縣市</option>';
-    });
+    deliveryMethod.addEventListener("change", updateDeliveryFields);
 
     orderForm.addEventListener("submit", async event => {
       event.preventDefault();
@@ -983,14 +1000,24 @@
         alert("請選擇配送方式。");
         return;
       }
-      const delivery = method === "自取" ? { method } : {
+      const delivery = method === "自取" ? {
+        method,
+        pickupLocation: form.get("pickupLocation")
+      } : method === "親送" ? {
+        method,
+        addressAndTime: form.get("personalDeliveryAddress")
+      } : {
         method,
         county: form.get("county"),
         district: form.get("district"),
         zip: form.get("zip"),
         address: form.get("address")
       };
-      if (method !== "自取" && (!delivery.county || !delivery.district || !delivery.address)) {
+      if (method === "親送" && !delivery.addressAndTime) {
+        alert("請填寫親送地址與可收件時段。");
+        return;
+      }
+      if (method === "宅配" && (!delivery.county || !delivery.district || !delivery.address)) {
         alert("請填寫完整收件縣市、區域與地址，或將配送方式選擇自取。");
         return;
       }
@@ -1016,9 +1043,7 @@
         cart = [];
         saveCart();
         orderForm.reset();
-        pickupHint.classList.remove("show");
-        addressFields.forEach(field => { field.disabled = false; });
-        district.innerHTML = '<option value="">請先選縣市</option>';
+        updateDeliveryFields();
         closeCart();
       } catch (error) {
         alert("訂單送出失敗，請稍後再試或直接用 LINE 聯繫我們。");
