@@ -362,6 +362,10 @@
       color: var(--brand);
       font-size: 26px;
       line-height: 1;
+      transition: bottom .2s ease;
+    }
+    .to-top.social-open {
+      bottom: 320px;
     }
     .floating-cart {
       bottom: 24px;
@@ -1008,6 +1012,7 @@
     const orderForm = document.querySelector(".order-form");
     const socialMenu = document.querySelector(".social-menu");
     const socialButton = document.querySelector(".floating-social");
+    const toTopButton = document.querySelector(".to-top");
 
     function loadCart() {
       try {
@@ -1063,6 +1068,7 @@
       socialMenu.classList.remove("open");
       socialMenu.setAttribute("aria-hidden", "true");
       socialButton.setAttribute("aria-expanded", "false");
+      toTopButton.classList.remove("social-open");
     }
 
     document.querySelectorAll(".add-cart").forEach(button => {
@@ -1096,6 +1102,7 @@
     socialButton.addEventListener("click", () => {
       const shouldOpen = !socialMenu.classList.contains("open");
       socialMenu.classList.toggle("open", shouldOpen);
+      toTopButton.classList.toggle("social-open", shouldOpen);
       socialMenu.setAttribute("aria-hidden", String(!shouldOpen));
       socialButton.setAttribute("aria-expanded", String(shouldOpen));
     });
