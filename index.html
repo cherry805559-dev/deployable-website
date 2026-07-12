@@ -42,7 +42,7 @@
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 bg-transparent py-6">
-        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col items-start gap-4">
             <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
                 <img src="assets/logo.png" alt="金鼎盛商標" class="h-12 w-12 shrink-0 object-contain">
                 <div>
@@ -52,7 +52,7 @@
             </div>
             
             <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-10 items-center">
+            <div class="hidden md:flex w-full items-center gap-10 pl-16">
                 <a href="about.html#story" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">品牌故事</a>
                 <details class="relative">
                     <summary class="list-none cursor-pointer text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium inline-flex items-center gap-1">
@@ -84,10 +84,6 @@
                     </div>
                 </details>
                 <button onclick="scrollToSection('reviews')" class="text-sm tracking-widest hover:text-[#B84B42] transition-colors font-medium">顧客心聲</button>
-                <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white px-6 py-2 rounded-full text-sm tracking-wider hover:bg-[#8E342D] transition-all duration-300 shadow-md hover:shadow-lg flex items-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>預約諮詢</span>
-                </a>
             </div>
 
             <!-- Mobile Menu Toggle -->
@@ -105,10 +101,6 @@
             <a href="about.html#awards" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">榮耀認證</a>
             <button onclick="scrollToSection('services')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">服務項目</button>
             <button onclick="scrollToSection('reviews')" class="text-left text-lg py-3 border-b border-stone-200 text-stone-600">顧客心聲</button>
-            <a href="https://lin.ee/YMuc5wc" target="_blank" rel="noopener noreferrer" class="bg-[#B84B42] text-white py-4 rounded-lg text-center mt-4 flex justify-center items-center gap-2">
-                <i data-lucide="message-circle" class="w-5 h-5"></i>
-                預約諮詢
-            </a>
         </div>
     </nav>
 
