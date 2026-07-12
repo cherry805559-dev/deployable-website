@@ -551,6 +551,15 @@
       line-height: 1.6;
     }
     .field-hint.show { display: block; }
+    .field-warning {
+      display: none;
+      margin: 8px 0 0;
+      color: #c62828;
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.6;
+    }
+    .field-warning.show { display: block; }
     .conditional-field { display: none; }
     .conditional-field.show { display: block; }
     .pickup-row {
@@ -814,6 +823,7 @@
           <div class="delivery-address-field"><label for="zip">郵遞區號</label><input id="zip" name="zip" readonly></div>
           <div class="delivery-address-field"><label for="address">地址</label><input id="address" name="address" autocomplete="street-address"></div>
           <div class="field-full"><label for="note">備註 / 特殊需求</label><textarea id="note" name="note" rows="2" placeholder="可填寫商品客製內容、預約送達時間、賀卡資料或匯款後五碼"></textarea><p class="field-hint show">可填寫商品客製內容、預約送達時間、賀卡資料；若已匯款可填上匯款後五碼</p></div>
+          <div class="field-full"><label for="paymentMethod">付款方式（必填）</label><select id="paymentMethod" name="paymentMethod" required><option value="">請選擇</option><option>匯款轉帳</option><option>現場付現</option></select><p class="field-warning" id="cashDepositWarning">需先付款一半訂金</p></div>
         </div>
         <button class="checkout-btn" type="submit">送出訂單</button>
         <button class="clear-cart" type="button">清空購物車</button>
@@ -974,6 +984,8 @@
     const pickupLocationGroup = document.querySelector("#pickupLocationGroup");
     const personalDeliveryGroup = document.querySelector("#personalDeliveryGroup");
     const personalDeliveryAddress = document.querySelector("#personalDeliveryAddress");
+    const paymentMethod = document.querySelector("#paymentMethod");
+    const cashDepositWarning = document.querySelector("#cashDepositWarning");
     const addressFields = [county, district, zip, document.querySelector("#address")];
     const addressGroups = Array.from(document.querySelectorAll(".delivery-address-field"));
     function updateDeliveryFields() {
@@ -1003,6 +1015,9 @@
       zip.value = (zipData[county.value] || {})[district.value] || "";
     });
     deliveryMethod.addEventListener("change", updateDeliveryFields);
+    paymentMethod.addEventListener("change", () => {
+      cashDepositWarning.classList.toggle("show", paymentMethod.value === "現場付現");
+    });
 
     orderForm.addEventListener("submit", async event => {
       event.preventDefault();
@@ -1043,6 +1058,7 @@
           phone: form.get("phone"),
           lineId: form.get("lineId"),
           email: form.get("email"),
+          paymentMethod: form.get("paymentMethod"),
           note: form.get("note")
         },
         delivery,
@@ -1060,6 +1076,7 @@
         saveCart();
         orderForm.reset();
         updateDeliveryFields();
+        cashDepositWarning.classList.remove("show");
         closeCart();
       } catch (error) {
         alert("訂單送出失敗，請稍後再試或直接用 LINE 聯繫我們。");
