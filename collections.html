@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
@@ -133,19 +133,19 @@
       position: relative;
       overflow: hidden;
       background: var(--brand);
-      color: #fff;
-      text-align: center;
-      padding: 70px 24px 92px;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      min-height: 520px;
+      padding: 70px 88px;
     }
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
       z-index: 1;
-      background:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,.18) 1.5px, transparent 1.5px),
-        linear-gradient(rgba(255,255,255,.08), rgba(255,255,255,.08));
-      background-size: 48px 48px, auto;
+      background: linear-gradient(90deg, rgba(255,255,255,.04), rgba(255,249,242,.48));
     }
     .hero-bg {
       position: absolute;
@@ -157,7 +157,7 @@
       inset: 0;
       background-image: var(--hero-image);
       background-color: #a65a50;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       opacity: 0;
@@ -174,20 +174,34 @@
       position: relative;
       z-index: 2;
     }
+    .hero-panel {
+      width: min(760px, 100%);
+      background: rgba(255, 252, 247, .92);
+      border: 1px solid rgba(199, 183, 139, .48);
+      box-shadow: 0 24px 70px rgba(78, 51, 43, .18);
+      text-align: center;
+      padding: 48px 58px;
+    }
+    .hero-kicker {
+      margin: 0 0 18px !important;
+      color: #9b8260 !important;
+      font-size: 15px !important;
+      letter-spacing: 9px;
+    }
     .hero h1 {
       margin: 0;
-      font-size: clamp(38px, 6vw, 68px);
+      font-size: clamp(30px, 4vw, 50px);
       line-height: 1.15;
       font-weight: 400;
       letter-spacing: 0;
-      color: rgba(255,255,255,.86);
-      text-shadow: 0 2px 18px rgba(76, 42, 35, .24);
+      color: #302b27;
+      text-shadow: none;
     }
     .hero p {
-      margin: 24px auto 44px;
+      margin: 24px auto 34px;
       max-width: 760px;
-      color: rgba(255,255,255,.78);
-      font-size: clamp(18px, 2.2vw, 25px);
+      color: #736a62;
+      font-size: clamp(17px, 1.8vw, 23px);
     }
     .hero .hero-cta {
       display: inline-flex;
@@ -199,8 +213,9 @@
       background: #fff;
       color: var(--brand);
       font-size: 20px;
-      font-weight: 900;
+      font-weight: 400;
       letter-spacing: 2px;
+      box-shadow: inset 0 0 0 1px rgba(166, 91, 80, .16);
     }
     main {
       max-width: 1420px;
@@ -803,6 +818,17 @@
       }
     }
     @media (max-width: 980px) {
+      .hero {
+        justify-content: center;
+        min-height: 500px;
+        padding: 48px 18px;
+      }
+      .hero-panel {
+        padding: 34px 24px;
+      }
+      .hero-kicker {
+        letter-spacing: 5px;
+      }
       .nav {
         padding: 14px 22px;
         align-items: flex-start;
@@ -880,9 +906,12 @@
       <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-3.jpg');"></div>
       <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-4.jpg');"></div>
     </div>
-    <h1>打造屬於您的紙藝作品</h1>
-    <p>告訴我們敬獻對象、用途與預算，我們將依需求規劃最適合的款式，從設計到完成，全程為您客製。</p>
-    <a class="hero-cta" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">LINE 免費諮詢</a>
+    <div class="hero-panel">
+      <p class="hero-kicker">金鼎盛金紙藝品</p>
+      <h1>打造屬於您的紙藝作品</h1>
+      <p>告訴我們敬獻對象、用途與預算，我們將依需求規劃最適合的款式，從設計到完成，全程為您客製。</p>
+      <a class="hero-cta" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">LINE 免費諮詢</a>
+    </div>
   </section>
 
   <main>
