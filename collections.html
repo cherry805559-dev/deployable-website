@@ -130,13 +130,48 @@
     }
     .dropdown a:hover { background: #f6eee9; color: var(--brand); }
     .hero {
-      background:
-        radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1.5px, transparent 1.5px),
-        var(--brand);
-      background-size: 48px 48px;
+      position: relative;
+      overflow: hidden;
+      background: var(--brand);
       color: #fff;
       text-align: center;
       padding: 70px 24px 92px;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 1px 1px, rgba(255,255,255,.16) 1.5px, transparent 1.5px),
+        linear-gradient(rgba(112, 48, 42, .72), rgba(112, 48, 42, .72));
+      background-size: 48px 48px, auto;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-image: var(--hero-image);
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transform: scale(1.05);
+      animation: heroSlideshow 20s infinite;
+    }
+    .hero-slide:nth-child(2) { animation-delay: 5s; }
+    .hero-slide:nth-child(3) { animation-delay: 10s; }
+    .hero-slide:nth-child(4) { animation-delay: 15s; }
+    @keyframes heroSlideshow {
+      0%, 22% { opacity: 1; }
+      27%, 100% { opacity: 0; }
+    }
+    .hero > *:not(.hero-bg) {
+      position: relative;
+      z-index: 2;
     }
     .hero h1 {
       margin: 0;
@@ -836,6 +871,12 @@
   </header>
 
   <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-1.jpg');"></div>
+      <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-2.jpg');"></div>
+      <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-3.jpg');"></div>
+      <div class="hero-slide" style="--hero-image: url('assets/custom-paper-art-4.jpg');"></div>
+    </div>
     <h1>打造屬於您的紙藝作品</h1>
     <p>告訴我們敬獻對象、用途與預算，我們將依需求規劃最適合的款式，從設計到完成，全程為您客製。</p>
     <a class="hero-cta" href="https://line.me/R/ti/p/@771qiuwt" target="_blank" rel="noopener">LINE 免費諮詢</a>
