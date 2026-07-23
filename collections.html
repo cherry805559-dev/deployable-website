@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
@@ -1549,6 +1549,41 @@
   } else {
     fixCustomPaperCarouselLayout();
   }
+})();
+</script>
+<style id="manfu-gallery-fix-style">
+.manfu-gallery-fix { padding: 28px 34px 34px; border-top: 1px solid rgba(190,169,113,.45); }
+.manfu-gallery-fix figure { margin: 0; text-align: center; }
+.manfu-gallery-fix img { display: block; width: min(100%, 360px); max-height: 320px; margin: 0 auto; object-fit: contain; border-radius: 14px; }
+.manfu-gallery-fix figcaption { margin-top: 18px; color: #202020; font-size: 22px; line-height: 1.45; font-weight: 400; }
+@media (max-width: 768px) {
+  .manfu-gallery-fix { padding: 20px 18px 26px; }
+  .manfu-gallery-fix img { max-height: 280px; }
+  .manfu-gallery-fix figcaption { font-size: 18px; }
+}
+</style>
+<script id="manfu-gallery-fix-script">
+(function () {
+  const html = '<div class="manfu-gallery-fix"><figure><img src="assets/gallery-manfu-treasure-wenheng.jpg" alt="文衡帝君款" loading="lazy"><figcaption>文衡帝君款</figcaption></figure></div>';
+  function textOf(el) { return (el && el.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function install() {
+    const headings = Array.from(document.querySelectorAll('h1,h2,h3,h4,button,summary,div,article,section')).filter(el => textOf(el) === '滿福百寶箱');
+    headings.forEach(heading => {
+      const card = heading.closest('article, section, details, .gallery-card, .work-card, .portfolio-card, .shot-card, [class*="gallery"], [class*="work"], [class*="wall"]') || heading.parentElement;
+      if (!card || card.querySelector('.manfu-gallery-fix')) return;
+      if (!textOf(card).includes('目前可持續新增照片') && !textOf(card).includes('點開查看作品')) return;
+      const placeholder = Array.from(card.querySelectorAll('p,div,span')).find(el => textOf(el).includes('目前可持續新增照片'));
+      if (placeholder) {
+        placeholder.outerHTML = html;
+      } else {
+        card.insertAdjacentHTML('beforeend', html);
+      }
+    });
+  }
+  document.addEventListener('DOMContentLoaded', install);
+  document.addEventListener('click', function () { setTimeout(install, 80); }, true);
+  new MutationObserver(install).observe(document.documentElement, { childList: true, subtree: true });
+  install();
 })();
 </script>
 </body>
