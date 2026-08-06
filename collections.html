@@ -986,6 +986,11 @@
 .manfu-treasure-work figcaption{margin-top:16px;color:#202020;font-size:22px;line-height:1.4;font-weight:400;}
 @media (max-width: 760px){.manfu-treasure-gallery{padding:20px 16px 24px}.manfu-treasure-work{max-width:100%}.manfu-treasure-work img{max-height:260px}.manfu-treasure-work figcaption{font-size:18px}}
 </style>
+<style id="manfu-gallery-fix-style">
+.gallery-manfu-wenheng { margin: 22px auto 0; text-align: center; }
+.gallery-manfu-wenheng img { width: min(100%, 360px); max-height: 320px; object-fit: contain; border-radius: 18px; background: #f7f3ef; display: block; margin: 0 auto; }
+.gallery-manfu-wenheng p { margin: 14px 0 0; color: #252525; font-size: clamp(18px, 2vw, 24px); font-weight: 400; }
+</style>
 </head>
 <body>
   <header class="site-header">
@@ -1558,17 +1563,6 @@
   }
 })();
 </script>
-<style id="manfu-gallery-fix-style">
-.manfu-gallery-fix { padding: 28px 34px 34px; border-top: 1px solid rgba(190,169,113,.45); }
-.manfu-gallery-fix figure { margin: 0; text-align: center; }
-.manfu-gallery-fix img { display: block; width: min(100%, 360px); max-height: 320px; margin: 0 auto; object-fit: contain; border-radius: 14px; }
-.manfu-gallery-fix figcaption { margin-top: 18px; color: #202020; font-size: 22px; line-height: 1.45; font-weight: 400; }
-@media (max-width: 768px) {
-  .manfu-gallery-fix { padding: 20px 18px 26px; }
-  .manfu-gallery-fix img { max-height: 280px; }
-  .manfu-gallery-fix figcaption { font-size: 18px; }
-}
-</style>
 <script id="manfu-gallery-fix-script">
 (function () {
   const html = '<div class="manfu-gallery-fix"><figure><img src="assets/gallery-manfu-treasure-wenheng.jpg" alt="文衡帝君款" loading="lazy"><figcaption>文衡帝君款</figcaption></figure></div>';
@@ -1642,6 +1636,62 @@ document.addEventListener("DOMContentLoaded", () => {
   addManfuPhoto();
   document.addEventListener("click", () => setTimeout(addManfuPhoto, 100));
 });
+</script>
+<script id="manfu-gallery-fix">
+(function () {
+  const src = "assets/gallery-manfu-treasure-wenheng.jpg";
+  const caption = "文衡帝君款";
+  const clean = (text) => (text || "").replace(/\s+/g, " ").trim();
+
+  function inGalleryWall(el) {
+    const section = el && el.closest && el.closest("section");
+    return !!(section && section.textContent && section.textContent.includes("實拍作品牆"));
+  }
+
+  function removeWrongProductPhoto() {
+    document.querySelectorAll("img").forEach((img) => {
+      const imgSrc = img.getAttribute("src") || "";
+      const alt = img.getAttribute("alt") || "";
+      if ((imgSrc.includes("gallery-manfu-treasure-wenheng") || alt === caption) && !inGalleryWall(img)) {
+        const wrapper = img.closest("figure, .gallery-manfu-wenheng, .gallery-work-item, .gallery-work, .work-item, .photo-item, .product-image, .product-photo, .product-media") || img.parentElement;
+        if (wrapper) wrapper.remove();
+        else img.remove();
+      }
+    });
+    document.querySelectorAll("figcaption, p, span, div").forEach((el) => {
+      if (!inGalleryWall(el) && el.children.length === 0 && clean(el.textContent) === caption) el.remove();
+    });
+  }
+
+  function ensureManfuGalleryPhoto() {
+    const title = Array.from(document.querySelectorAll("h2,h3,h4,button,summary,div")).find((el) => clean(el.textContent) === "滿福百寶箱");
+    if (!title) return;
+    const card = title.closest("article, .gallery-card, .work-gallery-card, .work-card, .wall-card, .gallery-item, div") || title.parentElement;
+    if (!card || card.querySelector('img[src*="gallery-manfu-treasure-wenheng"]')) return;
+
+    Array.from(card.querySelectorAll("p,span,div")).forEach((el) => {
+      if (el.children.length === 0 && /目前可持續新增照片|作品照片待補/.test(clean(el.textContent))) el.remove();
+    });
+
+    const body = card.querySelector(".gallery-list, .gallery-items, .gallery-detail, .gallery-body, .work-list, .work-gallery-list, .accordion-body") || card;
+    const item = document.createElement("div");
+    item.className = "gallery-manfu-wenheng";
+    item.innerHTML = '<img src="' + src + '" alt="' + caption + '"><p>' + caption + "</p>";
+    body.appendChild(item);
+  }
+
+  function applyFix() {
+    removeWrongProductPhoto();
+    ensureManfuGalleryPhoto();
+  }
+
+  document.addEventListener("DOMContentLoaded", applyFix);
+  window.addEventListener("load", function () {
+    applyFix();
+    setTimeout(applyFix, 300);
+    setTimeout(applyFix, 1000);
+  });
+})();
 </script>
 </body>
 </html>
