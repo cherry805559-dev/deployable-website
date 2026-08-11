@@ -978,7 +978,34 @@
     font-size: 20px !important;
   }
 }
-</style>
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
 
   <style>
     /* Fix: ensure the work-wall Manfu Treasure Box gallery always renders its uploaded photos. */
@@ -1021,6 +1048,33 @@
       .gallery-manfu-items .gallery-work figcaption {
         font-size: 18px;
       }
+    }
+  
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
     }
   </style>
 </head>
@@ -1150,7 +1204,16 @@
           <p class="product-tags">祝壽・納福・聚寶</p>
           <p class="product-desc">以百寶聚福、滿載祥瑞與納財迎福為設計意象，象徵福祿圓滿、財庫豐盛、吉祥守護與福氣滿盈。適合神明祝壽、還願敬奉，或於重要日子表達虔誠心意。</p>
           <figure class="product-image"><img src="assets/S__143687697.jpg" alt="滿福百寶箱"></figure>
-          <button class="add-cart" type="button">加入購物車</button>
+          <button class="add-cart" type="button">加入購物車<div class="gallery-photo-list">
+  <figure class="gallery-photo-item">
+    <img src="assets/gallery-manfu-treasure-wenheng.jpg" alt="滿福百寶箱 文衡帝君款">
+    <figcaption>文衡帝君款</figcaption>
+  </figure>
+  <figure class="gallery-photo-item">
+    <img src="assets/gallery-manfu-treasure-huye.jpg" alt="滿福百寶箱 虎爺款">
+    <figcaption>虎爺款</figcaption>
+  </figure>
+</div></button>
         </article>
 
         <article class="product-card" data-name="元寶塔" data-category="神明祝壽">
@@ -1160,6 +1223,12 @@
           <p class="product-desc">以層層元寶堆疊成塔，象徵財庫穩固、福氣累積與心願向上圓滿。適合神明祝壽、開運祈福、還願敬奉或重要日子表達誠心。</p>
           <figure class="product-image"><img src="assets/S__143753218.jpg" alt="元寶塔"></figure>
           <button class="add-cart" type="button">加入購物車</button>
+          <div class="gallery-photo-list">
+            <figure class="gallery-photo-item">
+              <img src="assets/gallery-yuanbao-tower-wenheng-36.jpg" alt="元寶塔 36顆 文衡帝君款">
+              <figcaption>36顆 文衡帝君款</figcaption>
+            </figure>
+          </div>
         </article>
       </div>
     </section>
@@ -1703,7 +1772,34 @@ document.addEventListener("DOMContentLoaded", () => {
     font-weight: 400;
     text-align: center;
   }
-</style>
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
 <script id="manfu-wenheng-final-clean-script">
 (() => {
   const ASSET = "assets/gallery-manfu-treasure-wenheng.jpg";
@@ -1808,7 +1904,34 @@ document.addEventListener("DOMContentLoaded", () => {
     font-weight: 400;
     letter-spacing: 0;
   }
-</style>
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
 <script id="manfu-wenheng-location-fix-script">
 (() => {
   const imageSrc = "assets/gallery-manfu-treasure-wenheng.jpg";
@@ -1918,7 +2041,34 @@ document.addEventListener("DOMContentLoaded", () => {
       font-size: 18px;
     }
   }
-</style>
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
 <script>
 (function () {
   const photos = [
@@ -2094,7 +2244,34 @@ document.addEventListener("DOMContentLoaded", () => {
     text-align: center !important;
     line-height: 1.45 !important;
   }
-</style>
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
 <script>
 (() => {
   const manfuItems = [
@@ -2147,6 +2324,148 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 <!-- manfu gallery fix end -->
+<!-- manfu-gallery-hotfix -->
+<style id="manfu-gallery-hotfix-style">
+  .manfu-gallery-fix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 22px;
+    padding: 28px clamp(22px, 4vw, 44px) 36px;
+    border-top: 1px solid rgba(186, 160, 95, .28);
+  }
+
+  .manfu-gallery-fix figure {
+    margin: 0;
+    text-align: center;
+  }
+
+  .manfu-gallery-fix img {
+    width: 100%;
+    height: 260px;
+    object-fit: contain;
+    display: block;
+    border-radius: 18px;
+    background: #f7f3ee;
+  }
+
+  .manfu-gallery-fix figcaption {
+    margin-top: 14px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: #222;
+    font-weight: 400;
+  }
+
+  @media (max-width: 700px) {
+    .manfu-gallery-fix {
+      grid-template-columns: 1fr;
+      padding: 22px 18px 28px;
+    }
+
+    .manfu-gallery-fix img {
+      height: 230px;
+    }
+  }
+
+    .gallery-photo-list {
+      display: grid;
+      gap: 20px;
+      padding: 22px;
+    }
+
+    .gallery-photo-item {
+      margin: 0;
+      text-align: center;
+    }
+
+    .gallery-photo-item img {
+      width: 100%;
+      max-height: 280px;
+      object-fit: contain;
+      background: #f8f5f1;
+      border-radius: 18px;
+      display: block;
+    }
+
+    .gallery-photo-item figcaption {
+      margin-top: 14px;
+      color: #202020;
+      font-size: 20px;
+      font-weight: 400;
+    }
+  </style>
+<script id="manfu-gallery-hotfix-script">
+(function () {
+  const works = [
+    { src: "assets/gallery-manfu-treasure-wenheng.jpg", title: "文衡帝君款" },
+    { src: "assets/gallery-manfu-treasure-huye.jpg", title: "虎爺款" }
+  ];
+
+  function isManfuGalleryCard(el) {
+    const text = (el.textContent || "").replace(/\s+/g, "");
+    return text.includes("滿福百寶箱") && text.includes("點開查看作品");
+  }
+
+  function findManfuGalleryCard() {
+    const selectors = [
+      "details",
+      "article",
+      ".gallery-card",
+      ".work-card",
+      ".portfolio-card",
+      ".wall-card",
+      ".shoot-card",
+      "[data-gallery]",
+      "section > div",
+      "div"
+    ];
+    const seen = new Set();
+
+    for (const selector of selectors) {
+      for (const el of document.querySelectorAll(selector)) {
+        if (seen.has(el)) continue;
+        seen.add(el);
+        if (!isManfuGalleryCard(el)) continue;
+
+        const text = el.textContent || "";
+        const isProductArea = text.includes("加入購物車") || text.includes("LINE 詢問");
+        if (!isProductArea) return el;
+      }
+    }
+
+    return null;
+  }
+
+  function renderManfuGallery() {
+    const card = findManfuGalleryCard();
+    if (!card || card.dataset.manfuGalleryFixed === "1") return;
+
+    card.dataset.manfuGalleryFixed = "1";
+    card.querySelector(".manfu-gallery-fix")?.remove();
+
+    Array.from(card.querySelectorAll("*")).forEach((el) => {
+      if ((el.textContent || "").trim() === "目前可持續新增照片") {
+        el.closest("p, div, span")?.remove();
+      }
+    });
+
+    const wrap = document.createElement("div");
+    wrap.className = "manfu-gallery-fix";
+    wrap.innerHTML = works.map((work) => `
+      <figure>
+        <img src="${work.src}" alt="${work.title}" loading="lazy">
+        <figcaption>${work.title}</figcaption>
+      </figure>
+    `).join("");
+
+    card.appendChild(wrap);
+  }
+
+  document.addEventListener("DOMContentLoaded", renderManfuGallery);
+  window.addEventListener("load", renderManfuGallery);
+  setTimeout(renderManfuGallery, 200);
+})();
+</script>
 </body>
 </html>
 
