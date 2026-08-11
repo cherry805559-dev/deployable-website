@@ -1829,6 +1829,152 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(applyFix, 1200);
 })();
 </script>
+<!-- manfu-gallery-fix-start -->
+<style>
+  .manfu-gallery-fix-list {
+    display: grid;
+    gap: 22px;
+    padding: 22px 24px 28px;
+    border-top: 1px solid rgba(198, 174, 117, 0.45);
+  }
+
+  .manfu-gallery-fix-item {
+    margin: 0;
+    text-align: center;
+  }
+
+  .manfu-gallery-fix-item img {
+    display: block;
+    width: min(100%, 420px);
+    height: auto;
+    max-height: 360px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 16px;
+    background: #f7f4ef;
+  }
+
+  .manfu-gallery-fix-item figcaption {
+    margin-top: 12px;
+    color: #222;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 768px) {
+    .manfu-gallery-fix-list {
+      padding: 18px 16px 22px;
+    }
+
+    .manfu-gallery-fix-item img {
+      max-height: 300px;
+    }
+
+    .manfu-gallery-fix-item figcaption {
+      font-size: 18px;
+    }
+  }
+</style>
+<script>
+(function () {
+  const photos = [
+    { src: 'assets/gallery-manfu-treasure-wenheng.jpg', alt: '滿福百寶箱 文衡帝君款', caption: '文衡帝君款' },
+    { src: 'assets/gallery-manfu-treasure-huye.jpg', alt: '滿福百寶箱 虎爺款', caption: '虎爺款' }
+  ];
+
+  function cleanText(el) {
+    return (el && el.textContent ? el.textContent : '').replace(/\s+/g, ' ').trim();
+  }
+
+  function findSmallestCard(selectorList, matcher) {
+    return Array.from(document.querySelectorAll(selectorList))
+      .filter(matcher)
+      .sort((a, b) => cleanText(a).length - cleanText(b).length)[0];
+  }
+
+  function isInsideGalleryWall(el) {
+    const section = el.closest('section, main, article, div');
+    let node = el;
+    while (node && node !== document.body) {
+      if (cleanText(node).includes('實拍作品牆')) return true;
+      node = node.parentElement;
+    }
+    return section && cleanText(section).includes('點開查看作品');
+  }
+
+  function removeMisplacedPhotos(galleryCard) {
+    document.querySelectorAll('img[src*="gallery-manfu-treasure"]').forEach((img) => {
+      if (galleryCard && galleryCard.contains(img)) return;
+      const removable = img.closest('.manfu-gallery-fix-item, figure, .gallery-item, .work-item, .product-image, .product-card, .card, article, section, div') || img;
+      removable.remove();
+    });
+  }
+
+  function applyManfuGalleryFix() {
+    const candidates = 'details, article, section, .gallery-card, .work-card, .portfolio-card, .category-card, .card, li, div';
+    const galleryCard = findSmallestCard(candidates, (el) => {
+      const text = cleanText(el);
+      return text.includes('滿福百寶箱') && (text.includes('點開查看作品') || text.includes('目前可持續新增照片'));
+    });
+
+    removeMisplacedPhotos(galleryCard);
+    if (!galleryCard) return;
+
+    if (galleryCard.tagName && galleryCard.tagName.toLowerCase() === 'details') {
+      galleryCard.open = true;
+    }
+
+    galleryCard.querySelectorAll('.manfu-gallery-fix-list, img[src*="gallery-manfu-treasure"]').forEach((el) => {
+      const item = el.closest('.manfu-gallery-fix-item');
+      (item || el).remove();
+    });
+
+    Array.from(galleryCard.childNodes).forEach((node) => {
+      if (node.nodeType === Node.TEXT_NODE && node.nodeValue.includes('目前可持續新增照片')) {
+        node.nodeValue = node.nodeValue.replace('目前可持續新增照片', '');
+      }
+    });
+
+    galleryCard.querySelectorAll('*').forEach((el) => {
+      if (cleanText(el) === '目前可持續新增照片') el.remove();
+    });
+
+    const list = document.createElement('div');
+    list.className = 'manfu-gallery-fix-list';
+
+    photos.forEach((photo) => {
+      const figure = document.createElement('figure');
+      figure.className = 'manfu-gallery-fix-item';
+
+      const img = document.createElement('img');
+      img.src = photo.src;
+      img.alt = photo.alt;
+      img.loading = 'lazy';
+
+      const caption = document.createElement('figcaption');
+      caption.textContent = photo.caption;
+
+      figure.appendChild(img);
+      figure.appendChild(caption);
+      list.appendChild(figure);
+    });
+
+    const target = galleryCard.querySelector('.gallery-content, .work-content, .portfolio-content, [data-gallery-content], .accordion-body') || galleryCard;
+    target.appendChild(list);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', applyManfuGalleryFix);
+  } else {
+    applyManfuGalleryFix();
+  }
+  window.addEventListener('load', applyManfuGalleryFix);
+  setTimeout(applyManfuGalleryFix, 300);
+  setTimeout(applyManfuGalleryFix, 1200);
+})();
+</script>
+<!-- manfu-gallery-fix-end -->
 </body>
 </html>
 
