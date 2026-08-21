@@ -4050,6 +4050,19 @@ document.addEventListener('DOMContentLoaded', function () {
 })();
 </script>
 <!-- DIRECT-WORKS-GALLERY-END -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const galleryHeading = Array.from(document.querySelectorAll('h1, h2, h3'))
+      .find(function (heading) {
+        return heading.textContent.trim() === '實拍作品牆';
+      });
+
+    if (galleryHeading) {
+      const gallerySection = galleryHeading.closest('section');
+      if (gallerySection) gallerySection.remove();
+    }
+  });
+</script>
 </body>
 </html>
 
