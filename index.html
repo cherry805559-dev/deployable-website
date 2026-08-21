@@ -898,6 +898,318 @@
 })();
 </script>
 <!-- /manfu-treasure-gallery-force-v20260812 -->
+<style>
+  .home-works-gallery {
+    min-height: 0 !important;
+    padding-bottom: 72px !important;
+  }
+  .home-works-gallery .home-works-grid {
+    width: min(1520px, calc(100% - 48px));
+    margin: 44px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 34px 28px;
+  }
+  .home-work-card {
+    min-width: 0;
+    cursor: pointer;
+  }
+  .home-work-photo {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f3f0eb;
+    border-radius: 4px;
+  }
+  .home-work-photo img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .home-work-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(35, 30, 27, .38);
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+  .home-work-overlay span {
+    padding: 12px 22px;
+    background: rgba(255, 255, 255, .94);
+    color: #514943;
+    border: 1px solid rgba(81, 73, 67, .25);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .home-work-card:hover .home-work-overlay,
+  .home-work-card:focus-visible .home-work-overlay {
+    opacity: 1;
+  }
+  .home-work-name {
+    margin: 14px 0 0;
+    color: #302c29;
+    font-size: 21px;
+    line-height: 1.5;
+    font-weight: 400;
+    text-align: center;
+  }
+  .home-work-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+    background: rgba(25, 23, 21, .72);
+  }
+  .home-work-modal.is-open { display: flex; }
+  .home-work-dialog {
+    position: relative;
+    width: min(1080px, 100%);
+    max-height: calc(100vh - 56px);
+    overflow: auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+    background: #fff;
+  }
+  .home-work-dialog img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    object-fit: contain;
+    background: #f5f2ed;
+  }
+  .home-work-copy {
+    align-self: center;
+    padding: 54px 44px;
+  }
+  .home-work-copy h3 {
+    margin: 0 0 20px;
+    font-size: 32px;
+    line-height: 1.35;
+    font-weight: 400;
+    color: #302c29;
+  }
+  .home-work-copy p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.9;
+    color: #77706a;
+  }
+  .home-work-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .94);
+    color: #514943;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  @media (max-width: 1050px) {
+    .home-works-gallery .home-works-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .home-works-gallery { padding-bottom: 48px !important; }
+    .home-works-gallery .home-works-grid {
+      width: min(100% - 28px, 620px);
+      margin-top: 28px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px 14px;
+    }
+    .home-work-name { font-size: 16px; }
+    .home-work-dialog { grid-template-columns: 1fr; }
+    .home-work-dialog img { min-height: 0; max-height: 58vh; }
+    .home-work-copy { padding: 28px 24px 32px; }
+    .home-work-copy h3 { font-size: 24px; }
+  }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const worksHeading = Array.from(document.querySelectorAll('h1, h2, h3'))
+    .find(function (node) { return node.textContent.trim() === '實拍作品牆'; });
+  if (!worksHeading) return;
+
+  const section = worksHeading.closest('section') || worksHeading.parentElement;
+  section.classList.add('home-works-gallery');
+
+  section.querySelectorAll('.home-works-grid, .works-accordion-grid, .gallery-category-grid, details').forEach(function (node) {
+    node.remove();
+  });
+
+  const works = [
+    {
+      name: '靈安尊王三層蛋糕花',
+      description: '祝壽蛋糕花作品，可依敬獻對象、層數與配色客製。',
+      sources: ['assets/gallery-cake-lingan-three-layer.jpg', 'assets/Photoroom_20251211_132159.JPG']
+    },
+    {
+      name: '中壇元帥三層蛋糕花',
+      description: '中壇元帥祝壽蛋糕花，三層款式。',
+      sources: ['assets/gallery-cake-zhongtan-three-layer.jpg', 'assets/IMG_8986.jpg', 'assets/IMG_8986.JPG']
+    },
+    {
+      name: '虎爺兩層蛋糕花',
+      description: '虎爺祝壽蛋糕花，兩層款式。',
+      sources: ['assets/gallery-cake-huye-two-layer.jpg', 'assets/LINE_ALBUM_蛋糕花_260721_11.jpg']
+    },
+    {
+      name: '天上聖母 一桶金大款',
+      description: '天上聖母一桶金大款，可依需求調整紙材與配置。',
+      sources: ['assets/gallery-one-bucket-matsu.jpg', 'assets/gallery-one-bucket-matsu-1.jpg', 'assets/IMG_4763.jpg', 'assets/IMG_4774.jpg']
+    },
+    {
+      name: '文衡帝君款 滿福百寶箱',
+      description: '文衡帝君款滿福百寶箱，可依敬獻需求客製內容。',
+      sources: ['assets/gallery-manfu-treasure-wenheng.jpg', 'assets/LINE_ALBUM_蛋糕花_260721_14.jpg']
+    },
+    {
+      name: '虎爺款 滿福百寶箱',
+      description: '虎爺款滿福百寶箱，適合祝壽與祈福敬獻。',
+      sources: ['assets/gallery-manfu-treasure-huye.jpg', 'assets/LINE_ALBUM_蛋糕花_260721_12.jpg']
+    },
+    {
+      name: '金色系 焰旺來',
+      description: '金色系焰旺來作品，可依喜好調整配色。',
+      sources: ['assets/gallery-flame-pineapple-gold.jpg', 'assets/IMG_9173.jpg']
+    },
+    {
+      name: '黃色系 焰旺來',
+      description: '黃色系焰旺來作品，可依喜好調整配色。',
+      sources: ['assets/gallery-flame-pineapple-yellow.jpg', 'assets/IMG_9174.jpg']
+    },
+    {
+      name: '粉色系 焰旺來',
+      description: '粉色系焰旺來作品，可依喜好調整配色。',
+      sources: ['assets/gallery-flame-pineapple-pink.jpg', 'assets/IMG_8996.jpg']
+    },
+    {
+      name: '好神花束 尺寸L 鮮花款',
+      description: '好神花束 L 尺寸鮮花款，可依敬獻對象客製。',
+      sources: ['assets/gallery-good-god-bouquet-l-fresh.jpg', 'assets/Photoroom_20251218_081258.JPG']
+    },
+    {
+      name: '文衡帝君款 尺寸L',
+      description: '文衡帝君款好神花，L 尺寸作品。',
+      sources: ['assets/gallery-good-god-wenheng-l.jpg', 'assets/Photoroom_20250603_112647.JPG']
+    },
+    {
+      name: '中壇元帥款 元寶龍柱',
+      description: '中壇元帥款元寶龍柱，成對敬獻作品。',
+      sources: ['assets/gallery-yuanbao-dragon-pillar.jpg', 'assets/S__143687702.jpg']
+    },
+    {
+      name: '36顆 文衡帝君款元寶塔',
+      description: '36 顆元寶塔，文衡帝君款。',
+      sources: ['assets/gallery-yuanbao-tower-wenheng-36.jpg', 'assets/LINE_ALBUM_蛋糕花_260721_13.jpg']
+    },
+    {
+      name: '永思花 尺寸S',
+      description: '永思花 S 尺寸作品。',
+      sources: ['assets/gallery-everlasting-bouquet-s.jpg', 'assets/Photoroom_20251127_100626.JPG']
+    },
+    {
+      name: '永思花 尺寸M 鮮花款',
+      description: '永思花 M 尺寸鮮花款。',
+      sources: ['assets/gallery-everlasting-bouquet-m-fresh.jpg', 'assets/Photoroom_20251219_081135.JPG']
+    },
+    {
+      name: '永思花 尺寸XL',
+      description: '永思花 XL 尺寸作品。',
+      sources: ['assets/gallery-everlasting-bouquet-xl.jpg', 'assets/IMG_9321.JPG']
+    },
+    {
+      name: '招財龍船',
+      description: '龍船紙藝作品，象徵招財、順遂與平安。',
+      sources: ['assets/dragon-boat.jpg', 'assets/gallery-dragon-boat.jpg', 'assets/S__148160516.jpg']
+    }
+  ];
+
+  const grid = document.createElement('div');
+  grid.className = 'home-works-grid';
+  section.appendChild(grid);
+
+  const modal = document.createElement('div');
+  modal.className = 'home-work-modal';
+  modal.setAttribute('aria-hidden', 'true');
+  modal.innerHTML = '<div class="home-work-dialog" role="dialog" aria-modal="true" aria-label="作品說明">' +
+    '<button class="home-work-close" type="button" aria-label="關閉">&times;</button>' +
+    '<img alt="">' +
+    '<div class="home-work-copy"><h3></h3><p></p></div>' +
+    '</div>';
+  document.body.appendChild(modal);
+
+  const modalImage = modal.querySelector('img');
+  const modalTitle = modal.querySelector('h3');
+  const modalDescription = modal.querySelector('p');
+
+  function closeModal() {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  modal.querySelector('.home-work-close').addEventListener('click', closeModal);
+  modal.addEventListener('click', function (event) {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') closeModal();
+  });
+
+  function addCard(work, source) {
+    const card = document.createElement('article');
+    card.className = 'home-work-card';
+    card.tabIndex = 0;
+    card.innerHTML = '<div class="home-work-photo">' +
+      '<img loading="lazy" alt="">' +
+      '<div class="home-work-overlay"><span>查看作品</span></div>' +
+      '</div><h3 class="home-work-name"></h3>';
+    card.querySelector('img').src = source;
+    card.querySelector('img').alt = work.name;
+    card.querySelector('.home-work-name').textContent = work.name;
+
+    function openModal() {
+      modalImage.src = source;
+      modalImage.alt = work.name;
+      modalTitle.textContent = work.name;
+      modalDescription.textContent = work.description;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    card.addEventListener('click', openModal);
+    card.addEventListener('keydown', function (event) {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openModal();
+      }
+    });
+    grid.appendChild(card);
+  }
+
+  function findExistingSource(work, index) {
+    if (index >= work.sources.length) return;
+    const probe = new Image();
+    probe.onload = function () { addCard(work, work.sources[index]); };
+    probe.onerror = function () { findExistingSource(work, index + 1); };
+    probe.src = work.sources[index];
+  }
+
+  works.forEach(function (work) { findExistingSource(work, 0); });
+});
+</script>
 </body>
 </html>
 
