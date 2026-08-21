@@ -1210,6 +1210,101 @@ document.addEventListener('DOMContentLoaded', function () {
   works.forEach(function (work) { findExistingSource(work, 0); });
 });
 </script>
+  <!-- Keep homepage gallery images linked to the current asset filenames. -->
+  <script>
+    (() => {
+      const mappings = [
+        {
+          labels: ["靈安尊王", "三層蛋糕花"],
+          sources: [
+            "assets/birthday-cake-flower-lingan-3-layer.jpg",
+            "assets/birthday-cake-flower.jpg"
+          ]
+        },
+        {
+          labels: ["中壇元帥", "三層蛋糕花"],
+          sources: [
+            "assets/birthday-cake-flower-zhongtan-3-layer-converted.jpg",
+            "assets/birthday-cake-flower-zhongtan-3-layer.jpg"
+          ]
+        },
+        {
+          labels: ["虎爺", "兩層蛋糕花"],
+          sources: [
+            "assets/gallery-birthday-cake-huye-2-layer.jpg",
+            "assets/birthday-cake-flower-huye-2-layer.jpg"
+          ]
+        },
+        {
+          labels: ["好神花", "尺寸L", "鮮花款"],
+          sources: [
+            "assets/good-deity-flower-l-fresh.jpg",
+            "assets/good-god-flower-l-fresh.jpg",
+            "assets/hao-shen-flower-l-fresh.jpg"
+          ]
+        },
+        {
+          labels: ["文衡帝君款", "尺寸L"],
+          sources: [
+            "assets/good-deity-flower-wenheng-l.jpg",
+            "assets/good-god-flower-wenheng-l.jpg",
+            "assets/hao-shen-flower-wenheng-l.jpg"
+          ]
+        },
+        {
+          labels: ["永思花", "尺寸S"],
+          sources: ["assets/everlasting-flower-s.jpg"]
+        },
+        {
+          labels: ["永思花", "尺寸M", "鮮花款"],
+          sources: [
+            "assets/everlasting-flower-m-fresh.jpg",
+            "assets/everlasting-flower-m.jpg"
+          ]
+        },
+        {
+          labels: ["永思花", "尺寸XL"],
+          sources: ["assets/everlasting-flower-xl.jpg"]
+        }
+      ];
+
+      const findWorkingSource = (sources, done, index = 0) => {
+        if (index >= sources.length) return;
+        const probe = new Image();
+        probe.onload = () => done(sources[index]);
+        probe.onerror = () => findWorkingSource(sources, done, index + 1);
+        probe.src = sources[index];
+      };
+
+      const galleryHeading = [...document.querySelectorAll("h1, h2, h3")]
+        .find((heading) => heading.textContent.includes("實拍作品牆"));
+      const gallery = galleryHeading?.closest("section") || document;
+
+      mappings.forEach(({ labels, sources }) => {
+        const candidates = [...gallery.querySelectorAll("article, figure, li, div")]
+          .filter((element) => labels.every((label) => element.textContent.includes(label)))
+          .sort((a, b) => a.textContent.length - b.textContent.length);
+        const card = candidates[0];
+        if (!card) return;
+          let image = card.querySelector("img");
+          if (!image) {
+            image = document.createElement("img");
+            image.alt = labels.join(" ");
+            image.loading = "lazy";
+            image.style.width = "100%";
+            image.style.height = "100%";
+            image.style.objectFit = "cover";
+            image.style.display = "block";
+            card.prepend(image);
+          }
+        findWorkingSource(sources, (source) => {
+          image.src = source;
+          image.removeAttribute("srcset");
+          image.loading = "lazy";
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 
