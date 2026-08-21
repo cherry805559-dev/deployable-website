@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
@@ -1079,6 +1079,8 @@
   </style>
   <link rel="stylesheet" href="assets/works-gallery.css">
   <link rel="stylesheet" href="assets/works-gallery-v2.css">
+  <link rel="stylesheet" href="assets/works-gallery-v3.css">
+  <link rel="stylesheet" href="assets/works-gallery-v4.css">
 </head>
 <body>
   <header class="site-header">
@@ -3414,6 +3416,640 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- /manfu-treasure-gallery-force-v20260812 -->
   <script src="assets/works-gallery.js"></script>
   <script src="assets/works-gallery-v2.js"></script>
+<style id="direct-works-gallery-style">
+  .direct-works-gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 32px 24px;
+    width: min(1440px, calc(100% - 48px));
+    margin: 52px auto 80px;
+  }
+  .direct-work-card {
+    min-width: 0;
+    background: #fff;
+    border: 1px solid #e9e1d4;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .direct-work-card:hover,
+  .direct-work-card:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(70, 52, 38, .12);
+    outline: none;
+  }
+  .direct-work-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: #f5f2ed;
+  }
+  .direct-work-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    transition: transform .35s ease;
+  }
+  .direct-work-card:hover .direct-work-media img { transform: scale(1.025); }
+  .direct-work-more {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    background: rgba(42, 35, 30, .38);
+    opacity: 0;
+    transition: opacity .2s ease;
+    font-size: 18px;
+    font-weight: 400;
+  }
+  .direct-work-card:hover .direct-work-more,
+  .direct-work-card:focus-visible .direct-work-more { opacity: 1; }
+  .direct-work-caption { padding: 18px 18px 20px; }
+  .direct-work-caption h3 {
+    margin: 0;
+    color: #332d29;
+    font-size: 20px;
+    line-height: 1.45;
+    font-weight: 400;
+  }
+  .direct-work-caption p {
+    margin: 7px 0 0;
+    color: #9d6b5f;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .direct-work-modal[hidden] { display: none; }
+  .direct-work-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    padding: 28px;
+    background: rgba(24, 21, 19, .72);
+  }
+  .direct-work-dialog {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, .75fr);
+    width: min(1120px, 100%);
+    max-height: min(820px, calc(100vh - 56px));
+    overflow: auto;
+    background: #fff;
+    border-radius: 6px;
+  }
+  .direct-work-dialog img {
+    width: 100%;
+    height: 100%;
+    min-height: 480px;
+    display: block;
+    object-fit: contain;
+    background: #f4f1ec;
+  }
+  .direct-work-detail {
+    align-self: center;
+    padding: 54px 44px;
+  }
+  .direct-work-detail small { color: #a35d50; font-size: 15px; }
+  .direct-work-detail h2 {
+    margin: 14px 0 18px;
+    color: #2f2926;
+    font-size: 32px;
+    line-height: 1.35;
+    font-weight: 400;
+  }
+  .direct-work-detail p { margin: 0; color: #756d67; font-size: 17px; line-height: 1.8; }
+  .direct-work-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 1;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255,255,255,.92);
+    color: #4d4540;
+    font-size: 30px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  @media (max-width: 1100px) {
+    .direct-works-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 680px) {
+    .direct-works-gallery {
+      grid-template-columns: 1fr;
+      width: min(100% - 28px, 520px);
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .direct-work-dialog { grid-template-columns: 1fr; }
+    .direct-work-dialog img { min-height: 0; max-height: 56vh; }
+    .direct-work-detail { padding: 28px 24px 34px; }
+    .direct-work-detail h2 { font-size: 25px; }
+  }
+</style>
+<script>
+(() => {
+  const normalize = value => (value || '').replace(/\s+/g, ' ').trim();
+  const heading = [...document.querySelectorAll('h1,h2,h3')]
+    .find(el => normalize(el.textContent).includes('實拍作品牆'));
+  if (!heading) return;
+
+  const section = heading.closest('section') || heading.parentElement;
+  const details = [...section.querySelectorAll('details')];
+  const sourceImages = [...section.querySelectorAll('img')];
+  const works = [];
+  const seen = new Set();
+
+  const addWork = (src, title, category, description) => {
+    if (!src) return;
+    const key = src.split('?')[0].toLowerCase();
+    if (seen.has(key)) return;
+    seen.add(key);
+    works.push({
+      src,
+      title: normalize(title) || '客製紙藝作品',
+      category: normalize(category) || '實拍作品',
+      description: normalize(description) || '作品可依敬獻對象、尺寸、配色與用途客製規劃。'
+    });
+  };
+
+  sourceImages.forEach(img => {
+    const group = img.closest('details');
+    const summary = group?.querySelector('summary');
+    const category = normalize(summary?.querySelector('h2,h3,h4,strong')?.textContent)
+      || normalize(summary?.textContent).replace('點開查看作品', '').replace(/[⌄⌃∨∧]/g, '').trim();
+    const figure = img.closest('figure');
+    const caption = normalize(figure?.querySelector('figcaption')?.textContent);
+    const nearbyTitle = normalize(img.parentElement?.nextElementSibling?.textContent);
+    const title = caption || nearbyTitle || normalize(img.alt) || category;
+    addWork(img.getAttribute('src') || img.dataset.src, title, category);
+  });
+
+  addWork('assets/gallery-manfu-treasure-wenheng.jpg', '文衡帝君款', '滿福百寶箱');
+  addWork('assets/gallery-manfu-treasure-huye.jpg', '虎爺款', '滿福百寶箱');
+
+  if (!works.length) return;
+
+  const gallery = document.createElement('div');
+  gallery.className = 'direct-works-gallery';
+  gallery.setAttribute('aria-label', '實拍作品列表');
+
+  works.forEach((work, index) => {
+    const card = document.createElement('article');
+    card.className = 'direct-work-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'button');
+    card.setAttribute('aria-label', `查看${work.title}`);
+    card.innerHTML = `
+      <div class="direct-work-media">
+        <img src="${work.src}" alt="${work.title}" loading="lazy">
+        <span class="direct-work-more">查看作品</span>
+      </div>
+      <div class="direct-work-caption">
+        <h3>${work.title}</h3>
+        <p>${work.category}</p>
+      </div>`;
+    card.dataset.workIndex = index;
+    gallery.appendChild(card);
+  });
+
+  const modal = document.createElement('div');
+  modal.className = 'direct-work-modal';
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="direct-work-dialog" role="dialog" aria-modal="true" aria-labelledby="direct-work-title">
+      <button class="direct-work-close" type="button" aria-label="關閉">×</button>
+      <img alt="">
+      <div class="direct-work-detail">
+        <small></small>
+        <h2 id="direct-work-title"></h2>
+        <p></p>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const firstDetail = details[0];
+  if (firstDetail) {
+    let container = firstDetail.parentElement;
+    while (container && container !== section && !details.every(item => container.contains(item))) {
+      container = container.parentElement;
+    }
+    if (container && container !== section) container.replaceWith(gallery);
+    else {
+      details.forEach(item => item.remove());
+      section.appendChild(gallery);
+    }
+  } else {
+    section.appendChild(gallery);
+  }
+
+  const openWork = index => {
+    const work = works[index];
+    if (!work) return;
+    modal.querySelector('img').src = work.src;
+    modal.querySelector('img').alt = work.title;
+    modal.querySelector('small').textContent = work.category;
+    modal.querySelector('h2').textContent = work.title;
+    modal.querySelector('.direct-work-detail p').textContent = work.description;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    modal.querySelector('.direct-work-close').focus();
+  };
+  const closeWork = () => {
+    modal.hidden = true;
+    document.body.style.overflow = '';
+  };
+
+  gallery.addEventListener('click', event => {
+    const card = event.target.closest('.direct-work-card');
+    if (card) openWork(Number(card.dataset.workIndex));
+  });
+  gallery.addEventListener('keydown', event => {
+    const card = event.target.closest('.direct-work-card');
+    if (card && (event.key === 'Enter' || event.key === ' ')) {
+      event.preventDefault();
+      openWork(Number(card.dataset.workIndex));
+    }
+  });
+  modal.addEventListener('click', event => {
+    if (event.target === modal || event.target.closest('.direct-work-close')) closeWork();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !modal.hidden) closeWork();
+  });
+})();
+</script>
+<style id="works-gallery-grid-fallback-style">
+  .works-gallery-grid-fallback{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;margin:48px auto 0;width:min(1680px,calc(100% - 64px))}
+  .works-gallery-card-fallback{margin:0;min-width:0;background:#fff;border:1px solid #e8dfd0;cursor:pointer;overflow:hidden}
+  .works-gallery-card-fallback .works-photo{position:relative;aspect-ratio:4/3;background:#f4f1ec;overflow:hidden}
+  .works-gallery-card-fallback img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .25s ease}
+  .works-gallery-card-fallback:hover img{transform:scale(1.025)}
+  .works-gallery-card-fallback .works-hover{position:absolute;inset:0;display:grid;place-items:center;background:rgba(45,38,33,.42);color:#fff;font-size:18px;opacity:0;transition:opacity .2s ease}
+  .works-gallery-card-fallback:hover .works-hover,.works-gallery-card-fallback:focus-visible .works-hover{opacity:1}
+  .works-gallery-card-fallback figcaption{padding:18px 16px 20px;text-align:center;color:#292522}
+  .works-gallery-card-fallback strong{display:block;font-size:20px;font-weight:400;line-height:1.45}
+  .works-gallery-card-fallback small{display:block;margin-top:7px;color:#9b766c;font-size:14px}
+  .works-modal-fallback{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(20,18,17,.72)}
+  .works-modal-fallback.is-open{display:flex}
+  .works-modal-panel-fallback{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);width:min(1120px,100%);max-height:90vh;background:#fff;overflow:auto}
+  .works-modal-panel-fallback img{width:100%;height:100%;max-height:82vh;object-fit:contain;background:#f3f0eb}
+  .works-modal-copy-fallback{padding:48px 38px;align-self:center}
+  .works-modal-copy-fallback h3{margin:0 0 14px;font-size:30px;font-weight:400;color:#292522}
+  .works-modal-copy-fallback p{margin:0;color:#766d66;font-size:18px;line-height:1.8}
+  .works-modal-close-fallback{position:absolute;top:12px;right:14px;z-index:2;width:44px;height:44px;border:0;background:#fff;color:#554c46;font-size:30px;cursor:pointer}
+  @media(max-width:1100px){.works-gallery-grid-fallback{grid-template-columns:repeat(2,minmax(0,1fr));width:min(920px,calc(100% - 40px))}}
+  @media(max-width:640px){.works-gallery-grid-fallback{grid-template-columns:1fr;gap:20px;margin-top:30px;width:calc(100% - 28px)}.works-modal-panel-fallback{grid-template-columns:1fr}.works-modal-panel-fallback img{max-height:52vh}.works-modal-copy-fallback{padding:28px 22px}.works-modal-copy-fallback h3{font-size:24px}}
+</style>
+<script id="works-gallery-grid-fallback-script">
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.querySelector('.direct-works-gallery, .works-gallery-grid-fallback')) return;
+
+  var heading = Array.from(document.querySelectorAll('h1,h2,h3')).find(function (node) {
+    return node.textContent.replace(/\s/g, '').indexOf('實拍作品牆') !== -1;
+  });
+  if (!heading) return;
+
+  var section = heading.closest('section') || heading.parentElement;
+  while (section && section.querySelectorAll('details').length < 3 && section.parentElement) section = section.parentElement;
+  var groups = Array.from(section.querySelectorAll('details'));
+  if (!groups.length) return;
+
+  var works = [];
+  groups.forEach(function (group) {
+    var summary = group.querySelector('summary');
+    var category = summary ? summary.textContent.replace(/點開查看作品|作品照片待補|目前可持續新增照片/g, '').trim() : '實拍作品';
+    group.querySelectorAll('img').forEach(function (img) {
+      var figure = img.closest('figure') || img.parentElement;
+      var caption = figure && figure.querySelector ? figure.querySelector('figcaption,.caption,.gallery-caption,h4,h5,p') : null;
+      var title = (caption && caption.textContent.trim()) || img.alt || category;
+      if (!img.getAttribute('src')) return;
+      works.push({src:img.getAttribute('src'),title:title,category:category,description:title + '，金紙紙藝客製作品。尺寸、配色與敬獻對象可透過 LINE 洽詢。'});
+    });
+  });
+
+  [
+    {src:'assets/gallery-manfu-treasure-wenheng.jpg',title:'文衡帝君款',category:'滿福百寶箱'},
+    {src:'assets/gallery-manfu-treasure-huye.jpg',title:'虎爺款',category:'滿福百寶箱'}
+  ].forEach(function (item) {
+    if (!works.some(function (work) { return work.src.split('/').pop() === item.src.split('/').pop(); })) works.push(item);
+  });
+
+  groups.forEach(function (group) { group.hidden = true; });
+  var grid = document.createElement('div');
+  grid.className = 'works-gallery-grid-fallback';
+  grid.setAttribute('aria-label', '實拍作品列表');
+
+  works.forEach(function (work) {
+    var card = document.createElement('figure');
+    card.className = 'works-gallery-card-fallback';
+    card.tabIndex = 0;
+    card.innerHTML = '<div class="works-photo"><img loading="lazy" alt=""><span class="works-hover">查看作品</span></div><figcaption><strong></strong><small></small></figcaption>';
+    var image = card.querySelector('img');
+    image.src = work.src;
+    image.alt = work.title;
+    card.querySelector('strong').textContent = work.title;
+    card.querySelector('small').textContent = work.category;
+    image.addEventListener('error', function () { card.hidden = true; });
+    card.addEventListener('click', function () { openWorksModal(work); });
+    card.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openWorksModal(work); } });
+    grid.appendChild(card);
+  });
+
+  var anchor = heading.parentElement;
+  while (anchor.nextElementSibling && !anchor.nextElementSibling.querySelector('details') && anchor.nextElementSibling.tagName !== 'DETAILS') anchor = anchor.nextElementSibling;
+  anchor.insertAdjacentElement('afterend', grid);
+
+  var modal = document.createElement('div');
+  modal.className = 'works-modal-fallback';
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.innerHTML = '<div class="works-modal-panel-fallback"><button class="works-modal-close-fallback" type="button" aria-label="關閉">&times;</button><img alt=""><div class="works-modal-copy-fallback"><h3></h3><p></p></div></div>';
+  document.body.appendChild(modal);
+
+  function openWorksModal(work) {
+    modal.querySelector('img').src = work.src;
+    modal.querySelector('img').alt = work.title;
+    modal.querySelector('h3').textContent = work.title;
+    modal.querySelector('p').textContent = (work.category ? work.category + '｜' : '') + (work.description || '金紙紙藝客製作品，歡迎透過 LINE 洽詢尺寸與客製內容。');
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWorksModal() { modal.classList.remove('is-open'); document.body.style.overflow = ''; }
+  modal.querySelector('button').addEventListener('click', closeWorksModal);
+  modal.addEventListener('click', function (event) { if (event.target === modal) closeWorksModal(); });
+  document.addEventListener('keydown', function (event) { if (event.key === 'Escape') closeWorksModal(); });
+});
+</script>
+<style id="works-direct-gallery-v2-style">
+  .works-direct-gallery-v2 { width:min(1480px, calc(100% - 48px)); margin:38px auto 90px; }
+  .works-direct-gallery-v2__grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:34px 24px; }
+  .works-direct-gallery-v2__item { margin:0; min-width:0; cursor:pointer; }
+  .works-direct-gallery-v2__photo { position:relative; overflow:hidden; aspect-ratio:4/3; background:#f4f1ec; border:1px solid #e5ded3; }
+  .works-direct-gallery-v2__photo img { width:100%; height:100%; display:block; object-fit:cover; transition:transform .35s ease; }
+  .works-direct-gallery-v2__overlay { position:absolute; inset:0; display:grid; place-items:center; background:rgba(31,27,23,.48); color:#fff; font-size:16px; font-weight:400; opacity:0; transition:opacity .25s ease; }
+  .works-direct-gallery-v2__item:hover img { transform:scale(1.025); }
+  .works-direct-gallery-v2__item:hover .works-direct-gallery-v2__overlay,
+  .works-direct-gallery-v2__item:focus-visible .works-direct-gallery-v2__overlay { opacity:1; }
+  .works-direct-gallery-v2__caption { padding-top:13px; color:#2b2926; font-size:18px; line-height:1.45; font-weight:400; text-align:left; }
+  .works-direct-gallery-v2__category { display:block; margin-top:4px; color:#9b6258; font-size:14px; }
+  .works-direct-gallery-v2__empty { grid-column:1/-1; padding:40px; text-align:center; color:#837c74; }
+  .works-direct-gallery-v2-modal { position:fixed; inset:0; z-index:10020; display:none; align-items:center; justify-content:center; padding:30px; background:rgba(20,18,16,.72); }
+  .works-direct-gallery-v2-modal.is-open { display:flex; }
+  .works-direct-gallery-v2-modal__dialog { position:relative; display:grid; grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr); width:min(1120px,100%); max-height:90vh; overflow:auto; background:#fff; box-shadow:0 22px 70px rgba(0,0,0,.28); }
+  .works-direct-gallery-v2-modal__media { min-height:430px; background:#f1eee9; }
+  .works-direct-gallery-v2-modal__media img { width:100%; height:100%; max-height:80vh; display:block; object-fit:contain; }
+  .works-direct-gallery-v2-modal__copy { padding:54px 42px; align-self:center; }
+  .works-direct-gallery-v2-modal__copy small { color:#a35d52; font-size:14px; }
+  .works-direct-gallery-v2-modal__copy h3 { margin:14px 0 18px; color:#292622; font-size:30px; font-weight:400; }
+  .works-direct-gallery-v2-modal__copy p { margin:0; color:#766f68; font-size:17px; line-height:1.8; }
+  .works-direct-gallery-v2-modal__close { position:absolute; top:14px; right:14px; z-index:2; width:44px; height:44px; border:0; border-radius:50%; background:rgba(255,255,255,.92); color:#4e4944; font-size:28px; cursor:pointer; }
+  @media (max-width:1050px) { .works-direct-gallery-v2__grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  @media (max-width:680px) {
+    .works-direct-gallery-v2 { width:calc(100% - 30px); margin-top:24px; }
+    .works-direct-gallery-v2__grid { grid-template-columns:1fr; gap:28px; }
+    .works-direct-gallery-v2-modal { padding:14px; }
+    .works-direct-gallery-v2-modal__dialog { grid-template-columns:1fr; }
+    .works-direct-gallery-v2-modal__media { min-height:260px; }
+    .works-direct-gallery-v2-modal__copy { padding:30px 24px; }
+  }
+</style>
+<script id="works-direct-gallery-v2-script">
+(() => {
+  const buildWorksGallery = () => {
+    const section = [...document.querySelectorAll('section, main > div')]
+      .find(el => /實拍作品牆/.test(el.textContent || '') && el.querySelector('details'));
+    if (!section) return;
+
+    document.getElementById('works-direct-gallery-v2')?.remove();
+    document.getElementById('works-direct-gallery-v2-modal')?.remove();
+    document.querySelectorAll('.works-direct-gallery-v2, .works-direct-gallery-v2-modal').forEach(el => el.remove());
+
+    const entries = [];
+    const seen = new Set();
+    const clean = value => (value || '').replace(/點開查看作品|作品照片待補|目前可持續新增照片|[⌃⌄∨∧^]/g, ' ').replace(/\s+/g, ' ').trim();
+    const add = (src, title, category, description = '') => {
+      if (!src || !title) return;
+      const normalized = src.replace(location.href.replace(/[^/]*$/, ''), '');
+      const key = `${normalized}|${title}`;
+      if (seen.has(key)) return;
+      seen.add(key);
+      entries.push({ src: normalized, title, category, description });
+    };
+
+    section.querySelectorAll('details').forEach(detail => {
+      const category = clean(detail.querySelector('summary')?.textContent) || '實拍作品';
+      detail.querySelectorAll('img').forEach(img => {
+        const container = img.closest('figure, li, article, div');
+        const texts = [...(container?.querySelectorAll('figcaption, h3, h4, p, span') || [])]
+          .map(el => clean(el.textContent)).filter(Boolean);
+        const title = texts.find(text => text !== category && text.length < 60) || clean(img.alt) || category;
+        const description = texts.filter(text => text !== title && text !== category).join(' ');
+        add(img.getAttribute('src'), title, category, description);
+      });
+      detail.hidden = true;
+    });
+
+    add('assets/gallery-manfu-treasure-wenheng.jpg', '文衡帝君款', '滿福百寶箱', '金紙藝品客製作品');
+    add('assets/gallery-manfu-treasure-huye.jpg', '虎爺款', '滿福百寶箱', '金紙藝品客製作品');
+
+    const gallery = document.createElement('div');
+    gallery.id = 'works-direct-gallery-v2';
+    gallery.className = 'works-direct-gallery-v2';
+    gallery.innerHTML = `<div class="works-direct-gallery-v2__grid"></div>`;
+    const grid = gallery.firstElementChild;
+
+    entries.forEach(entry => {
+      const item = document.createElement('figure');
+      item.className = 'works-direct-gallery-v2__item';
+      item.tabIndex = 0;
+      item.innerHTML = `<div class="works-direct-gallery-v2__photo"><img loading="lazy"><span class="works-direct-gallery-v2__overlay">查看作品</span></div><figcaption class="works-direct-gallery-v2__caption"></figcaption>`;
+      const img = item.querySelector('img');
+      img.src = entry.src;
+      img.alt = entry.title;
+      img.onerror = () => item.remove();
+      item.querySelector('figcaption').innerHTML = `${entry.title}<span class="works-direct-gallery-v2__category">${entry.category}</span>`;
+      item.addEventListener('click', () => openModal(entry));
+      item.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openModal(entry); } });
+      grid.appendChild(item);
+    });
+
+    const modal = document.createElement('div');
+    modal.id = 'works-direct-gallery-v2-modal';
+    modal.className = 'works-direct-gallery-v2-modal';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    modal.innerHTML = `<div class="works-direct-gallery-v2-modal__dialog"><button class="works-direct-gallery-v2-modal__close" aria-label="關閉">×</button><div class="works-direct-gallery-v2-modal__media"><img></div><div class="works-direct-gallery-v2-modal__copy"><small></small><h3></h3><p></p></div></div>`;
+    document.body.appendChild(modal);
+
+    function openModal(entry) {
+      modal.querySelector('img').src = entry.src;
+      modal.querySelector('img').alt = entry.title;
+      modal.querySelector('small').textContent = entry.category;
+      modal.querySelector('h3').textContent = entry.title;
+      modal.querySelector('p').textContent = entry.description || '作品可依尺寸、款式與敬獻需求客製，歡迎聯繫詢問。';
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    }
+    const closeModal = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; };
+    modal.querySelector('.works-direct-gallery-v2-modal__close').addEventListener('click', closeModal);
+    modal.addEventListener('click', event => { if (event.target === modal) closeModal(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeModal(); });
+
+    section.appendChild(gallery);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', buildWorksGallery);
+  else buildWorksGallery();
+})();
+</script>
+  <script src="assets/works-gallery-v3.js"></script>
+  <script src="assets/works-gallery-v4.js"></script>
+  <!-- Direct works gallery: keep this inline so only collections.html needs uploading. -->
+  <style>
+    #directWorksGallery{max-width:1500px;margin:34px auto 80px;padding:0 28px}.direct-works-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 24px}.direct-work{margin:0;min-width:0;cursor:pointer}.direct-work-media{position:relative;aspect-ratio:4/3;overflow:hidden;background:#f4f1ed}.direct-work img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .28s ease}.direct-work-overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(30,24,20,.48);color:#fff;font-size:18px;opacity:0;transition:opacity .22s ease}.direct-work:hover img{transform:scale(1.025)}.direct-work:hover .direct-work-overlay,.direct-work:focus-visible .direct-work-overlay{opacity:1}.direct-work figcaption{padding:14px 2px 0;color:#292622;font-size:19px;line-height:1.5;text-align:center;font-weight:400}.direct-work-modal[hidden]{display:none}.direct-work-modal{position:fixed;inset:0;z-index:10000;display:grid;place-items:center;padding:28px;background:rgba(20,18,16,.72)}.direct-work-dialog{position:relative;width:min(1080px,100%);max-height:90vh;overflow:auto;background:#fff;padding:52px}.direct-work-dialog-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:42px;align-items:start}.direct-work-dialog img{width:100%;max-height:68vh;object-fit:contain;background:#f5f3f0}.direct-work-dialog h3{margin:0 0 18px;font-size:28px;font-weight:400}.direct-work-dialog p{margin:0;color:#68625d;font-size:18px;line-height:1.8;white-space:pre-line}.direct-work-close{position:absolute;top:12px;right:15px;border:0;background:transparent;font-size:38px;line-height:1;color:#6d6863;cursor:pointer}@media(max-width:1050px){.direct-works-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:760px){#directWorksGallery{padding:0 18px}.direct-works-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}.direct-work figcaption{font-size:16px}.direct-work-dialog{padding:46px 22px 28px}.direct-work-dialog-grid{grid-template-columns:1fr;gap:22px}}@media(max-width:480px){.direct-works-grid{grid-template-columns:1fr}}
+  </style>
+  <div class="direct-work-modal" id="directWorkModal" hidden role="dialog" aria-modal="true" aria-labelledby="directWorkTitle">
+    <div class="direct-work-dialog">
+      <button class="direct-work-close" type="button" aria-label="關閉">&times;</button>
+      <div class="direct-work-dialog-grid"><img alt=""><div><h3 id="directWorkTitle"></h3><p></p></div></div>
+    </div>
+  </div>
+  <script>
+  (()=>{
+    const clean=s=>(s||'').replace(/\s+/g,' ').trim();
+    const heading=[...document.querySelectorAll('h1,h2,h3')].find(el=>clean(el.textContent)==='實拍作品牆');
+    if(!heading)return;
+    const section=heading.closest('section')||heading.parentElement?.parentElement;
+    if(!section)return;
+    const excluded=/logo|cta-carousel|icon|avatar/i;
+    const seen=new Set();
+    const works=[...section.querySelectorAll('img')].map(img=>{
+      const src=img.getAttribute('src')||'';
+      if(!src||excluded.test(src)||seen.has(src))return null;
+      seen.add(src);
+      const box=img.closest('figure,.gallery-item,.work-item,.gallery-photo,.photo-item,.gallery-entry')||img.parentElement;
+      const label=box?.querySelector('figcaption,.caption,.work-name,.gallery-name,h3,h4');
+      const title=clean(label?.textContent)||clean(img.alt)||decodeURIComponent(src.split('/').pop().replace(/\.[^.]+$/,''));
+      const desc=clean(img.dataset.description)||clean(box?.querySelector('.description,.work-description,.gallery-description,p')?.textContent)||title;
+      return {src,title,desc};
+    }).filter(Boolean);
+    if(!works.length)return;
+    const gallery=document.createElement('div');
+    gallery.id='directWorksGallery';
+    gallery.innerHTML='<div class="direct-works-grid"></div>';
+    const grid=gallery.firstElementChild;
+    works.forEach(work=>{
+      const item=document.createElement('figure');
+      item.className='direct-work'; item.tabIndex=0;
+      item.innerHTML='<div class="direct-work-media"><img loading="lazy"><span class="direct-work-overlay">查看作品</span></div><figcaption></figcaption>';
+      item.querySelector('img').src=work.src; item.querySelector('img').alt=work.title;
+      item.querySelector('figcaption').textContent=work.title;
+      item.addEventListener('click',()=>open(work));
+      item.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(work)}});
+      grid.append(item);
+    });
+    const hints=[...section.querySelectorAll('*')].filter(el=>!el.children.length&&/點開查看作品/.test(clean(el.textContent)));
+    if(hints.length){
+      const paths=hints.map(el=>{const a=[];for(let n=el;n&&n!==section;n=n.parentElement)a.push(n);return a});
+      const common=paths[0].find(n=>paths.every(p=>p.includes(n)));
+      if(common&&common!==section)common.style.display='none';
+    }
+    section.insertAdjacentElement('afterend',gallery);
+    const modal=document.getElementById('directWorkModal'), photo=modal.querySelector('img'), title=modal.querySelector('h3'), desc=modal.querySelector('p');
+    function open(work){photo.src=work.src;photo.alt=work.title;title.textContent=work.title;desc.textContent=work.desc;modal.hidden=false;document.body.style.overflow='hidden'}
+    function close(){modal.hidden=true;document.body.style.overflow='';photo.removeAttribute('src')}
+    modal.querySelector('.direct-work-close').addEventListener('click',close);
+    modal.addEventListener('click',e=>{if(e.target===modal)close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close()});
+  })();
+  </script>
+<!-- DIRECT-WORKS-GALLERY-START -->
+<style>
+  #directWorksGallery{max-width:1500px;margin:0 auto;padding:48px 32px 80px;font-family:inherit;color:#332e2a}
+  #directWorksGallery .dw-head{text-align:center;margin-bottom:38px}
+  #directWorksGallery .dw-kicker{margin:0 0 10px;color:#a55c50;font-size:14px;font-weight:400;letter-spacing:3px}
+  #directWorksGallery h2{margin:0;font-size:42px;font-weight:400;letter-spacing:0}
+  #directWorksGallery .dw-lead{margin:16px auto 0;max-width:720px;color:#847b74;font-size:18px;line-height:1.8}
+  .direct-works-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 26px}
+  .direct-work-card{min-width:0;background:transparent;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit}
+  .direct-work-photo{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;background:#f1eeea;border-radius:4px}
+  .direct-work-photo img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+  .direct-work-overlay{position:absolute;inset:0;display:grid;place-items:center;background:rgba(38,31,27,.46);opacity:0;transition:opacity .25s ease}
+  .direct-work-overlay span{padding:10px 18px;background:rgba(255,255,255,.94);color:#4f4843;font-size:15px;font-weight:400}
+  .direct-work-card:hover img,.direct-work-card:focus-visible img{transform:scale(1.035)}
+  .direct-work-card:hover .direct-work-overlay,.direct-work-card:focus-visible .direct-work-overlay{opacity:1}
+  .direct-work-name{display:block;margin-top:13px;text-align:center;color:#342f2b;font-size:18px;font-weight:400;line-height:1.45}
+  .direct-work-modal[hidden]{display:none}
+  .direct-work-modal{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;padding:28px;background:rgba(25,22,20,.72)}
+  .direct-work-dialog{position:relative;width:min(1040px,100%);max-height:92vh;overflow:auto;background:#fff;padding:54px;box-shadow:0 18px 60px rgba(0,0,0,.28)}
+  .direct-work-close{position:absolute;top:14px;right:18px;border:0;background:transparent;color:#6f6862;font-size:38px;line-height:1;cursor:pointer}
+  .direct-work-detail{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(260px,.75fr);gap:42px;align-items:center}
+  .direct-work-detail img{display:block;width:100%;max-height:70vh;object-fit:contain;background:#f5f2ef}
+  .direct-work-copy h3{margin:0 0 16px;font-size:30px;font-weight:400}
+  .direct-work-copy p{margin:0;color:#746d67;font-size:17px;line-height:1.8;white-space:pre-line}
+  @media(max-width:1100px){.direct-works-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media(max-width:760px){#directWorksGallery{padding:38px 18px 64px}#directWorksGallery h2{font-size:32px}.direct-works-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:25px 14px}.direct-work-name{font-size:16px}.direct-work-dialog{padding:48px 20px 24px}.direct-work-detail{grid-template-columns:1fr;gap:22px}.direct-work-copy h3{font-size:24px}}
+  @media(max-width:430px){.direct-works-grid{grid-template-columns:1fr}}
+</style>
+<section id="directWorksGallery" aria-labelledby="directWorksTitle">
+  <div class="dw-head"><p class="dw-kicker">WORKS</p><h2 id="directWorksTitle">實拍作品牆</h2><p class="dw-lead">每一件作品都承載專屬心意，點選照片可查看作品內容。</p></div>
+  <div class="direct-works-grid" id="directWorksGrid"></div>
+</section>
+<div class="direct-work-modal" id="directWorkModal" hidden role="dialog" aria-modal="true" aria-labelledby="directWorkModalTitle">
+  <div class="direct-work-dialog"><button class="direct-work-close" type="button" aria-label="關閉">&times;</button><div class="direct-work-detail"><img id="directWorkModalImage" alt=""><div class="direct-work-copy"><h3 id="directWorkModalTitle"></h3><p id="directWorkModalText"></p></div></div></div>
+</div>
+<script>
+(function(){
+  const gallery=document.getElementById('directWorksGallery'), grid=document.getElementById('directWorksGrid');
+  if(!gallery||!grid)return;
+  const heading=[...document.querySelectorAll('h1,h2,h3')].find(el=>el!==document.getElementById('directWorksTitle')&&el.textContent.trim()==='實拍作品牆');
+  let legacy=heading&&heading.parentElement;
+  while(legacy&&legacy!==document.body&&legacy.querySelectorAll('img').length<2)legacy=legacy.parentElement;
+  const scope=legacy||document;
+  const seen=new Set();
+  const ignored=/logo|cta-carousel|icon|avatar/i;
+  const photos=[...scope.querySelectorAll('img')].filter(img=>{
+    const src=img.getAttribute('src')||'';
+    if(!src||ignored.test(src)||seen.has(src))return false;
+    seen.add(src);return true;
+  });
+  const clean=s=>(s||'').replace(/\s+/g,' ').trim();
+  function nameFor(img){
+    const item=img.closest('figure,.gallery-item,.work-item,.gallery-photo,.work-photo,article');
+    const named=item&&item.querySelector('figcaption,.caption,.work-name,.gallery-name,h3,h4');
+    let name=clean(named&&named.textContent)||clean(img.dataset.name)||clean(img.title)||clean(img.alt);
+    if(!name){const file=(img.getAttribute('src')||'').split('/').pop().split('?')[0];name=decodeURIComponent(file).replace(/\.[^.]+$/,'').replace(/[-_]+/g,' ')}
+    return name||'實拍作品';
+  }
+  function textFor(img,name){
+    const item=img.closest('figure,.gallery-item,.work-item,.gallery-photo,.work-photo,article');
+    const desc=item&&item.querySelector('.description,.work-description,.gallery-description,p');
+    const text=clean(desc&&desc.textContent)||clean(img.dataset.description);
+    return text||name;
+  }
+  photos.forEach(img=>{
+    const name=nameFor(img),desc=textFor(img,name),src=img.currentSrc||img.src;
+    const button=document.createElement('button');button.type='button';button.className='direct-work-card';
+    button.innerHTML='<span class="direct-work-photo"><img loading="lazy"><span class="direct-work-overlay"><span>查看作品</span></span></span><span class="direct-work-name"></span>';
+    const out=button.querySelector('img');out.src=src;out.alt=name;button.querySelector('.direct-work-name').textContent=name;
+    button.addEventListener('click',()=>openModal(src,name,desc));grid.appendChild(button);
+  });
+  if(legacy&&legacy!==document.body){legacy.parentNode.insertBefore(gallery,legacy);legacy.style.display='none';}
+  if(!photos.length)grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#8a817a">作品照片整理中</p>';
+  const modal=document.getElementById('directWorkModal'),mi=document.getElementById('directWorkModalImage'),mt=document.getElementById('directWorkModalTitle'),mp=document.getElementById('directWorkModalText');
+  function openModal(src,name,desc){mi.src=src;mi.alt=name;mt.textContent=name;mp.textContent=desc;modal.hidden=false;document.body.style.overflow='hidden';modal.querySelector('.direct-work-close').focus()}
+  function closeModal(){modal.hidden=true;document.body.style.overflow=''}
+  modal.querySelector('.direct-work-close').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)closeModal()});
+})();
+</script>
+<!-- DIRECT-WORKS-GALLERY-END -->
 </body>
 </html>
 
