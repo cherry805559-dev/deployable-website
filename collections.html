@@ -1114,8 +1114,8 @@
   }
 </style>
 <style id="product-card-screen-fit">
-  .product-grid { gap: 16px; align-items: stretch; }
-  .product-grid > .product-card { padding: 16px 18px; }
+  .product-grid { gap: 16px; align-items: start; }
+  .product-grid > .product-card { padding: 16px 18px; height: auto; min-height: 0; align-self: start; }
   .product-card .icon-badge { display: none; }
   .product-card h3 { font-size: 20px; line-height: 1.3; margin: 0 0 6px; }
   .product-card .product-tags { font-size: 14px; line-height: 1.4; margin: 0 0 8px; }
@@ -1138,6 +1138,15 @@
     .product-grid > .product-card { padding: 16px; }
     .product-card .product-image { height: clamp(150px, 27vh, 210px); }
   }
+</style>
+<style id="product-card-bottom-spacing">
+  .product-grid > .product-card { padding-bottom: 16px; }
+  .product-card > .line-inquiry { margin-bottom: 0; }
+  /* Keep works-wall containers out of the product cards. */
+  .product-card > div:not(.icon-badge),
+  .product-card > section,
+  .product-card > details,
+  .product-card > figure:not(.product-image) { display: none !important; }
 </style>
 </head>
 <body>
